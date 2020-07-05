@@ -1,0 +1,99 @@
+{
+  "private": true,
+  "name": "omscentral-client",
+  "description": "",
+  "license": "ISC",
+  "author": "Mehmet Bajin <mehmet.bajin@gatech.edu>",
+  "version": "0.0.0",
+  "main": "build/index.html",
+  "scripts": {
+    "build": "react-scripts build",
+    "build:local": "env-cmd -f .env.development.local react-scripts build",
+    "build:production": "env-cmd -f .env.production react-scripts build",
+    "build:staging": "env-cmd -f .env.development react-scripts build",
+    "dev": "react-scripts start",
+    "firebase": "firebase",
+    "format": "prettier --write 'src/{**/*,*}.{js,jsx,ts,tsx,json,css,scss}'",
+    "format:package": "prettier-package-json --write ./package.json",
+    "start": "serve -s build -p 3000",
+    "test": "run-s test:formatting test:lint test:compile test:react",
+    "test:compile": "tsc -p tsconfig.json",
+    "test:formatting": "prettier --check 'src/{**/*,*}.{js,jsx,ts,tsx,json,css,scss}'",
+    "test:lint": "eslint src/ --ext .ts,.tsx,.js,.jsx",
+    "test:react": "react-scripts test"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "3.1.5",
+    "@material-ui/core": "4.11.0",
+    "@material-ui/icons": "4.9.1",
+    "@material-ui/lab": "4.0.0-alpha.56",
+    "@sentry/browser": "5.19.0",
+    "apollo-cache-inmemory": "1.6.6",
+    "apollo-client": "2.6.10",
+    "apollo-link": "1.2.14",
+    "apollo-link-error": "1.1.13",
+    "apollo-link-http": "1.5.17",
+    "clsx": "1.1.1",
+    "firebase": "7.15.5",
+    "graphql": "14.x",
+    "graphql-tag": "2.10.3",
+    "query-string": "6.13.1",
+    "react": "16.13.1",
+    "react-apollo": "3.1.5",
+    "react-copy-to-clipboard": "5.0.2",
+    "react-dom": "16.13.1",
+    "react-helmet": "6.1.0",
+    "react-hook-form": "6.0.1",
+    "react-markdown": "4.3.1",
+    "react-router-dom": "5.2.0",
+    "react-visibility-sensor": "5.1.1"
+  },
+  "devDependencies": {
+    "@apollo/react-testing": "3.1.4",
+    "@types/firebase": "3.2.1",
+    "@types/jest": "26.0.3",
+    "@types/query-string": "6.3.0",
+    "@types/react": "16.9.41",
+    "@types/react-copy-to-clipboard": "4.3.0",
+    "@types/react-dom": "16.9.8",
+    "@types/react-helmet": "6.0.0",
+    "@types/react-router-dom": "5.1.5",
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "env-cmd": "10.1.0",
+    "eslint": "6.x",
+    "eslint-plugin-flowtype": "4.x",
+    "eslint-plugin-graphql": "4.0.0",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "2.x",
+    "eslint-plugin-security": "1.4.0",
+    "fibers": "5.0.0",
+    "firebase-tools": "8.4.3",
+    "node-sass": "4.14.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.0.5",
+    "prettier-package-json": "2.1.3",
+    "react-scripts": "3.4.1",
+    "sass": "1.26.9",
+    "serve": "11.3.2",
+    "typescript": "3.9.6"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
+}

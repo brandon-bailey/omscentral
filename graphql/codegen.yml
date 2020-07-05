@@ -1,0 +1,35 @@
+overwrite: true
+schema: ./schema.graphql
+documents: ./**/*.graphql
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  ../server/src/graphql/graphql.schema.json:
+    plugins:
+      - introspection
+  ../server/src/graphql/index.ts:
+    config:
+      contextType: ../types#Context
+      useIndexSignature: true
+    plugins:
+      - typescript
+      - typescript-resolvers
+      - typescript-document-nodes
+    # hooks:
+    #   afterAllFileWrite:
+    #     - eslint --fix --config ../server/.eslintrc.js
+  ../client/src/graphql/graphql.schema.json:
+    plugins:
+      - introspection
+  ../client/src/graphql/index.tsx:
+    config:
+      reactApolloVersion: 2
+      withHooks: true
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    # hooks:
+    #   afterAllFileWrite:
+    #     - eslint --fix --config ../client/.eslintrc.js

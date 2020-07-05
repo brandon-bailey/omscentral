@@ -1,0 +1,12 @@
+query specializations {
+  specializations {
+    id
+    name
+    program_id
+    program {
+      id
+      name
+      url
+    }
+  }
+}

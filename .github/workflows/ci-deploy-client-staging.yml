@@ -1,0 +1,38 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    env:
+      CI: true
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm ci
+      - name: Install GraphQL
+        run: cd graphql && npm ci && npm run generate
+      - name: Install Client
+        run: cd client && npm ci
+      - name: Test
+        run: cd client && npm test
+      - name: Build
+        run: cd client && npm run build:staging
+      - name: Deploy
+        run: cd client && npm run firebase deploy -- --only hosting --message "${GITHUB_SHA}" --project omscentral-staging

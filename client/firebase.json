@@ -1,0 +1,32 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/sitemap",
+        "destination": "/sitemap.txt",
+        "type": 301
+      },
+      {
+        "source": "/sitemap/**",
+        "destination": "/sitemap.txt",
+        "type": 302
+      },
+      {
+        "source": "/robots",
+        "destination": "/robots.txt",
+        "type": 301
+      },
+      {
+        "source": "/robots/**",
+        "destination": "/robots.txt",
+        "type": 302
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

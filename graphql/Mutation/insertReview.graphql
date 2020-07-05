@@ -1,0 +1,14 @@
+mutation insertReview($review: ReviewInputType!) {
+  insertReview(review: $review) {
+    id
+    author_id
+    course_id
+    semester_id
+    difficulty
+    workload
+    rating
+    body
+    created
+    updated
+  }
+}

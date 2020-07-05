@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "staging": "omscentral-staging",
+    "production": "omscentral-production"
+  }
+}

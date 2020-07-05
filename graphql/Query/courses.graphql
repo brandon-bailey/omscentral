@@ -1,0 +1,36 @@
+query courses {
+  courses {
+    id
+    department
+    number
+    name
+    foundational
+    deprecated
+    metric {
+      reviews {
+        count
+        difficulty {
+          mean
+          median
+          mode
+          min
+          max
+        }
+        workload {
+          mean
+          median
+          mode
+          min
+          max
+        }
+        rating {
+          mean
+          median
+          mode
+          min
+          max
+        }
+      }
+    }
+  }
+}

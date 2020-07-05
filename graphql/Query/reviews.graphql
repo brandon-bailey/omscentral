@@ -1,0 +1,41 @@
+query reviews(
+  $order_by_desc: [String!] = ["created"]
+  $offset: Int = 0
+  $limit: Int = 100
+  $course_id: String
+  $author_id: String
+  $semester_ids: [String!]! = []
+) {
+  reviews(
+    order_by_desc: $order_by_desc
+    offset: $offset
+    limit: $limit
+    course_id: $course_id
+    author_id: $author_id
+    semester_ids: $semester_ids
+  ) {
+    id
+    author_id
+    author {
+      id
+      email
+    }
+    course_id
+    course {
+      id
+      name
+    }
+    semester_id
+    semester {
+      id
+      name
+      season
+    }
+    difficulty
+    rating
+    workload
+    body
+    created
+    updated
+  }
+}

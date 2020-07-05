@@ -1,0 +1,6 @@
+query config($id: String!) {
+  config(id: $id) {
+    id
+    value
+  }
+}

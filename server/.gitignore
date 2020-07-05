@@ -1,0 +1,47 @@
+# https://help.github.com/articles/ignoring-files/
+
+# OS Specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE Specific
+nbproject
+.~lock.*
+.buildpath
+.idea
+.project
+.settings
+.vscode
+composer.lock
+*.sublime-workspace
+*.swp
+*.swo
+
+# Project Specific
+node_modules/
+dist/
+*.log
+tmp
+.changelog
+coverage/
+.nyc_output/
+.eslintcache
+
+# Env Vars
+.env
+.env.development
+.env.production
+
+# Other
+_*.json
+keys/
+database/migrations/*_fill_users.ts
+database/migrations/*_fill_reviews.ts
+
+# GraphQL
+src/graphql/
