@@ -12,7 +12,7 @@ interface Route {
   component: React.ComponentType<any>;
 }
 
-const Error404: React.FC = () => <Redirect to="/error/404" />;
+const Error404: React.FC = () => <Redirect to={paths.error(404)} />;
 
 const routes: Route[] = [
   {
@@ -24,7 +24,7 @@ const routes: Route[] = [
     component: lazy(() => import('./components/Terms')),
   },
   {
-    path: paths.error,
+    path: paths.error(),
     component: lazy(() => import('./components/Error')),
   },
   {
@@ -36,7 +36,7 @@ const routes: Route[] = [
     component: Courses,
   },
   {
-    path: paths.course,
+    path: paths.course(),
     component: lazy(() => import('./components/Course')),
   },
   {
@@ -45,7 +45,7 @@ const routes: Route[] = [
     auth: true,
   },
   {
-    path: paths.review.update,
+    path: paths.review.update(),
     component: lazy(() => import('./components/ReviewUpdate')),
   },
   {

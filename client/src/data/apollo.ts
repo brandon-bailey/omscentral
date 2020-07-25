@@ -27,7 +27,7 @@ const error = onError(({ networkError, graphQLErrors, operation }) => {
 
   const { message } = (graphQLErrors || [])[0] || {};
   const code = errorCodes[message] || 500;
-  browserHistory.push(paths.error.replace(':code', String(code)));
+  browserHistory.push(paths.error(code));
 });
 
 const before = new ApolloLink((operation, forward) => {

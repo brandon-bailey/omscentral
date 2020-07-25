@@ -20,7 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import UnknownIcon from '@material-ui/icons/Help';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { reviewMeta } from 'src/constants';
+import { reviewMeta, paths } from 'src/constants';
 import { ReviewsQuery } from 'src/graphql';
 import { AuthContext } from '../Auth';
 import Grow from '../Grow';
@@ -94,7 +94,7 @@ const ReviewCard: React.FC<Props> = ({
   ].filter((chip) => Boolean(chip?.label));
   xs && chips.pop() && chips.pop();
 
-  const handleEditClick = () => history.push(`/review/${id}`);
+  const handleEditClick = () => history.push(paths.review.update(id));
   const handleDeepLinkCopy = () => onDeepLinkCopy(id);
 
   const action = xs ? null : auth.user?.uid === author.id ? (

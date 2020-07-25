@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import { paths } from 'src/constants';
 import { ReviewsQuery } from 'src/graphql';
 import { FirebaseContext } from '../Firebase';
 import { NotificationContext } from '../Notification';
@@ -29,7 +30,7 @@ const ReviewCardList: React.FC<Props> = ({
   const firebase = useContext(FirebaseContext);
 
   const getDeepLink = (id: string): string =>
-    `${location.protocol}//${location.host}/review/${id}`; // eslint-disable-line no-restricted-globals
+    `${location.protocol}//${location.host}${paths.review.update(id)}`; // eslint-disable-line no-restricted-globals
 
   const handleDeepLinkCopy = (id: string) => {
     notification.success('Link copied to clipboard.');

@@ -10,6 +10,7 @@ import {
   ReviewInputType,
   ReviewQuery,
 } from 'src/graphql';
+import { paths } from 'src/constants';
 import { FirebaseContext } from '../Firebase';
 import { NotificationContext } from '../Notification';
 import { AuthContext } from '../Auth';
@@ -63,7 +64,7 @@ const ReviewFormContainer: React.FC<Props> = ({ review }) => {
 
         notification.success('Review published.');
 
-        history.push(`/course/${review.course_id}`);
+        history.push(paths.course(review.course_id));
       } else if (mode === 'edit') {
         await update({ variables: { review: { ...review, author_id } } });
 
@@ -74,7 +75,7 @@ const ReviewFormContainer: React.FC<Props> = ({ review }) => {
 
         notification.success('Review updated.');
 
-        history.push(`/course/${review.course_id}`);
+        history.push(paths.course(review.course_id));
       }
     } catch {
       notification.error('Something went wrong.');
@@ -92,7 +93,7 @@ const ReviewFormContainer: React.FC<Props> = ({ review }) => {
 
       notification.success('Review deleted.');
 
-      history.replace(`/course/${review!.course_id}`);
+      history.replace(paths.course(review!.course_id));
     } catch {
       notification.error('Something went wrong.');
     }

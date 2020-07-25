@@ -22,7 +22,7 @@ class ErrorBoundary extends React.Component<{}, State> {
 
   render = () => {
     if (this.state.error) {
-      return <Redirect to={paths.error.replace(':code', '500')} />;
+      return <Redirect to={paths.error(500)} />;
     }
     return this.props.children;
   };

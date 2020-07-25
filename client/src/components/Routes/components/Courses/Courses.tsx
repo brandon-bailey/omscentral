@@ -14,6 +14,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Course } from 'src/graphql';
 import { FirebaseContext } from 'src/components/Firebase/Firebase';
 import { NotificationContext } from 'src/components/Notification';
+import { paths } from 'src/constants';
 import compare from 'src/utils/compare';
 import Loading from 'src/components/Loading';
 import Paper from 'src/components/Paper';
@@ -84,7 +85,7 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
         content_type: 'course',
         content_id: c.id,
       });
-      history.push(`/course/${c.id}`);
+      history.push(paths.course(c.id));
     } else {
       notification.warning('There are no reviews for this course.');
     }
