@@ -17,10 +17,12 @@
     "test:compile": "npm run tsc -- --noEmit",
     "test:formatting": "prettier --check '(src|database)/{**/*,*}.{js,ts,json}'",
     "test:lint": "eslint src --ext .js,.ts",
+    "ts-node": "ts-node",
     "tsc": "tsc -p tsconfig.json",
     "watch:api": "ts-node-dev --no-notify --respawn --transpile-only src/server.ts"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "7.8.0",
     "@hapi/boom": "9.1.0",
     "@hapi/joi": "17.1.1",
     "@sentry/node": "5.20.1",

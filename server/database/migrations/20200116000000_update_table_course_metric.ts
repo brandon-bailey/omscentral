@@ -1,6 +1,6 @@
 import Knex from 'knex';
 
-import { dropTable, dropColumn, addColumn } from '../utils';
+import { dropColumn, addColumn } from '../utils';
 import { CourseMetric } from '../../src/models';
 
 exports.up = async (knex: Knex) => {
@@ -16,5 +16,6 @@ exports.up = async (knex: Knex) => {
 };
 
 exports.down = async (knex: Knex) => {
-  await dropTable(knex, CourseMetric.tableName);
+  CourseMetric.knex(knex);
+  await CourseMetric.query().delete();
 };

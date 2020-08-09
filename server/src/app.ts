@@ -18,6 +18,7 @@ app.phase(phases.createServer, 'create-server');
 app.phase(phases.knex, 'knex');
 app.phase(phases.postgres, 'postgres');
 app.phase(phases.upsertCourseMetrics, 'upsert-course-metrics');
+app.phase(phases.indexReviews, 'index-reviews');
 
 app.use(compression());
 

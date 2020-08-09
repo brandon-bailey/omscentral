@@ -4,7 +4,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
-import Grow from '../../../../../Grow';
+
+import Grow from 'src/components/Grow';
 import { useStyles } from './Toolbar.styles';
 
 export type TableSize = 'small' | 'medium';
@@ -96,7 +97,7 @@ const Toolbar: React.FC<Props> = ({
         className={classes.filter}
         id="filter"
         name="filter"
-        label="Filter"
+        label="Filter Courses"
         size="small"
         autoComplete="filter"
         variant="filled"

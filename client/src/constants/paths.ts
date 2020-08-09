@@ -12,7 +12,8 @@ export const paths = {
     create: '/review',
     update: (id?: string) => (id ? `/review/${id}` : '/review/:id'),
   },
-  reviews: '/reviews',
+  reviews: (query?: string) =>
+    query ? `/reviews?query=${encodeURIComponent(query)}` : '/reviews',
   setPassword: '/set-password',
   terms: '/terms',
   userProfile: '/user/profile',

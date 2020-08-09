@@ -6,10 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Button from '../../../Button';
-import Link from '../../../Link';
-import Paper from '../../../Paper';
-import White from '../../../White';
+
+import Button from 'src/components/Button';
+import Link from 'src/components/Link';
+import Paper from 'src/components/Paper';
+import White from 'src/components/White';
 import { Nullable } from 'src/core';
 import { paths } from 'src/constants';
 import { useStyles } from './SetPassword.styles';

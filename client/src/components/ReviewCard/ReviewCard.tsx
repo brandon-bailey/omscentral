@@ -24,10 +24,12 @@ import { reviewMeta, paths } from 'src/constants';
 import { ReviewsQuery } from 'src/graphql';
 import { AuthContext } from '../Auth';
 import Grow from '../Grow';
+import applyHighlighting from './utils/applyHighlighting';
 import { useStyles } from './ReviewCard.styles';
 
 interface Props {
   review: ReviewsQuery['reviews'][0];
+  highlight?: string;
   deepLink: (id: string) => string;
   onDeepLinkCopy: (id: string) => void;
 }
@@ -44,6 +46,7 @@ const ReviewCard: React.FC<Props> = ({
     body,
     created,
   },
+  highlight,
   deepLink,
   onDeepLinkCopy,
 }) => {
@@ -122,7 +125,7 @@ const ReviewCard: React.FC<Props> = ({
       />
       <CardContent className={classes.content}>
         {body ? (
-          <Markdown source={body} />
+          <Markdown source={applyHighlighting(body, highlight)} />
         ) : (
           <Typography variant="body2" color="textSecondary" component="p">
             No commentary provided.

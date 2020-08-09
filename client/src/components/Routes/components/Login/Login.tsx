@@ -15,13 +15,14 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import Button from '../../../Button';
-import Link from '../../../Link';
-import Paper from '../../../Paper';
-import White from '../../../White';
+
+import Button from 'src/components/Button';
+import Link from 'src/components/Link';
+import Paper from 'src/components/Paper';
+import White from 'src/components/White';
+import { FirebaseContext } from 'src/components/Firebase';
 import { paths } from 'src/constants';
 import { useStyles } from './Login.styles';
-import { FirebaseContext } from '../../../Firebase';
 
 export type FormData = {
   email: string;

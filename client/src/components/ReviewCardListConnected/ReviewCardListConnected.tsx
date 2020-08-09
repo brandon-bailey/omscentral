@@ -14,6 +14,7 @@ interface Props {
   onLoadMore?: () => void;
   loading?: boolean;
   before?: JSX.Element;
+  highlight?: string;
 }
 
 const ReviewCardListConnected: React.FC<Props> = ({
@@ -23,10 +24,12 @@ const ReviewCardListConnected: React.FC<Props> = ({
   onLoadMore,
   loading,
   before,
+  highlight,
 }) => (
   <ReviewCardList
     loading={loading}
     reviews={reviews}
+    highlight={highlight}
     before={
       <>
         {before}

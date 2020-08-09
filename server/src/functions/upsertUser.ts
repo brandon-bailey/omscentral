@@ -1,7 +1,7 @@
 import { PartialModelObject as PMO } from 'objection';
 
-import { User } from '../models';
 import { Role } from '../enums';
+import { User } from '../models';
 import { updateUser } from './updateUser';
 
 export const upsertUser = async (user: PMO<User>): Promise<User> => {
@@ -13,7 +13,7 @@ export const upsertUser = async (user: PMO<User>): Promise<User> => {
     });
   }
 
-  return User.query().insertAndFetch({
+  return User.eagerQuery().insertAndFetch({
     ...user,
     role: Role.Basic,
   });

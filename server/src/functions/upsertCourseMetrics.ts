@@ -1,4 +1,5 @@
 import { raw, PartialModelObject as PMO } from 'objection';
+
 import { Domain, Review, CourseMetric as CM } from '../models';
 
 class Metric extends Domain {
@@ -57,7 +58,7 @@ interface UpsertCourseMetrics {
   (ids: string[]): Promise<CM[]>;
 }
 
-const upsertCourseMetrics: UpsertCourseMetrics = async (
+export const upsertCourseMetrics: UpsertCourseMetrics = async (
   idOrIds?: string | string[],
 ): Promise<CM[]> => {
   const ids = !idOrIds
@@ -92,5 +93,3 @@ const upsertCourseMetrics: UpsertCourseMetrics = async (
     insertMissing: true,
   });
 };
-
-export { upsertCourseMetrics };

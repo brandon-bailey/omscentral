@@ -70,6 +70,7 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
           : undefined
       }
       before={before}
+      highlight={(variables.query || '').toLowerCase()}
     />
   );
 };

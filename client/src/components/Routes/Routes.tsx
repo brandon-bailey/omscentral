@@ -53,7 +53,7 @@ const routes: Route[] = [
     component: Reviews,
   },
   {
-    path: paths.reviews,
+    path: paths.reviews(),
     component: Reviews,
   },
   {

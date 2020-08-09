@@ -14,6 +14,7 @@ import ReviewCard from '../ReviewCard';
 interface Props {
   loading?: boolean;
   reviews?: ReviewsQuery['reviews'];
+  highlight?: string;
   whenEmpty?: JSX.Element;
   before?: JSX.Element;
   after?: JSX.Element;
@@ -22,6 +23,7 @@ interface Props {
 const ReviewCardList: React.FC<Props> = ({
   loading,
   reviews,
+  highlight,
   whenEmpty = <Typography>No reviews.</Typography>,
   before,
   after,
@@ -58,6 +60,7 @@ const ReviewCardList: React.FC<Props> = ({
               <Grid item xs={12} key={review.id}>
                 <ReviewCard
                   review={review}
+                  highlight={highlight}
                   deepLink={getDeepLink}
                   onDeepLinkCopy={handleDeepLinkCopy}
                 />
