@@ -64,10 +64,11 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
   const firebase = useContext(FirebaseContext);
   const [orderBy, setOrderBy] = useSession<SortKey>('/c:ob', SortKey.Id);
   const [order, setOrder] = useSession<SortDirection>('/c:o', 'asc');
-  const [filter, setFilter] = useSession<string>('/c:f', '');
+  const [filter, setFilter] = useSession('/c:f', '');
   const [size, setSize] = useLocal<'small' | 'medium'>('/c:s', 'medium');
-  const [foundational, setFoundational] = useLocal<boolean>('/c:fo', false);
-  const [deprecated, setDeprecated] = useLocal<boolean>('/c:d', true);
+  const [foundational, setFoundational] = useLocal('/c:fo', false);
+  const [deprecated, setDeprecated] = useLocal('/c:d', true);
+  const [hideUnreviewed, setHideUnreviewed] = useLocal('/c:hu', true);
 
   useEffect(() => {
     sm && setSize('small');
@@ -104,9 +105,10 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
   const filterBy: (course: Course) => boolean = useMemo(
     () => (c) =>
       (deprecated || !c.deprecated) &&
+      (!hideUnreviewed || !!c.metric?.reviews.count) &&
       (!foundational || c.foundational) &&
       (!filter || filterRegex.test([c.id, c.department, c.name].join(' '))),
-    [deprecated, foundational, filter, filterRegex],
+    [hideUnreviewed, deprecated, foundational, filter, filterRegex],
   );
 
   if (loading) {
@@ -129,6 +131,8 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
           onFoundationalChange={setFoundational}
           deprecated={deprecated}
           onDeprecatedChange={setDeprecated}
+          hideUnreviewed={hideUnreviewed}
+          onHideUnreviewedChange={setHideUnreviewed}
           filter={filter}
           onFilterChange={setFilter}
         />

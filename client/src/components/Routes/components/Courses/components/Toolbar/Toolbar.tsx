@@ -17,6 +17,8 @@ interface Props {
   onFoundationalChange: (changeTo: boolean) => void;
   deprecated: boolean;
   onDeprecatedChange: (changeTo: boolean) => void;
+  hideUnreviewed: boolean;
+  onHideUnreviewedChange: (changeTo: boolean) => void;
   filter: string;
   onFilterChange: (changeTo: string) => void;
 }
@@ -28,6 +30,8 @@ const Toolbar: React.FC<Props> = ({
   onFoundationalChange,
   deprecated,
   onDeprecatedChange,
+  hideUnreviewed,
+  onHideUnreviewedChange,
   filter,
   onFilterChange,
 }) => {
@@ -43,6 +47,10 @@ const Toolbar: React.FC<Props> = ({
 
   const handleDeprecatedChange = () => {
     onDeprecatedChange(!deprecated);
+  };
+
+  const handleHideUnreviewedChange = () => {
+    onHideUnreviewedChange(!hideUnreviewed);
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +84,7 @@ const Toolbar: React.FC<Props> = ({
             }
           />
         </Tooltip>
-        <Tooltip title="Show deprecated courses also?">
+        <Tooltip title="Show deprecated courses?">
           <FormControlLabel
             className={classes.switch}
             label="Deprecated"
@@ -84,6 +92,19 @@ const Toolbar: React.FC<Props> = ({
               <Switch
                 checked={deprecated}
                 onChange={handleDeprecatedChange}
+                size="small"
+              />
+            }
+          />
+        </Tooltip>
+        <Tooltip title="Hide courses without reviews?">
+          <FormControlLabel
+            className={classes.switch}
+            label="Hide Unreviewed"
+            control={
+              <Switch
+                checked={hideUnreviewed}
+                onChange={handleHideUnreviewedChange}
                 size="small"
               />
             }
