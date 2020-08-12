@@ -1,4 +1,4 @@
-import { Boom, boomify } from '@hapi/boom';
+import { Boom, boomify, forbidden } from '@hapi/boom';
 import { ErrorRequestHandler } from 'express';
 
 import { appConfig } from '../config';
@@ -18,6 +18,10 @@ export const middleware = (): ErrorRequestHandler => (
 ) => {
   if (!error) {
     return next();
+  }
+
+  if (error?.message === 'CORS') {
+    error = forbidden();
   }
 
   const { output } = parseError(error);

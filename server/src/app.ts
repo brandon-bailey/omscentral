@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import cors from 'cors';
 import express from 'express';
 import lusca from 'lusca';
 import path from 'path';
@@ -21,6 +22,8 @@ app.phase(phases.upsertCourseMetrics, 'upsert-course-metrics');
 app.phase(phases.indexReviews, 'index-reviews');
 
 app.use(compression());
+
+app.options('*', cors());
 
 app.use(bodyParser.raw());
 app.use(bodyParser.text({ type: ['*/xml'], limit: '50mb' }));
