@@ -16,5 +16,5 @@ export const resolver: Resolver = async (_, { user }, { req }) => {
     throw badRequest(error.message);
   }
 
-  return upsertUser(value);
+  return upsertUser(req.userId, value);
 };

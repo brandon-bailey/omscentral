@@ -16,5 +16,5 @@ export const resolver: Resolver = async (_, { user }, { req }) => {
     throw badRequest(error.message);
   }
 
-  return updateUser(value);
+  return updateUser(req.userId, value);
 };

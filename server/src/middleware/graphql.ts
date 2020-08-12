@@ -6,7 +6,7 @@ import fs from 'fs';
 
 import { graphqlConfig } from '../config';
 import { logger } from '../components';
-import { Mutation, Query } from '../api';
+import { Mutation, Query, permissions } from '../api';
 import { Request, Context } from '../types';
 import { User } from '../models';
 
@@ -20,6 +20,7 @@ export const middleware = (schemaFile: string): RequestHandler => {
         Mutation,
       },
     }),
+    permissions,
   );
 
   return graphqlHTTP(async (req, res) => {
