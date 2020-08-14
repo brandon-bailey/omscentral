@@ -8,7 +8,11 @@ import { logger } from '../components';
 
 const isWhitelisted = ({ origin }: IncomingHttpHeaders): boolean => {
   const { whitelist } = corsConfig;
-  return !!origin && !!whitelist.length && whitelist.includes(origin);
+  if (!whitelist.length) {
+    return true;
+  }
+
+  return !!origin && whitelist.includes(origin);
 };
 
 export const middleware = (): RequestHandler =>
