@@ -92,7 +92,6 @@ const ReviewCard: React.FC<Props> = ({
       tooltip: 'Workload',
     },
   ].filter((chip) => Boolean(chip?.label));
-  xs && chips.pop() && chips.pop();
 
   const handleEditClick = () => history.push(paths.review.update(id));
   const handleDeepLinkCopy = () => onDeepLinkCopy(id);
@@ -134,7 +133,12 @@ const ReviewCard: React.FC<Props> = ({
         <Grow />
         {chips.map(({ tooltip, label, ...rest }) => (
           <Tooltip title={tooltip} key={label!.toString()}>
-            <Chip label={label} variant="outlined" {...rest} />
+            <Chip
+              label={label}
+              variant="outlined"
+              classes={{ root: classes.chip, label: classes.chipLabel }}
+              {...rest}
+            />
           </Tooltip>
         ))}
       </CardActions>

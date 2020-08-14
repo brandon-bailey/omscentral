@@ -9,6 +9,9 @@ export const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: '100%',
     padding: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3),
+    },
   },
   avatar: {
     backgroundColor: red[500],
@@ -32,6 +35,20 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       padding: 0,
+      paddingTop: theme.spacing(1),
+    },
+  },
+  chip: {
+    [theme.breakpoints.down('xs')]: {
+      lineHeight: 1.1,
+      textAlign: 'center',
+      whiteSpace: 'normal',
+    },
+  },
+  chipLabel: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '12px',
+      whiteSpace: 'normal',
     },
   },
   fall: {
