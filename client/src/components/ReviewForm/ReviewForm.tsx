@@ -83,7 +83,7 @@ const ReviewForm: React.FC<Props> = ({
         <Avatar className={classes.avatar}>
           <EditOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" data-cy="title">
           {title}
         </Typography>
         <form className={classes.form} onSubmit={handleSubmitInternal}>
@@ -91,6 +91,7 @@ const ReviewForm: React.FC<Props> = ({
             {mode !== 'make' && (
               <Grid item xs={12}>
                 <TextField
+                  data-cy="review_id"
                   id="id"
                   name="id"
                   label="ID"
@@ -104,6 +105,7 @@ const ReviewForm: React.FC<Props> = ({
             )}
             <Grid item xs={12}>
               <Typeahead
+                data-cy="review_course_id"
                 id="course_id"
                 name="course_id"
                 label="Course"
@@ -127,6 +129,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
+                data-cy="review_semester_id"
                 id="semester_id"
                 name="semester_id"
                 label="Semester"
@@ -150,6 +153,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
+                data-cy="review_difficulty"
                 id="difficulty"
                 name="difficulty"
                 label="Difficulty"
@@ -172,6 +176,7 @@ const ReviewForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="review_workload"
                 id="workload"
                 name="workload"
                 label="Workload (hours/week)"
@@ -200,6 +205,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
+                data-cy="review_rating"
                 id="rating"
                 name="rating"
                 label="Rating"
@@ -222,6 +228,7 @@ const ReviewForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="review_body"
                 id="body"
                 name="body"
                 label="Body (markdown)"
@@ -238,12 +245,19 @@ const ReviewForm: React.FC<Props> = ({
             </Grid>
           </Grid>
           {mode !== 'view' && (
-            <Button type="submit" size="large" fullWidth disabled={disabled}>
+            <Button
+              type="submit"
+              size="large"
+              fullWidth
+              disabled={disabled}
+              data-cy="review_submit"
+            >
               {action}
             </Button>
           )}
           {mode === 'edit' && (
             <Button
+              data-cy="review_delete"
               type="button"
               size="large"
               color="secondary"

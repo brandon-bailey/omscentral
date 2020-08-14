@@ -1,26 +1,72 @@
 import Knex from 'knex';
-import { Model } from 'objection';
+import { each } from 'bluebird';
+import { Model, ModelObject } from 'objection';
 
 import { appConfig } from '../../src/config';
 import { AuthProvider, Role } from '../../src/enums';
-import { Program, Specialization } from '../../src/models';
+import { firebase, logger } from '../../src/components';
+import { Program, Specialization, User } from '../../src/models';
 import { upsertUser } from '../../src/functions';
 
 export const seed = async (knex: Knex): Promise<void> => {
+  Model.knex(knex);
+
   if (appConfig.environment === 'production') {
     return;
   }
 
-  Model.knex(knex);
+  const [program, specialization] = await Promise.all([
+    Program.query().first(),
+    Specialization.query().first(),
+  ]);
 
-  await upsertUser('2iAc9zFUeUcCblZ68PTOqdFdpSr1', {
-    auth_provider: AuthProvider.Password,
-    email: 'user@omscentral.com',
-    name: 'Test User',
-    role: Role.Basic,
-    anonymous: false,
-    program: await Program.query().first(),
-    specialization: await Specialization.query().first(),
-    last_signed_in: +new Date(),
+  if (!program || !specialization) {
+    return;
+  }
+
+  const timestamp = +new Date();
+
+  const users: ModelObject<User>[] = [
+    {
+      anonymous: false,
+      auth_provider: AuthProvider.Password,
+      created: timestamp,
+      email: 'user@omscentral.com',
+      id: '2iAc9zFUeUcCblZ68PTOqdFdpSr1',
+      last_signed_in: timestamp,
+      name: 'Test User',
+      password_hash: null,
+      password_salt: null,
+      photo_url: null,
+      program_id: program.id,
+      program: program,
+      role: Role.Basic,
+      specialization_id: specialization.id,
+      specialization: specialization,
+      updated: timestamp,
+    },
+  ];
+
+  await each(users, async (user) => {
+    if (!user.email) {
+      return;
+    }
+
+    await upsertUser(user.id as string, user);
+
+    try {
+      await firebase.auth().createUser({
+        uid: user.id,
+        email: user.email,
+        password: '12341234',
+        disabled: false,
+        emailVerified: true,
+        displayName: user.name,
+      });
+    } catch (error) {
+      logger.debug(`${user.email}: ${error.message}`);
+    }
+
+    logger.debug(`${user.email}: created`);
   });
 };

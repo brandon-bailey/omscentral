@@ -9,17 +9,15 @@ declare namespace Cypress {
      */
     dataCy(value: string): Chainable<Element>;
 
-    /**
-     * Custom command to sign in to the application.
-     *
-     * @param email
-     * @param password
-     */
-    login(email: string, password: string): void;
+    omsGoTo(path: string): Cypress.cy;
+    omsGoToCreateReview(): Cypress.cy;
 
-    /**
-     * Custom command to sign out of the application.
-     */
-    logout(): void;
+    omsLogin(email: string, password: string): Cypress.cy;
+    omsRegister(email: string, password: string): Cypress.cy;
+    omsLogout(): Cypress.cy;
+
+    omsCacheLS(): Cypress.cy;
+    omsPrimeLS(): Cypress.cy;
+    omsClearLS(): Cypress.cy;
   }
 }

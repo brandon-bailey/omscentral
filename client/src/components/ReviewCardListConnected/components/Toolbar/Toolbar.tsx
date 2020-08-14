@@ -39,7 +39,10 @@ const Toolbar: React.FC<Props> = ({ sortKey, onSortKeyChange, message }) => {
           key,
           onClick: () => onSortKeyChange(key),
           caption: (
-            <Typography className={sortKey === key ? classes.bold : undefined}>
+            <Typography
+              className={sortKey === key ? classes.bold : undefined}
+              data-cy={`sort_by_${key}`}
+            >
               {label}
             </Typography>
           ),

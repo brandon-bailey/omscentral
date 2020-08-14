@@ -75,7 +75,7 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" data-cy="header">
+        <Typography component="h1" variant="h5" data-cy="title">
           Login
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -162,6 +162,7 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
                     size="medium"
                     onClick={() => onSocialLogin(provider)}
                     disabled={disabled}
+                    data-cy={`login_social_${key}`}
                   >
                     {icon}
                   </Fab>

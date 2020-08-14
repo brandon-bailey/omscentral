@@ -11,6 +11,8 @@ const ErrorContainer: React.FC = () => {
     switch (code) {
       case '400':
         return 'Bad Request';
+      case '401':
+        return 'Unauthorized';
       case '403':
         return 'Operation Forbidden';
       case '404':

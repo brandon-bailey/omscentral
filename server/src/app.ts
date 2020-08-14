@@ -6,6 +6,7 @@ import lusca from 'lusca';
 import path from 'path';
 import rateLimit from 'express-rate-limit';
 
+import { appConfig } from './config';
 import { root } from './constants';
 import { bootable } from './components';
 import { logger } from './components';
@@ -34,7 +35,7 @@ app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 
 app.use(middleware.cors());
-app.use(rateLimit({ windowMs: 500, max: 10 }));
+appConfig.rateLimit && app.use(rateLimit({ windowMs: 500, max: 10 }));
 app.use(middleware.morgan());
 app.use(middleware.user());
 

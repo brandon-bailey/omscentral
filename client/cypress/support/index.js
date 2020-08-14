@@ -18,3 +18,10 @@ import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.on('window:before:load', ({ indexedDB }) => {
+  try {
+    indexedDB.deleteDatabase('firebase-installations-database');
+    indexedDB.deleteDatabase('firebaseLocalStorageDb');
+  } catch (error) {}
+});

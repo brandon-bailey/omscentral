@@ -35,13 +35,14 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" data-cy="title">
           Register
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                data-cy="register_email"
                 id="email"
                 name="email"
                 label="Email"
@@ -63,6 +64,7 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="register_password"
                 id="password"
                 name="password"
                 type="password"
@@ -84,12 +86,19 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth disabled={disabled}>
+          <Button
+            type="submit"
+            fullWidth
+            disabled={disabled}
+            data-cy="register_submit"
+          >
             Register
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to={paths.login}>Already have an account? Login</Link>
+              <Link to={paths.login} data-cy="register_login">
+                Already have an account? Login
+              </Link>
             </Grid>
           </Grid>
         </form>

@@ -115,7 +115,7 @@ const ReviewCard: React.FC<Props> = ({
   );
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} data-cy="review_card">
       <CardHeader
         className={classes.header}
         avatar={avatar}
@@ -123,7 +123,7 @@ const ReviewCard: React.FC<Props> = ({
         subheader={subheader}
         action={action}
       />
-      <CardContent className={classes.content}>
+      <CardContent className={classes.content} data-cy="review_card_content">
         {body ? (
           <Markdown source={applyHighlighting(body, highlight)} />
         ) : (
@@ -133,7 +133,12 @@ const ReviewCard: React.FC<Props> = ({
         )}
       </CardContent>
       <CardActions className={classes.actions}>
-        <Chip label={semester.name} variant="outlined" color="primary" />
+        <Chip
+          color="primary"
+          data-cy="review_card_semester"
+          label={semester.name}
+          variant="outlined"
+        />
         <Grow />
         {chips.map(({ tooltip, label, ...rest }) => (
           <Tooltip title={tooltip} key={label!.toString()}>

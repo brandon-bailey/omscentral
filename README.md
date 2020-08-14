@@ -37,3 +37,11 @@ Builds services.
 ### `npm start`
 
 Starts services in production mode. Note: You must run `npm run build` first.
+
+### `npm run cypress`
+
+Runs cypress integration tests that enforce correct behavior. Requires the application to be up with `npm run dev` or `npm start` first.
+
+### `npm run cypress:clean`
+
+When finished, users created during tests may be cleaned up using this script.

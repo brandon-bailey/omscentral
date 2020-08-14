@@ -37,7 +37,7 @@ const Auth: React.FC = ({ children }) => {
       });
 
       if (!authUser) {
-        localStorage.setItem('token', '');
+        localStorage.removeItem('token');
         return;
       }
 

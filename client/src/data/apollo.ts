@@ -11,6 +11,7 @@ import { browserHistory, paths } from 'src/constants';
 /* eslint-disable no-useless-computed-key */
 const errorCodes: { [key: string]: number } = {
   ['Bad Request']: 400,
+  ['Unauthorized']: 401,
   ['Forbidden']: 403,
   ['Not Found']: 404,
 };

@@ -1,4 +1,4 @@
-import { forbidden, isBoom } from '@hapi/boom';
+import { forbidden } from '@hapi/boom';
 import { rule, shield, allow, deny } from 'graphql-shield';
 
 import { appConfig } from '../config';
@@ -37,13 +37,11 @@ export const permissions = shield(
   {
     fallbackRule: allow,
     fallbackError: (error: any): any => {
-      if (error && !isBoom(error)) {
-        logger.error('fallbackError: ', error);
-      }
-      if (appConfig.environment === 'production') {
-        throw forbidden();
-      } else {
+      error && logger.error('permissions:', error);
+      if (appConfig.environment === 'local') {
         throw forbidden(error);
+      } else {
+        throw forbidden();
       }
     },
   },

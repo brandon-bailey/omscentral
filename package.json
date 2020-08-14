@@ -11,6 +11,8 @@
     "build:client": "cd client && npm run build",
     "build:gql": "cd graphql && npm run build",
     "build:server": "cd server && npm run build",
+    "cypress": "cd server && npm run knex seed:run && cd ../client && npm run test:integration",
+    "cypress:clean": "cd server && npm run ts-node ./src/bin/delete_firebase_users.ts",
     "dev": "concurrently -n graphql,server,client -c magenta.bold,green.bold,cyan.bold npm:dev:gql npm:dev:server npm:dev:client",
     "dev:client": "npm run wait:client && cd client && npm run dev",
     "dev:gql": "cd graphql && npm run dev",

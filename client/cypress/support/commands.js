@@ -24,16 +24,61 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('dataCy', (value) => {
-  return cy.get(`[data-cy=${value}]`);
+Cypress.Commands.add('dataCy', (value) => cy.get(`[data-cy=${value}]`));
+
+const WAIT_MS = 250;
+
+Cypress.Commands.add('omsGoTo', (path) => {
+  cy.visit(path);
+  return cy.wait(WAIT_MS);
 });
 
-Cypress.Commands.add('login', (email, password) => {
+Cypress.Commands.add('omsGoToCreateReview', () => {
+  cy.dataCy('actions').children('button').click();
+  cy.dataCy('action_create-review').click();
+  return cy.wait(WAIT_MS);
+});
+
+Cypress.Commands.add('omsLogin', (email, password) => {
   cy.dataCy('login_email').type(email);
   cy.dataCy('login_password').type(password);
   cy.dataCy('login_submit').click();
+  return cy.wait(WAIT_MS);
 });
 
-Cypress.Commands.add('logout', () => {
+Cypress.Commands.add('omsRegister', (email, password) => {
+  cy.dataCy('register_email').type(email);
+  cy.dataCy('register_password').type(password);
+  cy.dataCy('register_submit').click();
+  return cy.wait(WAIT_MS);
+});
+
+Cypress.Commands.add('omsLogout', () => {
   cy.dataCy('logout').click();
+  return cy.wait(WAIT_MS);
+});
+
+const state = {
+  localStorage: new Map(),
+};
+
+Cypress.Commands.add('omsCacheLS', () => {
+  Object.keys(localStorage).forEach((key) => {
+    state.localStorage.set(key, localStorage.getItem(key));
+  });
+  return cy.wait(WAIT_MS);
+});
+
+Cypress.Commands.add('omsPrimeLS', () => {
+  for (const [key, value] of state.localStorage) {
+    localStorage.setItem(key, value);
+  }
+  return cy.wait(WAIT_MS);
+});
+
+Cypress.Commands.add('omsClearLS', () => {
+  cy.clearLocalStorage();
+  localStorage.clear();
+  state.localStorage.clear();
+  return cy.wait(WAIT_MS);
 });

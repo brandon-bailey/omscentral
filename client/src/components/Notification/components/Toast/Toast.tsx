@@ -40,7 +40,7 @@ const Toast: React.FC<Props> = ({ message, variant, onClose }) => {
       <SnackbarContent
         className={clsx(classes[variant], classes.margin)}
         message={
-          <span className={classes.message}>
+          <span className={classes.message} data-cy="toast">
             <Icon className={clsx(classes.icon, classes.iconVariant)} />
             {message}
           </span>

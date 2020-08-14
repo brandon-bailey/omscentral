@@ -13,5 +13,5 @@
     "sourceMap": true,
     "target": "es2018"
   },
-  "include": ["src"]
+  "include": ["src", "database"]
 }

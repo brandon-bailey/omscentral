@@ -24,7 +24,7 @@ const Notification: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (toast) {
-      const timeoutId = setTimeout(() => setToast(null), 5000);
+      const timeoutId = setTimeout(() => setToast(null), 6000);
       return () => clearTimeout(timeoutId);
     }
   }, [toast, setToast]);

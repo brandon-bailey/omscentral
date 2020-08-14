@@ -69,6 +69,7 @@ const Actions: React.FC = () => {
   return (
     <div className={classes.root}>
       <SpeedDial
+        data-cy="actions"
         ariaLabel="actions"
         icon={<SpeedDialIcon />}
         direction="up"
@@ -78,6 +79,7 @@ const Actions: React.FC = () => {
       >
         {available.map(({ key, icon, name }) => (
           <SpeedDialAction
+            data-cy={`action_${key}`}
             key={key}
             icon={icon}
             tooltipTitle={name}

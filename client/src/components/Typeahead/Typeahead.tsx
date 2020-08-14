@@ -18,6 +18,7 @@ interface Props {
   renderOption: (option: any) => React.ReactNode;
   required?: boolean;
   value: any;
+  'data-cy'?: string;
 }
 
 const Typeahead: React.FC<Props> = ({
@@ -36,6 +37,7 @@ const Typeahead: React.FC<Props> = ({
   renderOption,
   required,
   value,
+  'data-cy': dataCy,
 }) => (
   <Autocomplete
     id={`${id}_typeahead`}
@@ -50,6 +52,7 @@ const Typeahead: React.FC<Props> = ({
     renderInput={(params) => (
       <TextField
         {...params}
+        data-cy={dataCy}
         id={id}
         name={name}
         label={label}
