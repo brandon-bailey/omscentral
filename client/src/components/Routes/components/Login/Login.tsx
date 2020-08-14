@@ -75,13 +75,14 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" data-cy="header">
           Login
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                data-cy="login_email"
                 id="email"
                 name="email"
                 label="Email"
@@ -104,6 +105,7 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="login_password"
                 id="password"
                 name="password"
                 type="password"
@@ -125,17 +127,22 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
               />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth disabled={disabled}>
+          <Button
+            type="submit"
+            fullWidth
+            disabled={disabled}
+            data-cy="login_submit"
+          >
             Login
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to={paths.resetPassword}>
+              <Link to={paths.resetPassword} data-cy="login_forgot_pw">
                 {sm ? 'Forgot?' : 'Forgot password?'}
               </Link>
             </Grid>
             <Grid item>
-              <Link to={paths.register}>
+              <Link to={paths.register} data-cy="login_register">
                 {sm ? 'Register' : 'Need an account? Register'}
               </Link>
             </Grid>

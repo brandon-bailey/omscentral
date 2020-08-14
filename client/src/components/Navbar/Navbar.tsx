@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-cy="navbar">
       <AppBar position="fixed">
         <Toolbar>
           {!xs && (
@@ -55,7 +55,11 @@ const Navbar: React.FC = () => {
           )}
           <Grow />
           {auth.initializing ? null : auth.authenticated ? (
-            <NavbarButton onClick={handleLogoutClick} path={paths.login}>
+            <NavbarButton
+              onClick={handleLogoutClick}
+              path={paths.login}
+              data-cy="logout"
+            >
               {xs ? <LogoutIcon /> : 'Logout'}
             </NavbarButton>
           ) : (

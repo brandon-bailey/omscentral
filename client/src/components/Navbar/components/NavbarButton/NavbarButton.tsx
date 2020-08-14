@@ -5,9 +5,15 @@ import Button from '@material-ui/core/Button';
 interface Props {
   path: string;
   onClick?: () => void | Promise<void>;
+  'data-cy'?: string;
 }
 
-const NavbarButton: React.FC<Props> = ({ children, path, onClick }) => {
+const NavbarButton: React.FC<Props> = ({
+  children,
+  path,
+  onClick,
+  ...rest
+}) => {
   const history = useHistory();
 
   const handleClick = async () => {
@@ -16,7 +22,7 @@ const NavbarButton: React.FC<Props> = ({ children, path, onClick }) => {
   };
 
   return (
-    <Button color="inherit" onClick={handleClick}>
+    <Button color="inherit" onClick={handleClick} {...rest}>
       {children}
     </Button>
   );

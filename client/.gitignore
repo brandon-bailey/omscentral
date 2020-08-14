@@ -23,3 +23,7 @@
 
 # graphql
 src/graphql/
+
+# cypress
+cypress/videos/
+cypress/screenshots/

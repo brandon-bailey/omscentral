@@ -122,7 +122,7 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
   const filtered = courses.filter(filterBy);
 
   return (
-    <Container component="main" maxWidth="xl">
+    <Container component="main" maxWidth="xl" data-cy="courses">
       <Paper>
         <Toolbar
           size={size}
