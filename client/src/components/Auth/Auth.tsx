@@ -27,7 +27,7 @@ const Auth: React.FC = ({ children }) => {
   const [upsertUser] = useUpsertUserMutation();
 
   useEffect(() => {
-    firebase.auth.onAuthStateChanged(async (authUser) => {
+    const unsubscribe = firebase.auth.onAuthStateChanged(async (authUser) => {
       apollo.resetStore();
 
       setState({
@@ -62,6 +62,8 @@ const Auth: React.FC = ({ children }) => {
         firebase.analytics.logEvent('sign_up', { method: user.auth_provider });
       }
     });
+
+    return () => unsubscribe();
   }, [firebase, upsertUser]);
 
   return (

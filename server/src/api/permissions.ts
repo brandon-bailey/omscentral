@@ -5,10 +5,10 @@ import { appConfig } from '../config';
 import { Context } from '../types';
 import { logger } from '../components';
 
-const isSignedIn = rule()((_, __, { user }: Context) => !!user);
+const isSignedIn = rule()((_, __, { req }: Context) => !!req.userId);
 
 const isSelf = rule()(
-  (_, { id }: { id: string }, { user }: Context) => id === user?.id,
+  (_, { id }: { id: string }, { req }: Context) => id === req.userId,
 );
 
 export const permissions = shield(
