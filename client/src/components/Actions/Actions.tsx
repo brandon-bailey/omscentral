@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import BugReportIcon from '@material-ui/icons/BugReport';
 import EditIcon from '@material-ui/icons/Edit';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -13,6 +14,7 @@ import { useStyles } from './Actions.styles';
 enum ActionKey {
   CreateReview = 'create-review',
   OpenTableau = 'open-tableau',
+  ReportIssue = 'report-issue',
 }
 
 interface Action {
@@ -33,6 +35,11 @@ const actions: Action[] = [
     key: ActionKey.OpenTableau,
     name: 'Tableau Grade Reports',
     icon: <BarChartIcon />,
+  },
+  {
+    key: ActionKey.ReportIssue,
+    name: 'Report Issue',
+    icon: <BugReportIcon />,
   },
 ];
 
@@ -57,6 +64,8 @@ const Actions: React.FC = () => {
         return history.push(paths.review.create);
       case ActionKey.OpenTableau:
         return window.open('https://tableau.gatech.edu');
+      case ActionKey.ReportIssue:
+        return window.open('https://github.com/OMSCentral/omscentral/issues');
       default:
         return;
     }
