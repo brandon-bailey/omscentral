@@ -8,9 +8,9 @@
   "main": "build/index.html",
   "scripts": {
     "build": "react-scripts build",
-    "build:local": "env-cmd -f .env.development.local react-scripts build",
+    "build:local": "env-cmd -f .env.local react-scripts build",
     "build:production": "env-cmd -f .env.production react-scripts build",
-    "build:staging": "env-cmd -f .env.development react-scripts build",
+    "build:staging": "env-cmd -f .env.staging react-scripts build",
     "cypress": "cypress",
     "dev": "react-scripts start",
     "firebase": "firebase",

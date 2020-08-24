@@ -8,3 +8,7 @@ export const config: PostgresConfig = {
     process.env.DATABASE_URL ||
     '',
 };
+
+if (!config.connection) {
+  throw new Error('process.env.OMSCENTRAL_POSTGRES_CONNECTION required');
+}

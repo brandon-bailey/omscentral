@@ -11,3 +11,9 @@ export const config: FirebaseConfig = {
   privateKey: process.env.OMSCENTRAL_FIREBASE_PRIVATE_KEY || '',
   projectId: process.env.OMSCENTRAL_FIREBASE_PROJECT_ID || '',
 };
+
+Object.keys(config).forEach((key) => {
+  if (!config[key]) {
+    throw new Error(`process.env.${key} required`);
+  }
+});

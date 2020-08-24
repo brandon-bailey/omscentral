@@ -15,6 +15,10 @@ export const config: AppConfig = {
   release: require(`${root}/package.json`).version,
   environment: process.env.NODE_ENV as Environment,
   name: process.env.OMSCENTRAL_NAME || '',
-  port: Number(process.env.PORT),
+  port: Number(process.env.PORT) || 8080,
   rateLimit: process.env.OMSCENTRAL_DISABLE_RATE_LIMIT !== 'true',
 };
+
+if (!config.environment) {
+  throw new Error('process.env.NODE_ENV required');
+}

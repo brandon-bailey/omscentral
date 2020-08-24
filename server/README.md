@@ -49,14 +49,19 @@ Then, complete `.env` based on the following expectations:
 | -------------------------------- | ----------------------------------------------------------------------------------- |
 | NODE_ENV                         | `"local" | "test" | "staging" | "production"` (recommend `"local"`)                 |
 | PORT                             | port expected by `../client` (recommend `8080` ... must not be `3000`)              |
-| OMSCENTRAL_NAME                  | human-readable instance name for logging                                            |
-| OMSCENTRAL_MORGAN_FORMAT         | predefined [morgan format](https://www.npmjs.com/package/morgan#predefined-formats) |
+| OMSCENTRAL_CORS_WHITELIST        | comma-delimited list of whitelisted CORS origins (leave empty for no CORS)          |
+| OMSCENTRAL_DISABLE_RATE_LIMIT    | if `true`, disables api rate limiting                                               |
 | OMSCENTRAL_GRAPHQL_INSPECTOR     | whether graphql inspector is enabled (`true`-enabled)                               |
+| OMSCENTRAL_LOG_LEVEL             | winston log level                                                                   |
+| OMSCENTRAL_MORGAN_FORMAT         | predefined [morgan format](https://www.npmjs.com/package/morgan#predefined-formats) |
+| OMSCENTRAL_NAME                  | human-readable instance name for logging                                            |
 | OMSCENTRAL_FIREBASE_PRIVATE_KEY  | from firebase private key json                                                      |
 | OMSCENTRAL_FIREBASE_CLIENT_EMAIL | from firebase private key json                                                      |
 | OMSCENTRAL_FIREBASE_PROJECT_ID   | from firebase private key json                                                      |
 | OMSCENTRAL_FIREBASE_DATABASE_URL | from firebase private key json                                                      |
 | OMSCENTRAL_POSTGRES_CONNECTION   | postgres connection string                                                          |
+| SEARCHBOX_URL                    | elastic search web api host URI                                                     |
+| SEARCHBOX_SSL_URL                | elastic search web api host URI (overrides `SEARCHBOX_URL`)                         |
 
 ## Migrations
 
