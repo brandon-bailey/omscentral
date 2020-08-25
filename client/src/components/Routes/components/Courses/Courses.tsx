@@ -100,15 +100,17 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
     [order, orderBy],
   );
 
-  // eslint-disable-next-line
-  const filterRegex = new RegExp(filter, 'i');
   const filterBy: (course: Course) => boolean = useMemo(
-    () => (c) =>
-      (deprecated || !c.deprecated) &&
-      (!hideUnreviewed || !!c.metric?.reviews.count) &&
-      (!foundational || c.foundational) &&
-      (!filter || filterRegex.test([c.id, c.department, c.name].join(' '))),
-    [hideUnreviewed, deprecated, foundational, filter, filterRegex],
+    () => (course) =>
+      (deprecated || !course.deprecated) &&
+      (!hideUnreviewed || !!course.metric?.reviews.count) &&
+      (!foundational || course.foundational) &&
+      (!filter ||
+        [course.id, course.department, course.name]
+          .join(' ')
+          .toLocaleLowerCase()
+          .includes(filter.toLocaleLowerCase())),
+    [hideUnreviewed, deprecated, foundational, filter],
   );
 
   if (loading) {
