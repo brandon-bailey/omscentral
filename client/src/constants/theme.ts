@@ -15,4 +15,11 @@ export const theme = createMuiTheme({
       contrastText: '#000',
     },
   },
+  overrides: {
+    MuiTableRow: {
+      hover: {
+        cursor: 'pointer',
+      },
+    },
+  },
 });
