@@ -3,5 +3,5 @@ export interface SentryConfig {
 }
 
 export const config: SentryConfig = {
-  dsn: process.env.SENTRY_DSN || '',
+  dsn: process.env.OMSCENTRAL_SENTRY_DSN || process.env.SENTRY_DSN || '',
 };

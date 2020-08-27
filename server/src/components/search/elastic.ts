@@ -67,7 +67,7 @@ export const createDocument = async <T>(
   await client.index({
     index,
     body,
-    refresh: 'true',
+    refresh: true,
   });
 };
 
@@ -84,7 +84,7 @@ export const updateDocument = async <T>(
       body: {
         doc: body,
       },
-      refresh: 'true',
+      refresh: true,
     });
   }
 };
@@ -97,7 +97,7 @@ export const deleteDocument = async (
     await client.delete({
       index,
       id: doc._id,
-      refresh: 'true',
+      refresh: true,
     });
   }
 };

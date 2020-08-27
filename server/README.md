@@ -60,6 +60,7 @@ Then, complete `.env` based on the following expectations:
 | OMSCENTRAL_FIREBASE_PROJECT_ID   | from firebase private key json                                                      |
 | OMSCENTRAL_FIREBASE_DATABASE_URL | from firebase private key json                                                      |
 | OMSCENTRAL_POSTGRES_CONNECTION   | postgres connection string                                                          |
+| OMSCENTRAL_SENTRY_DSN            | sentry uri for issue logging                                                        |
 | SEARCHBOX_URL                    | elastic search web api host URI                                                     |
 | SEARCHBOX_SSL_URL                | elastic search web api host URI (overrides `SEARCHBOX_URL`)                         |
 

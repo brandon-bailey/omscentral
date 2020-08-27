@@ -35,7 +35,7 @@ export const indexReviews = async (): Promise<void> => {
   });
 
   await search.client.bulk({
-    refresh: 'true',
+    refresh: true,
     body: flatMap(await Review.eagerQuery(), (review) => [
       {
         index: {
