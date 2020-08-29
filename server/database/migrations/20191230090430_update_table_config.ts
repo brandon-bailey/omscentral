@@ -1,14 +1,12 @@
 import Knex from 'knex';
 
-import { configs as data } from '../data';
-import { Config as Model } from '../../src/models';
+import { Config } from '../../src/models';
+import { configs } from '../data';
 
 exports.up = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().upsertGraph(data, { insertMissing: true });
+  await Config.query(knex).upsertGraph(configs, { insertMissing: true });
 };
 
 exports.down = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().delete();
+  await Config.query(knex).delete();
 };

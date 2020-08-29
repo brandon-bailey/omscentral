@@ -8,7 +8,12 @@ const Link: React.FC<LinkProps & { to: string }> = (props) => {
 
   const handleClick = (event: React.MouseEvent) => {
     event.preventDefault();
-    history.push(props.to);
+    const { to } = props;
+    if (/^http(s?):\/\//.test(to)) {
+      window.open(to); // eslint-disable-line
+    } else {
+      history.push(to);
+    }
   };
 
   return (

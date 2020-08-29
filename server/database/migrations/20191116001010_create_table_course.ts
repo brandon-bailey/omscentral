@@ -12,6 +12,7 @@ exports.up = async (knex: Knex) => {
     tb.text('name').notNullable();
     tb.boolean('foundational').notNullable();
     tb.boolean('deprecated').notNullable();
+    tb.string('link').nullable();
   });
 };
 

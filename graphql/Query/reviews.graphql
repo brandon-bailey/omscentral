@@ -26,6 +26,7 @@ query reviews(
     course {
       id
       name
+      link
     }
     semester_id
     semester {

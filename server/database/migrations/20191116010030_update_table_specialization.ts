@@ -1,14 +1,14 @@
 import Knex from 'knex';
 
-import { specializations as data } from '../data';
-import { Specialization as Model } from '../../src/models';
+import { Specialization } from '../../src/models';
+import { specializations } from '../data';
 
 exports.up = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().upsertGraph(data, { insertMissing: true });
+  await Specialization.query(knex).upsertGraph(specializations, {
+    insertMissing: true,
+  });
 };
 
 exports.down = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().delete();
+  await Specialization.query(knex).delete();
 };

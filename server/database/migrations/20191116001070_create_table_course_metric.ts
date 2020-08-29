@@ -14,7 +14,7 @@ exports.up = async (knex: Knex) => {
       .onDelete('CASCADE')
       .primary();
 
-    tb.jsonb('data').notNullable();
+    tb.jsonb('reviews').notNullable();
   });
 };
 

@@ -24,6 +24,7 @@ import { reviewMeta, paths } from 'src/constants';
 import { ReviewsQuery } from 'src/graphql';
 import { AuthContext } from '../Auth';
 import Grow from '../Grow';
+import Link from '../Link';
 import applyHighlighting from './utils/applyHighlighting';
 import { useStyles } from './ReviewCard.styles';
 
@@ -119,7 +120,7 @@ const ReviewCard: React.FC<Props> = ({
       <CardHeader
         className={classes.header}
         avatar={avatar}
-        title={title}
+        title={course.link ? <Link to={course.link}>{title}</Link> : title}
         subheader={subheader}
         action={action}
       />

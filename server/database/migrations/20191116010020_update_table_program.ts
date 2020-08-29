@@ -1,14 +1,12 @@
 import Knex from 'knex';
 
-import { programs as data } from '../data';
-import { Program as Model } from '../../src/models';
+import { Program } from '../../src/models';
+import { programs } from '../data';
 
 exports.up = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().upsertGraph(data, { insertMissing: true });
+  await Program.query(knex).upsertGraph(programs, { insertMissing: true });
 };
 
 exports.down = async (knex: Knex) => {
-  Model.knex(knex);
-  await Model.query().delete();
+  await Program.query(knex).delete();
 };

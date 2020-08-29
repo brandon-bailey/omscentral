@@ -8,6 +8,7 @@ export class Course extends Domain {
   name!: string;
   foundational!: boolean;
   deprecated!: boolean;
+  link!: string | null;
 
   metric!: CourseMetric;
 
@@ -41,6 +42,7 @@ export class Course extends Domain {
       name: { type: 'string' },
       foundational: { type: 'boolean' },
       deprecated: { type: 'boolean' },
+      link: { type: ['string', 'null'] },
       metric: CourseMetric.jsonSchema,
     },
   };

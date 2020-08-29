@@ -56,6 +56,8 @@ type Course {
   foundational: Boolean!
   "Whether course is no longer offered."
   deprecated: Boolean!
+  "OMSCS website link."
+  link: String
   "Metrics aggregations for the course."
   metric: CourseMetric
 }
