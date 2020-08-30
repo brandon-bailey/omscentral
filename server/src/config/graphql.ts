@@ -1,7 +1,9 @@
 export interface GraphQLConfig {
-  inspector: boolean;
+  playground: boolean;
+  reportSchema: boolean;
 }
 
 export const config: GraphQLConfig = {
-  inspector: process.env.OMSCENTRAL_GRAPHQL_INSPECTOR === 'true',
+  playground: process.env.OMSCENTRAL_GRAPHQL_PLAYGROUND === 'true',
+  reportSchema: process.env.OMSCENTRAL_GRAPHQL_REPORT_SCHEMA === 'true',
 };

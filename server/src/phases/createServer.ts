@@ -44,7 +44,11 @@ export const phase: PhaseFunction = (app, next) => {
         logger,
       };
     },
-    playground: graphqlConfig.inspector,
+    playground: graphqlConfig.playground,
+    engine: {
+      reportSchema: graphqlConfig.reportSchema,
+      graphVariant: 'current',
+    },
   });
 
   app.set('server', server);

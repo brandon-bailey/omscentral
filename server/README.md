@@ -47,11 +47,12 @@ Then, complete `.env` based on the following expectations:
 
 | variable                         | description                                                                         |
 | -------------------------------- | ----------------------------------------------------------------------------------- |
-| NODE_ENV                         | `"local" | "test" | "staging" | "production"` (recommend `"local"`)                 |
+| NODE_ENV                         | `"local"                                                                            | "test" | "staging" | "production"`(recommend`"local"`) |
 | PORT                             | port expected by `../client` (recommend `8080` ... must not be `3000`)              |
 | OMSCENTRAL_CORS_WHITELIST        | comma-delimited list of whitelisted CORS origins (leave empty for no CORS)          |
 | OMSCENTRAL_DISABLE_RATE_LIMIT    | if `true`, disables api rate limiting                                               |
-| OMSCENTRAL_GRAPHQL_INSPECTOR     | whether graphql inspector is enabled (`true`-enabled)                               |
+| OMSCENTRAL_GRAPHQL_PLAYGROUND    | whether graphql playground is enabled (`true`-enabled)                              |
+| OMSCENTRAL_GRAPHQL_REPORT_SCHEMA | if `true`, reports schema to apollo studio                                          |
 | OMSCENTRAL_LOG_LEVEL             | winston log level                                                                   |
 | OMSCENTRAL_MORGAN_FORMAT         | predefined [morgan format](https://www.npmjs.com/package/morgan#predefined-formats) |
 | OMSCENTRAL_NAME                  | human-readable instance name for logging                                            |
@@ -61,6 +62,7 @@ Then, complete `.env` based on the following expectations:
 | OMSCENTRAL_FIREBASE_DATABASE_URL | from firebase private key json                                                      |
 | OMSCENTRAL_POSTGRES_CONNECTION   | postgres connection string                                                          |
 | OMSCENTRAL_SENTRY_DSN            | sentry uri for issue logging                                                        |
+| APOLLO_KEY                       | api key for apollo studio metrics logging                                           |
 | SEARCHBOX_URL                    | elastic search web api host URI                                                     |
 | SEARCHBOX_SSL_URL                | elastic search web api host URI (overrides `SEARCHBOX_URL`)                         |
 
