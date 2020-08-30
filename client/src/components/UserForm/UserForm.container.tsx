@@ -7,6 +7,7 @@ import {
   UserQuery,
   UserInputType,
 } from 'src/graphql';
+import assignDefined from 'src/utils/assignDefined';
 import { AuthContext } from '../Auth';
 import { NotificationContext } from '../Notification';
 import UserForm from './UserForm';
@@ -30,7 +31,7 @@ const UserFormContainer: React.FC<Props> = ({ user }) => {
   const handleSubmit = async (data: UserInputType) => {
     try {
       const { __typename, ...rest } = user;
-      await update({ variables: { user: { ...rest, ...data } } });
+      await update({ variables: { user: assignDefined(rest, data) } });
       notification.success('User updated.');
     } catch {
       notification.error('Something went wrong.');
