@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { FirebaseContext } from 'src/components/Firebase';
 import { useStyles } from './SearchInput.styles';
 
 interface Props {
@@ -13,7 +12,6 @@ interface Props {
 
 const SearchInput: React.FC<Props> = ({ value, onChange, onSubmit }) => {
   const classes = useStyles();
-  const firebase = useContext(FirebaseContext);
 
   return (
     <div className={classes.search}>
@@ -31,7 +29,6 @@ const SearchInput: React.FC<Props> = ({ value, onChange, onSubmit }) => {
         onChange={(event) => onChange(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
-            firebase.analytics.logEvent('search', { search_term: value });
             onSubmit(value);
           }
         }}

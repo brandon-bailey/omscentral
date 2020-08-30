@@ -35,6 +35,13 @@ const Navbar: React.FC = () => {
     firebase.analytics.logEvent('logout');
   };
 
+  const handleSearchSubmit = (query: string) => {
+    if (query) {
+      history.push(paths.reviews(query));
+      firebase.analytics.logEvent('search', { search_term: query });
+    }
+  };
+
   return (
     <div className={classes.root} data-cy="navbar">
       <AppBar position="fixed">
@@ -50,7 +57,7 @@ const Navbar: React.FC = () => {
             <SearchInput
               value={query}
               onChange={setQuery}
-              onSubmit={() => history.push(paths.reviews(query))}
+              onSubmit={handleSearchSubmit}
             />
           )}
           <Grow />
