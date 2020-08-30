@@ -39,10 +39,9 @@ const ReviewForm: React.FC<Props> = ({
 
   const toString = (value: any): string => (value || '').toString();
   const { handleSubmit, register, errors, watch, setValue } = useForm<
-    ReviewInputType
+    Omit<ReviewInputType, 'id'>
   >({
     defaultValues: {
-      id: review?.id,
       course_id: review?.course_id || '',
       semester_id: review?.semester_id || '',
       difficulty: review?.difficulty || undefined,
@@ -65,7 +64,7 @@ const ReviewForm: React.FC<Props> = ({
   const handleSubmitInternal = handleSubmit((form) =>
     onSubmit({
       ...form,
-      id: form.id || '*',
+      id: review?.id || '*',
       difficulty: toNumber(form.difficulty),
       workload: toNumber(form.workload),
       rating: toNumber(form.rating),
@@ -99,7 +98,7 @@ const ReviewForm: React.FC<Props> = ({
                   variant="outlined"
                   fullWidth
                   disabled
-                  inputRef={register}
+                  value={review?.id}
                 />
               </Grid>
             )}
