@@ -67,7 +67,7 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
   const [filter, setFilter] = useSession('/c:f', '');
   const [size, setSize] = useLocal<'small' | 'medium'>('/c:s', 'medium');
   const [foundational, setFoundational] = useLocal('/c:fo', false);
-  const [deprecated, setDeprecated] = useLocal('/c:d', true);
+  const [deprecated, setDeprecated] = useLocal('/c:d', false);
   const [hideUnreviewed, setHideUnreviewed] = useLocal('/c:hu', true);
 
   useEffect(() => {
