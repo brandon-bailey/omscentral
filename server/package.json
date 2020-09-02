@@ -19,7 +19,7 @@
     "test:lint": "eslint src/ database/ --ext .js,.ts",
     "ts-node": "ts-node",
     "tsc": "tsc -p tsconfig.json",
-    "watch:api": "ts-node-dev --inspect --no-notify --respawn --transpile-only src/server.ts"
+    "watch:api": "ts-node-dev --no-notify --respawn --transpile-only src/server.ts"
   },
   "dependencies": {
     "@elastic/elasticsearch": "7.9.0",
