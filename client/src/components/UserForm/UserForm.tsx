@@ -33,12 +33,16 @@ const UserForm: React.FC<Props> = ({
 }) => {
   const classes = useStyles();
   const form = useForm<UserInputType>({ defaultValues: user });
-  const { handleSubmit, register, errors, watch, setValue } = form;
+  const { handleSubmit, register, errors, watch } = form;
   const { program_id } = watch();
 
-  const specializations = program_id
-    ? (data?.specializations || []).filter((s) => s.program_id === program_id)
-    : [];
+  const specializations = React.useMemo(
+    () =>
+      program_id
+        ? data.specializations.filter((s) => s.program_id === program_id)
+        : [],
+    [data.specializations, program_id],
+  );
 
   const [title, action] =
     mode === 'edit' ? ['Update User', 'Update'] : ['User', null];
@@ -50,13 +54,14 @@ const UserForm: React.FC<Props> = ({
         <Avatar className={classes.avatar}>
           <AccountIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" data-cy="title">
           {title}
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+                data-cy="user_id"
                 id="id"
                 name="id"
                 label="ID"
@@ -69,6 +74,7 @@ const UserForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="user_auth_provider"
                 id="auth_provider"
                 name="auth_provider"
                 label="Auth Provider"
@@ -82,6 +88,7 @@ const UserForm: React.FC<Props> = ({
             {user?.email && (
               <Grid item xs={12}>
                 <TextField
+                  data-cy="user_email"
                   id="email"
                   name="email"
                   label="Email"
@@ -95,6 +102,7 @@ const UserForm: React.FC<Props> = ({
             )}
             <Grid item xs={12}>
               <TextField
+                data-cy="user_name"
                 id="name"
                 name="name"
                 label="Name"
@@ -112,6 +120,7 @@ const UserForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
+                data-cy="user_program_id"
                 id="program_id"
                 name="program_id"
                 label="Program"
@@ -119,16 +128,13 @@ const UserForm: React.FC<Props> = ({
                 variant="outlined"
                 fullWidth
                 required
-                disabled={
-                  disabled || mode === 'view' || !data?.programs?.length
-                }
-                onChange={() => setValue('specialization_id', '')}
+                disabled={disabled || mode === 'view' || !data.programs.length}
                 inputRef={register({ required: true })}
                 error={Boolean(errors.program_id)}
                 helperText={errors.program_id?.message}
                 SelectProps={{ native: true }}
               >
-                {(data?.programs || []).map(({ id, name }) => (
+                {data.programs.map(({ id, name }) => (
                   <option key={id} value={id}>
                     {name}
                   </option>
@@ -138,6 +144,7 @@ const UserForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
+                data-cy="user_specialization_id"
                 id="specialization_id"
                 name="specialization_id"
                 label="Specialization"
@@ -161,7 +168,13 @@ const UserForm: React.FC<Props> = ({
               </TextField>
             </Grid>
           </Grid>
-          <Button type="submit" size="large" fullWidth disabled={disabled}>
+          <Button
+            data-cy="user_submit"
+            type="submit"
+            size="large"
+            fullWidth
+            disabled={disabled}
+          >
             {action}
           </Button>
         </form>

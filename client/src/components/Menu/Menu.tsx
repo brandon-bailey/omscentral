@@ -17,6 +17,7 @@ interface Props {
     caption: React.ReactNode | JSX.Element;
   }[];
   closeOnClick?: boolean;
+  'data-cy'?: string;
 }
 
 const Menu: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Menu: React.FC<Props> = ({
   edge,
   items,
   closeOnClick = true,
+  'data-cy': dataCy,
 }) => {
   const [anchorEl, setAnchorEl] = useState<Nullable<Element>>(null);
   const [open, setOpen] = useState<boolean>(false);
@@ -60,6 +62,7 @@ const Menu: React.FC<Props> = ({
       </IconButton>
       <MaterialMenu
         id={id}
+        data-cy={dataCy}
         keepMounted
         anchorEl={anchorEl}
         getContentAnchorEl={null}
@@ -69,7 +72,11 @@ const Menu: React.FC<Props> = ({
         onClose={handleClose}
       >
         {items.map(({ key, onClick, path, caption }) => (
-          <MenuItem key={key} onClick={handleClick(path, onClick)}>
+          <MenuItem
+            key={key}
+            onClick={handleClick(path, onClick)}
+            data-cy={`${dataCy}_${key}`}
+          >
             {caption}
           </MenuItem>
         ))}

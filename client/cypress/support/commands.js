@@ -39,6 +39,12 @@ Cypress.Commands.add('omsGoToCreateReview', () => {
   return cy.wait(WAIT_MS);
 });
 
+Cypress.Commands.add('omsGoToProfile', () => {
+  cy.dataCy('user_menu_icon').click();
+  cy.dataCy('user_menu_profile').click();
+  return cy.wait(WAIT_MS);
+});
+
 Cypress.Commands.add('omsLogin', (email, password) => {
   cy.dataCy('login_email').type(email);
   cy.dataCy('login_password').type(password);
