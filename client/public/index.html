@@ -2,95 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <script
-      data-ad-client="ca-pub-4825850362939704"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script data-ad-client="ca-pub-4825850362939704" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- framekiller -->
+    <style>html{display:none;}</style>
+    <script>if(self==top){document.documentElement.style.display='block';}else{top.location=self.location;}</script>
     <!-- https://github.com/GoogleChromeLabs/first-input-delay -->
-    <script>
-      !(function (n, e) {
-        var t,
-          o,
-          i,
-          c = [],
-          f = { passive: !0, capture: !0 },
-          r = new Date(),
-          a = 'pointerup',
-          u = 'pointercancel';
-        function p(n, c) {
-          t || ((t = c), (o = n), (i = new Date()), w(e), s());
-        }
-        function s() {
-          o >= 0 &&
-            o < i - r &&
-            (c.forEach(function (n) {
-              n(o, t);
-            }),
-            (c = []));
-        }
-        function l(t) {
-          if (t.cancelable) {
-            var o =
-              (t.timeStamp > 1e12 ? new Date() : performance.now()) -
-              t.timeStamp;
-            'pointerdown' == t.type
-              ? (function (t, o) {
-                  function i() {
-                    p(t, o), r();
-                  }
-                  function c() {
-                    r();
-                  }
-                  function r() {
-                    e(a, i, f), e(u, c, f);
-                  }
-                  n(a, i, f), n(u, c, f);
-                })(o, t)
-              : p(o, t);
-          }
-        }
-        function w(n) {
-          [
-            'click',
-            'mousedown',
-            'keydown',
-            'touchstart',
-            'pointerdown',
-          ].forEach(function (e) {
-            n(e, l, f);
-          });
-        }
-        w(n),
-          (self.perfMetrics = self.perfMetrics || {}),
-          (self.perfMetrics.onFirstInputDelay = function (n) {
-            c.push(n), s();
-          });
-      })(addEventListener, removeEventListener);
-    </script>
+    <script>!function(n,e){var t,o,i,c=[],f={passive:!0,capture:!0},r=new Date,a="pointerup",u="pointercancel";function p(n,c){t||(t=c,o=n,i=new Date,w(e),s())}function s(){o>=0&&o<i-r&&(c.forEach(function(n){n(o,t)}),c=[])}function l(t){if(t.cancelable){var o=(t.timeStamp>1e12?new Date:performance.now())-t.timeStamp;"pointerdown"==t.type?function(t,o){function i(){p(t,o),r()}function c(){r()}function r(){e(a,i,f),e(u,c,f)}n(a,i,f),n(u,c,f)}(o,t):p(o,t)}}function w(n){["click","mousedown","keydown","touchstart","pointerdown"].forEach(function(e){n(e,l,f)})}w(n),self.perfMetrics=self.perfMetrics||{},self.perfMetrics.onFirstInputDelay=function(n){c.push(n),s()}}(addEventListener,removeEventListener);</script>
     <title>OMSCentral</title>
   </head>
   <body>
     <noscript>Please enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script async src="https://www.googletagmanager.com/gtag/js"></script>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
   </body>
 </html>
