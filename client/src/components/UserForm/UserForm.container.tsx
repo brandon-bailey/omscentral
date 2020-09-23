@@ -7,7 +7,7 @@ import {
   UserQuery,
   UserInputType,
 } from 'src/graphql';
-import assignDefined from 'src/utils/assignDefined';
+import assignDefined from 'src/core/utils/assignDefined';
 import { AuthContext } from '../Auth';
 import { NotificationContext } from '../Notification';
 import UserForm from './UserForm';

@@ -3,7 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 
 import { Nullable } from 'src/core';
-import round from 'src/utils/round';
+import round from 'src/core/utils/round';
 import { useStyles } from './Stats.styles';
 
 interface Props {

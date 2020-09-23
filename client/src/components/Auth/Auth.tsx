@@ -4,7 +4,7 @@ import { User } from 'firebase/app';
 import { Nullable } from 'src/core';
 import { useUpsertUserMutation } from 'src/graphql';
 import apollo from 'src/data/apollo';
-import storage from 'src/utils/storage';
+import storage from 'src/core/utils/storage';
 import { FirebaseContext } from '../Firebase';
 import { toInput } from './Auth.utils';
 

@@ -6,7 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
 import { Course } from 'src/graphql';
-import round from 'src/utils/round';
+import round from 'src/core/utils/round';
 import { useStyles } from './Metrics.styles';
 
 interface Props {

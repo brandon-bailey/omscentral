@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useReviewsQuery, ReviewsQueryVariables } from 'src/graphql';
-import useSession from 'src/utils/useSessionStorage';
+import useSession from 'src/core/utils/useSessionStorage';
 import ReviewCardListConnected, { SortKey } from './ReviewCardListConnected';
 
 interface Props {

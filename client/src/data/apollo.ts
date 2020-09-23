@@ -7,7 +7,7 @@ import * as sentry from '@sentry/browser';
 
 import { apolloConfig } from 'src/config';
 import { browserHistory, paths } from 'src/constants';
-import storage from 'src/utils/storage';
+import storage from 'src/core/utils/storage';
 
 /* eslint-disable no-useless-computed-key */
 const errorCodes: { [key: string]: number } = {
