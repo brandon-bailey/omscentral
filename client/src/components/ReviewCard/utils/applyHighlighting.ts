@@ -1,3 +1,5 @@
+import escapeRegExp from 'src/core/utils/escapeRegExp';
+
 const applyHighlighting = (body: string, highlight?: string): string => {
   if (!highlight) return body;
 
@@ -8,8 +10,10 @@ const applyHighlighting = (body: string, highlight?: string): string => {
 
   return keywords.reduce(
     (highlighted, keyword) =>
-      // eslint-disable-next-line
-      highlighted.replace(new RegExp(`(${keyword})`, 'ig'), '***$1***'),
+      highlighted.replace(
+        new RegExp(`(${escapeRegExp(keyword)})`, 'ig'), // eslint-disable-line
+        '***$1***',
+      ),
     body,
   );
 };
