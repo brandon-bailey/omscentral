@@ -20,6 +20,7 @@ const errorCodes: { [key: string]: number } = {
 
 const error = onError(({ networkError, graphQLErrors, operation }) => {
   sentry.captureException(null, {
+    level: sentry.Severity.Critical,
     extra: {
       networkError,
       graphQLErrors,

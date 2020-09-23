@@ -15,8 +15,10 @@ class ErrorBoundary extends React.Component<{}, State> {
 
   componentDidCatch = (error: Error, errorInfo: React.ErrorInfo) => {
     sentry.captureException(error, {
-      level: sentry.Severity.Error,
-      extra: errorInfo,
+      level: sentry.Severity.Fatal,
+      extra: {
+        errorInfo,
+      },
     });
   };
 

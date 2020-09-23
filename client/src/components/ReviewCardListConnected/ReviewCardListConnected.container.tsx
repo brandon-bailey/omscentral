@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as sentry from '@sentry/browser';
 
 import { useReviewsQuery, ReviewsQueryVariables } from 'src/graphql';
 import useSession from 'src/core/utils/useSessionStorage';
@@ -32,23 +33,33 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
       return;
     }
 
-    await fetchMore({
-      variables: {
-        offset: data!.reviews!.length,
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (fetchMoreResult?.reviews?.length) {
-          setPaginate(fetchMoreResult.reviews.length >= limit);
-          return {
-            ...prev,
-            reviews: prev.reviews.concat(fetchMoreResult.reviews),
-          };
-        } else {
-          setPaginate(false);
-          return prev;
-        }
-      },
-    });
+    try {
+      await fetchMore({
+        variables: {
+          offset: data!.reviews!.length,
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (fetchMoreResult?.reviews?.length) {
+            setPaginate(fetchMoreResult.reviews.length >= limit);
+            return {
+              ...prev,
+              reviews: prev.reviews.concat(fetchMoreResult.reviews),
+            };
+          } else {
+            setPaginate(false);
+            return prev;
+          }
+        },
+      });
+    } catch (error) {
+      sentry.captureException(error, {
+        level: sentry.Severity.Error,
+        extra: {
+          ...variables,
+          last_offset: data?.reviews?.length,
+        },
+      });
+    }
   };
 
   const handleSortKeyChange = (key: SortKey) => {
