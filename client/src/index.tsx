@@ -11,12 +11,8 @@ sentry.init(sentryConfig);
 window.addEventListener(
   'unhandledrejection',
   (event: PromiseRejectionEvent) => {
-    sentry.captureException(new Error('unhandledrejection'), {
-      level: sentry.Severity.Error,
-      extra: {
-        promise: event.promise,
-        reason: event.reason,
-      },
+    sentry.captureMessage('unhandledrejection', {
+      level: sentry.Severity.Info,
     });
 
     event.preventDefault();
