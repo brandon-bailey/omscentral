@@ -299,7 +299,7 @@ export const courses: PMO<Course>[] = [
     id: 'INTA-6014',
     department: 'INTA',
     number: '6014',
-    name: 'Scenario & Path Gathering',
+    name: 'Scenario & Path Gaming',
     foundational: false,
     deprecated: false,
   },
