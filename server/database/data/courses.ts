@@ -338,15 +338,6 @@ export const courses: PMO<Course>[] = [
     deprecated: false,
   },
   {
-    id: 'INTA-8803',
-    department: 'INTA',
-    number: '8803',
-    name: 'Data Analytics & Security',
-    aliases: [],
-    foundational: false,
-    deprecated: false,
-  },
-  {
     id: 'ISYE-6404',
     department: 'ISYE',
     number: '6404',
