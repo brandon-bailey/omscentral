@@ -52,6 +52,8 @@ type Course {
   number: String!
   "Descriptive name of the course."
   name: String!
+  "Aliases or acronyms of the course."
+  aliases: [String!]!
   "Whether course is flagged as foundational in OMS."
   foundational: Boolean!
   "Whether course is no longer offered."
