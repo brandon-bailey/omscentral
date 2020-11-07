@@ -97,19 +97,21 @@ const Toolbar: React.FC<Props> = ({
             }
           />
         </Tooltip>
-        <Tooltip title="Hide courses without reviews?">
-          <FormControlLabel
-            className={classes.switch}
-            label="Hide Unreviewed"
-            control={
-              <Switch
-                checked={hideUnreviewed}
-                onChange={handleHideUnreviewedChange}
-                size="small"
-              />
-            }
-          />
-        </Tooltip>
+        <Hidden mdDown>
+          <Tooltip title="Hide courses without reviews?">
+            <FormControlLabel
+              className={classes.switch}
+              label="Hide Unreviewed"
+              control={
+                <Switch
+                  checked={hideUnreviewed}
+                  onChange={handleHideUnreviewedChange}
+                  size="small"
+                />
+              }
+            />
+          </Tooltip>
+        </Hidden>
       </Hidden>
 
       <Grow />
