@@ -11,9 +11,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { Course } from 'src/graphql';
+import { Course, Specialization } from 'src/graphql';
 import { FirebaseContext } from 'src/components/Firebase/Firebase';
 import { NotificationContext } from 'src/components/Notification';
+import { Nullable } from 'src/core';
 import { paths } from 'src/constants';
 import compare from 'src/core/utils/compare';
 import Loading from 'src/components/Loading';
@@ -21,6 +22,7 @@ import Paper from 'src/components/Paper';
 import stableSort from 'src/core/utils/stableSort';
 import useLocal from 'src/core/utils/useLocalStorage';
 import useSession from 'src/core/utils/useSessionStorage';
+import useSpecializationCourses from 'src/core/hooks/useSpecializationCourses';
 import HeadCell, { SortKey, SortDirection, cells } from './components/HeadCell';
 import Stats from './components/Stats';
 import Toolbar from './components/Toolbar';
@@ -53,10 +55,11 @@ const sort = (a: Course, b: Course, orderBy: SortKey): number => {
 
 interface Props {
   courses?: Course[];
+  specializations?: Specialization[];
   loading?: boolean;
 }
 
-const Courses: React.FC<Props> = ({ courses, loading }) => {
+const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
   const classes = useStyles();
   const sm = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'));
   const history = useHistory();
@@ -64,6 +67,7 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
   const firebase = useContext(FirebaseContext);
   const [orderBy, setOrderBy] = useSession<SortKey>('/c:ob', SortKey.Id);
   const [order, setOrder] = useSession<SortDirection>('/c:o', 'asc');
+  const [specId, setSpecId] = useSession<Nullable<string>>('/c:sp', null);
   const [filter, setFilter] = useSession('/c:f', '');
   const [size, setSize] = useLocal<'small' | 'medium'>('/c:s', 'medium');
   const [foundational, setFoundational] = useLocal('/c:fo', false);
@@ -100,8 +104,11 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
     [order, orderBy],
   );
 
+  const coursesBySpecId = useSpecializationCourses(specializations);
+
   const filterBy: (course: Course) => boolean = useMemo(
     () => (course) =>
+      (!specId || coursesBySpecId.get(specId)!.has(course.id)) &&
       (deprecated || !course.deprecated) &&
       (!hideUnreviewed || !!course.metric?.reviews.count) &&
       (!foundational || course.foundational) &&
@@ -110,7 +117,7 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
           .join(' ')
           .toLocaleLowerCase()
           .includes(filter.toLocaleLowerCase())),
-    [hideUnreviewed, deprecated, foundational, filter],
+    [hideUnreviewed, deprecated, foundational, filter, specId, coursesBySpecId],
   );
 
   if (loading) {
@@ -129,6 +136,9 @@ const Courses: React.FC<Props> = ({ courses, loading }) => {
         <Toolbar
           size={size}
           onSizeChange={setSize}
+          specializations={specializations}
+          specialization={specializations?.find(({ id }) => id === specId)}
+          onSpecializationChange={(s) => setSpecId(s?.id || null)}
           foundational={foundational}
           onFoundationalChange={setFoundational}
           deprecated={deprecated}

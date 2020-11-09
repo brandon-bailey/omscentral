@@ -75,6 +75,15 @@ type Program {
 }
 
 """
+OMS specialization requirements (core, electives, etc).
+"""
+type SpecializationRequirement {
+  type: String!
+  count: Int!
+  courses: [String!]!
+}
+
+"""
 OMS specialization track.
 """
 type Specialization {
@@ -82,6 +91,7 @@ type Specialization {
   program: Program!
   program_id: String!
   name: String!
+  requirements: [SpecializationRequirement!]!
 }
 
 """

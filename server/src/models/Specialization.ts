@@ -8,7 +8,15 @@ export class Specialization extends Domain {
   program_id!: string;
   name!: string;
   requirements!: {
-    type: 'core' | 'elective' | 'required' | 'practicum';
+    type:
+      | 'core'
+      | 'core-flex'
+      | 'elective'
+      | 'elective-stats'
+      | 'elective-ops'
+      | 'elective-extra'
+      | 'required'
+      | 'practicum';
     count: number;
     courses: string[];
   }[];

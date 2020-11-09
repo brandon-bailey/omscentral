@@ -1,11 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { useCoursesQuery } from 'src/graphql';
+import { useCoursesQuery, useSpecializationsQuery } from 'src/graphql';
 import Courses from './Courses';
 
 const CoursesContainer: React.FC = () => {
-  const { data, loading } = useCoursesQuery({ fetchPolicy: 'no-cache' });
+  const courses = useCoursesQuery({ fetchPolicy: 'no-cache' });
+  const specializations = useSpecializationsQuery({
+    fetchPolicy: 'cache-and-network',
+  });
 
   return (
     <>
@@ -15,7 +18,11 @@ const CoursesContainer: React.FC = () => {
           content="Course reviews for Georgia Tech's OMSCS, OMSA, &amp; OMSCyber programs."
         />
       </Helmet>
-      <Courses courses={data?.courses} loading={loading} />
+      <Courses
+        courses={courses.data?.courses}
+        specializations={specializations.data?.specializations}
+        loading={courses.loading || specializations.loading}
+      />
     </>
   );
 };

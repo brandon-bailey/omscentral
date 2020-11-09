@@ -1,17 +1,23 @@
-import React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import Grow from 'src/components/Grow';
+import { Nullable } from 'src/core';
+import { Specialization } from 'src/graphql';
 import { useStyles } from './Toolbar.styles';
+import SpecializationSelect from './components/SpecializationSelect';
 
 export type TableSize = 'small' | 'medium';
 
 interface Props {
   size: TableSize;
+  specializations?: Specialization[];
+  specialization?: Specialization;
+  onSpecializationChange: (changeTo: Nullable<Specialization>) => void;
   onSizeChange: (changeTo: TableSize) => void;
   foundational: boolean;
   onFoundationalChange: (changeTo: boolean) => void;
@@ -26,6 +32,9 @@ interface Props {
 const Toolbar: React.FC<Props> = ({
   size,
   onSizeChange,
+  specializations = [],
+  specialization,
+  onSpecializationChange,
   foundational,
   onFoundationalChange,
   deprecated,
@@ -59,74 +68,81 @@ const Toolbar: React.FC<Props> = ({
 
   return (
     <div className={classes.root}>
-      <Hidden smDown>
-        <FormControlLabel
-          className={classes.switch}
-          label="Dense"
-          control={
-            <Switch
-              checked={size === 'small'}
-              onChange={handleSizeChange}
-              size="small"
-            />
-          }
-        />
-        <Tooltip title="Show only foundational courses?">
-          <FormControlLabel
-            className={classes.switch}
-            label="Foundational"
-            control={
-              <Switch
-                checked={foundational}
-                onChange={handleFoundationalChange}
-                size="small"
-              />
-            }
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} lg={3}>
+          <SpecializationSelect
+            className={classes.specializations}
+            onChange={onSpecializationChange}
+            options={specializations}
+            value={specialization}
           />
-        </Tooltip>
-        <Tooltip title="Show deprecated courses?">
-          <FormControlLabel
-            className={classes.switch}
-            label="Deprecated"
-            control={
-              <Switch
-                checked={deprecated}
-                onChange={handleDeprecatedChange}
-                size="small"
-              />
-            }
-          />
-        </Tooltip>
+        </Grid>
+
         <Hidden mdDown>
-          <Tooltip title="Hide courses without reviews?">
+          <Grid item xs={12} lg={6} className={classes.switches}>
             <FormControlLabel
-              className={classes.switch}
-              label="Hide Unreviewed"
+              label="Dense"
               control={
                 <Switch
-                  checked={hideUnreviewed}
-                  onChange={handleHideUnreviewedChange}
+                  checked={size === 'small'}
+                  onChange={handleSizeChange}
                   size="small"
                 />
               }
             />
-          </Tooltip>
+            <Tooltip title="Show only foundational courses?">
+              <FormControlLabel
+                label="Foundational"
+                control={
+                  <Switch
+                    checked={foundational}
+                    onChange={handleFoundationalChange}
+                    size="small"
+                  />
+                }
+              />
+            </Tooltip>
+            <Tooltip title="Show deprecated courses?">
+              <FormControlLabel
+                label="Deprecated"
+                control={
+                  <Switch
+                    checked={deprecated}
+                    onChange={handleDeprecatedChange}
+                    size="small"
+                  />
+                }
+              />
+            </Tooltip>
+            <Tooltip title="Hide courses without reviews?">
+              <FormControlLabel
+                label="Hide Unreviewed"
+                control={
+                  <Switch
+                    checked={hideUnreviewed}
+                    onChange={handleHideUnreviewedChange}
+                    size="small"
+                  />
+                }
+              />
+            </Tooltip>
+          </Grid>
         </Hidden>
-      </Hidden>
 
-      <Grow />
-
-      <TextField
-        className={classes.filter}
-        id="filter"
-        name="filter"
-        label="Filter Courses"
-        size="small"
-        autoComplete="filter"
-        variant="filled"
-        value={filter}
-        onChange={handleFilterChange}
-      />
+        <Grid item xs={12} sm={6} lg={3}>
+          <TextField
+            className={classes.filter}
+            id="filter"
+            name="filter"
+            label="Filter Courses"
+            size="small"
+            autoComplete="filter"
+            variant="filled"
+            value={filter}
+            onChange={handleFilterChange}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 };
