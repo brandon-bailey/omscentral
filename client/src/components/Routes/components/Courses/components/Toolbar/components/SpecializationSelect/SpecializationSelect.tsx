@@ -37,9 +37,9 @@ const SpecializationSelect: React.FC<Props> = ({
     }
 
     firebase.analytics.logEvent('view_item_list', {
-      id: specialization.id,
-      name: specialization.name,
-      list_name: 'specializations',
+      list_name: specialization.name,
+      item_list_name: specialization.name,
+      item_list_id: specialization.id,
     });
 
     onChange(specialization);
