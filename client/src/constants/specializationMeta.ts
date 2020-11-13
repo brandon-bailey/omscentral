@@ -6,6 +6,7 @@ export const specializationMeta = {
     { value: 'elective-stats', label: 'Statistics Elective' },
     { value: 'elective-ops', label: 'Operations Research Elective' },
     { value: 'elective-extra', label: 'Additional Elective' },
+    { value: 'elective-track', label: 'Track Elective' },
     { value: 'required', label: 'Required' },
     { value: 'practicum', label: 'Practicum' },
   ],

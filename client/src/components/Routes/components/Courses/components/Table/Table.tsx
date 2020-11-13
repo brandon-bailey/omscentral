@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import Grid from '@material-ui/core/Grid';
 import MaterialPaper from '@material-ui/core/Paper';
 import UITable, { Size } from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,12 +16,13 @@ import Stats from '../Stats';
 import { useStyles } from './Table.styles';
 
 export interface Props {
+  before?: React.ReactElement<any>;
   courses: Course[];
   onClick: (course: Course) => void;
   size: Size;
 }
 
-const Table: React.FC<Props> = ({ courses, onClick, size }) => {
+const Table: React.FC<Props> = ({ before, courses, onClick, size }) => {
   const classes = useStyles();
 
   const [orderBy, setOrderBy] = useState<CellKey>(CellKey.Id);
@@ -41,53 +43,59 @@ const Table: React.FC<Props> = ({ courses, onClick, size }) => {
   );
 
   return (
-    <TableContainer component={MaterialPaper}>
-      <UITable className={classes.table} size={size} aria-label="courses">
-        <TableHead>
-          <TableRow>
-            {cells.map((key) => (
-              <HeadCell
-                key={key}
-                id={key}
-                onClick={() => handleHeadCellClick(key)}
-                order={order}
-                orderBy={orderBy}
-              />
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {courses.length === 0 && (
+    <Grid container>
+      {before}
+      <TableContainer component={MaterialPaper}>
+        <UITable className={classes.table} size={size} aria-label="courses">
+          <TableHead>
             <TableRow>
-              <TableCell colSpan={cells.length}>No matches...</TableCell>
+              {cells.map((key) => (
+                <HeadCell
+                  key={key}
+                  id={key}
+                  onClick={() => handleHeadCellClick(key)}
+                  order={order}
+                  orderBy={orderBy}
+                />
+              ))}
             </TableRow>
-          )}
-          {stableSort<Course>(courses, sortBy).map((course) => (
-            <TableRow key={course.id} onClick={() => onClick(course)} hover>
-              <TableCell> {`${course.department}-${course.number}`}</TableCell>
-              <TableCell className={classes.name}>
-                {course.name}
-                &nbsp;
-                {course.foundational && <sup>f</sup>}
-                {course.deprecated && <sup>d</sup>}
-              </TableCell>
-              <TableCell align="center">
-                {course.metric?.reviews.count}
-              </TableCell>
-              <TableCell align="center">
-                <Stats {...course.metric?.reviews.difficulty} />
-              </TableCell>
-              <TableCell align="center">
-                <Stats {...course.metric?.reviews.workload} />
-              </TableCell>
-              <TableCell align="center">
-                <Stats {...course.metric?.reviews.rating} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </UITable>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {courses.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={cells.length}>No matches...</TableCell>
+              </TableRow>
+            )}
+            {stableSort<Course>(courses, sortBy).map((course) => (
+              <TableRow key={course.id} onClick={() => onClick(course)} hover>
+                <TableCell>
+                  {' '}
+                  {`${course.department}-${course.number}`}
+                </TableCell>
+                <TableCell className={classes.name}>
+                  {course.name}
+                  &nbsp;
+                  {course.foundational && <sup>f</sup>}
+                  {course.deprecated && <sup>d</sup>}
+                </TableCell>
+                <TableCell align="center">
+                  {course.metric?.reviews.count}
+                </TableCell>
+                <TableCell align="center">
+                  <Stats {...course.metric?.reviews.difficulty} />
+                </TableCell>
+                <TableCell align="center">
+                  <Stats {...course.metric?.reviews.workload} />
+                </TableCell>
+                <TableCell align="center">
+                  <Stats {...course.metric?.reviews.rating} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </UITable>
+      </TableContainer>
+    </Grid>
   );
 };
 

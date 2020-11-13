@@ -15,6 +15,7 @@ export class Specialization extends Domain {
       | 'elective-stats'
       | 'elective-ops'
       | 'elective-extra'
+      | 'elective-track'
       | 'required'
       | 'practicum';
     count: number;

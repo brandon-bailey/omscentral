@@ -14,6 +14,7 @@ import Paper from 'src/components/Paper';
 import useLocal from 'src/core/utils/useLocalStorage';
 import useSession from 'src/core/utils/useSessionStorage';
 import useSpecializationCourses from 'src/core/hooks/useSpecializationCourses';
+import Requirement from './components/Requirement';
 import Table from './components/Table';
 import Toolbar from './components/Toolbar';
 
@@ -83,7 +84,7 @@ const Courses: React.FC<Props> = ({
     return <Loading />;
   }
 
-  if (!filtered.length) {
+  if (!courses?.length) {
     return null;
   }
 
@@ -105,7 +106,23 @@ const Courses: React.FC<Props> = ({
           filter={filter}
           onFilterChange={setFilter}
         />
-        <Table courses={filtered} onClick={handleCourseClick} size={size} />
+        {specialization ? (
+          specialization.requirements.map((requirement, i) => (
+            <Table
+              before={
+                <Requirement index={i} requirement={requirement} size={size} />
+              }
+              courses={filtered.filter((course) =>
+                requirement.courses.includes(course.id),
+              )}
+              key={i}
+              onClick={handleCourseClick}
+              size={size}
+            />
+          ))
+        ) : (
+          <Table courses={filtered} onClick={handleCourseClick} size={size} />
+        )}
       </Paper>
     </Container>
   );

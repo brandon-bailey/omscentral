@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: '22px !important',
     textAlign: 'center',
     '& > label': {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(4),
       '&:last-child': {
         marginRight: 0,
       },

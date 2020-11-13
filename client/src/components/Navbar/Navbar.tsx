@@ -46,13 +46,11 @@ const Navbar: React.FC = () => {
     <div className={classes.root} data-cy="navbar">
       <AppBar position="fixed">
         <Toolbar>
-          {!xs && (
-            <Typography variant="h6" className={classes.title}>
-              OMSCentral
-            </Typography>
-          )}
+          <Typography variant="h6" className={classes.title}>
+            OMSCentral
+          </Typography>
           <NavbarButton path={paths.courses}>Courses</NavbarButton>
-          <NavbarButton path={paths.reviews()}>Reviews</NavbarButton>
+          {!xs && <NavbarButton path={paths.reviews()}>Reviews</NavbarButton>}
           {!xs && (
             <SearchInput
               value={query}

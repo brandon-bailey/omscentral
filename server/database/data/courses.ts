@@ -887,4 +887,13 @@ export const courses: PMO<Course>[] = [
     foundational: false,
     deprecated: false,
   },
+  {
+    id: 'CS-6266',
+    department: 'CS',
+    number: '6266',
+    name: 'Information Security Practicum',
+    aliases: [],
+    foundational: false,
+    deprecated: false,
+  },
 ];

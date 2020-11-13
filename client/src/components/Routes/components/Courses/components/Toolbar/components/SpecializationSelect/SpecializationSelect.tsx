@@ -62,12 +62,8 @@ const SpecializationSelect: React.FC<Props> = ({
         <MenuItem value="">
           <Typography variant="overline">None</Typography>
         </MenuItem>
-        {options.map(({ id, name, requirements }) => (
-          <MenuItem
-            key={id}
-            value={id}
-            disabled={!requirements.flatMap(({ courses }) => courses).length}
-          >
+        {options.map(({ id, name }) => (
+          <MenuItem key={id} value={id}>
             {name}
           </MenuItem>
         ))}
