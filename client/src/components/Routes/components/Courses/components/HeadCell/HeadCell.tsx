@@ -5,7 +5,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { useStyles } from './HeadCell.styles';
 
-export enum SortKey {
+export enum CellKey {
   Id = 'id',
   Name = 'name',
   Foundational = 'foundational',
@@ -17,20 +17,20 @@ export enum SortKey {
 }
 
 export const cells = [
-  SortKey.Id,
-  SortKey.Name,
+  CellKey.Id,
+  CellKey.Name,
   // SortKey.Foundational,
   // SortKey.Deprecated,
-  SortKey.Reviews,
-  SortKey.Difficulty,
-  SortKey.Workload,
-  SortKey.Rating,
+  CellKey.Reviews,
+  CellKey.Difficulty,
+  CellKey.Workload,
+  CellKey.Rating,
 ];
 
 export type SortDirection = 'asc' | 'desc';
 
 const config: {
-  [key in SortKey]: {
+  [key in CellKey]: {
     label: string;
     tooltip?: string;
     align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
@@ -38,41 +38,41 @@ const config: {
     className?: string;
   };
 } = {
-  [SortKey.Id]: {
+  [CellKey.Id]: {
     label: 'ID',
     width: 160,
   },
-  [SortKey.Name]: {
+  [CellKey.Name]: {
     label: 'Name',
     className: 'name',
   },
-  [SortKey.Foundational]: {
+  [CellKey.Foundational]: {
     label: 'Foundational?',
     align: 'center',
     width: 160,
   },
-  [SortKey.Deprecated]: {
+  [CellKey.Deprecated]: {
     label: 'Deprecated?',
     align: 'center',
     width: 160,
   },
-  [SortKey.Reviews]: {
+  [CellKey.Reviews]: {
     label: 'Reviews',
     align: 'center',
     width: 160,
   },
-  [SortKey.Difficulty]: {
+  [CellKey.Difficulty]: {
     label: 'Difficulty (1-5)',
     tooltip: '1-Very Easy, 5-Very Hard',
     align: 'center',
     width: 160,
   },
-  [SortKey.Workload]: {
+  [CellKey.Workload]: {
     label: 'Workload (hrs/wk)',
     align: 'center',
     width: 160,
   },
-  [SortKey.Rating]: {
+  [CellKey.Rating]: {
     label: 'Rating (1-5)',
     tooltip: '1-Strongly Disliked, 5-Strongly Liked',
     align: 'center',
@@ -81,8 +81,8 @@ const config: {
 };
 
 interface Props {
-  id: SortKey;
-  orderBy: SortKey;
+  id: CellKey;
+  orderBy: CellKey;
   order: SortDirection;
 }
 
