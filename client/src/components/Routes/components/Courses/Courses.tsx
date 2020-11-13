@@ -55,11 +55,19 @@ const sort = (a: Course, b: Course, orderBy: SortKey): number => {
 
 interface Props {
   courses?: Course[];
-  specializations?: Specialization[];
   loading?: boolean;
+  onSpecializationChange: (changeTo: Nullable<Specialization>) => void;
+  specialization?: Specialization;
+  specializations?: Specialization[];
 }
 
-const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
+const Courses: React.FC<Props> = ({
+  courses,
+  loading,
+  onSpecializationChange,
+  specialization,
+  specializations,
+}) => {
   const classes = useStyles();
   const sm = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'));
   const history = useHistory();
@@ -67,7 +75,6 @@ const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
   const firebase = useContext(FirebaseContext);
   const [orderBy, setOrderBy] = useSession<SortKey>('/c:ob', SortKey.Id);
   const [order, setOrder] = useSession<SortDirection>('/c:o', 'asc');
-  const [specId, setSpecId] = useSession<Nullable<string>>('/c:sp', null);
   const [filter, setFilter] = useSession('/c:f', '');
   const [size, setSize] = useLocal<'small' | 'medium'>('/c:s', 'medium');
   const [foundational, setFoundational] = useLocal('/c:fo', false);
@@ -108,7 +115,8 @@ const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
 
   const filterBy: (course: Course) => boolean = useMemo(
     () => (course) =>
-      (!specId || coursesBySpecId.get(specId)!.has(course.id)) &&
+      (!specialization ||
+        coursesBySpecId.get(specialization.id)!.has(course.id)) &&
       (deprecated || !course.deprecated) &&
       (!hideUnreviewed || !!course.metric?.reviews.count) &&
       (!foundational || course.foundational) &&
@@ -117,7 +125,14 @@ const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
           .join(' ')
           .toLocaleLowerCase()
           .includes(filter.toLocaleLowerCase())),
-    [hideUnreviewed, deprecated, foundational, filter, specId, coursesBySpecId],
+    [
+      hideUnreviewed,
+      deprecated,
+      foundational,
+      filter,
+      specialization,
+      coursesBySpecId,
+    ],
   );
 
   if (loading) {
@@ -137,8 +152,8 @@ const Courses: React.FC<Props> = ({ courses, specializations, loading }) => {
           size={size}
           onSizeChange={setSize}
           specializations={specializations}
-          specialization={specializations?.find(({ id }) => id === specId)}
-          onSpecializationChange={(s) => setSpecId(s?.id || null)}
+          specialization={specialization}
+          onSpecializationChange={onSpecializationChange}
           foundational={foundational}
           onFoundationalChange={setFoundational}
           deprecated={deprecated}
