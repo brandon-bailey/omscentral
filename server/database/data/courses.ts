@@ -595,7 +595,7 @@ export const courses: PMO<Course>[] = [
     name: 'Computational Aspects of Cyber Physical Systems',
     aliases: [],
     foundational: false,
-    deprecated: true,
+    deprecated: false,
   },
   {
     id: 'ECE-8803c',
@@ -622,7 +622,7 @@ export const courses: PMO<Course>[] = [
     name: 'Introduction to Cyber Physical Electric Energy Systems',
     aliases: [],
     foundational: false,
-    deprecated: true,
+    deprecated: false,
   },
   {
     id: 'ECE-8803g',
@@ -631,7 +631,7 @@ export const courses: PMO<Course>[] = [
     name: 'Smart Grids',
     aliases: [],
     foundational: false,
-    deprecated: true,
+    deprecated: false,
   },
   {
     id: 'ECE-8803h',
