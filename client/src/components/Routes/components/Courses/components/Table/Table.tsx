@@ -8,21 +8,29 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-import { Course } from 'src/graphql';
+import { Course, Semester } from 'src/graphql';
 import compare from 'src/core/utils/compare';
 import stableSort from 'src/core/utils/stableSort';
 import HeadCell, { cells, CellKey, SortDirection } from '../HeadCell';
+import SemesterHistory from '../SemesterHistory';
 import Stats from '../Stats';
 import { useStyles } from './Table.styles';
 
 export interface Props {
   before?: React.ReactElement<any>;
   courses: Course[];
+  semesters: Semester[];
   onClick: (course: Course) => void;
   size: Size;
 }
 
-const Table: React.FC<Props> = ({ before, courses, onClick, size }) => {
+const Table: React.FC<Props> = ({
+  before,
+  courses,
+  semesters,
+  onClick,
+  size,
+}) => {
   const classes = useStyles();
 
   const [orderBy, setOrderBy] = useState<CellKey>(CellKey.Id);
@@ -66,12 +74,9 @@ const Table: React.FC<Props> = ({ before, courses, onClick, size }) => {
                 <TableCell colSpan={cells.length}>No matches...</TableCell>
               </TableRow>
             )}
-            {stableSort<Course>(courses, sortBy).map((course) => (
+            {stableSort(courses, sortBy).map((course) => (
               <TableRow key={course.id} onClick={() => onClick(course)} hover>
-                <TableCell>
-                  {' '}
-                  {`${course.department}-${course.number}`}
-                </TableCell>
+                <TableCell>{`${course.department}-${course.number}`}</TableCell>
                 <TableCell className={classes.name}>
                   {course.name}
                   &nbsp;
@@ -89,6 +94,12 @@ const Table: React.FC<Props> = ({ before, courses, onClick, size }) => {
                 </TableCell>
                 <TableCell align="center">
                   <Stats {...course.metric?.reviews.rating} />
+                </TableCell>
+                <TableCell align="center">
+                  <SemesterHistory
+                    semesters={semesters}
+                    history={course.metric?.semesters || []}
+                  />
                 </TableCell>
               </TableRow>
             ))}
@@ -122,6 +133,7 @@ const comparator = (a: Course, b: Course, orderBy: CellKey): number => {
       return compare(aMetric?.workload.mean, bMetric?.workload.mean);
     case CellKey.Rating:
       return compare(aMetric?.rating.mean, bMetric?.rating.mean);
+    case CellKey.Semesters:
     default:
       return 0;
   }

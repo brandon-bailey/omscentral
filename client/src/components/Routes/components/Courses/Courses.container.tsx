@@ -1,39 +1,30 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useHistory, useLocation } from 'react-router';
-import { Nullable } from 'src/core';
 
+import { Nullable } from 'src/core';
 import {
   Specialization,
   useCoursesQuery,
+  useSemestersQuery,
   useSpecializationsQuery,
 } from 'src/graphql';
+import useLocal from 'src/core/utils/useLocalStorage';
 import Courses from './Courses';
 
 const CoursesContainer: React.FC = () => {
-  const history = useHistory();
-  const location = useLocation();
-
-  const specializationId = new URLSearchParams(location.search).get('sid');
+  const [specializationId, setSpecializationId] = useLocal<Nullable<string>>(
+    '/c:sid',
+    null,
+  );
 
   const courses = useCoursesQuery({ fetchPolicy: 'no-cache' });
-  const specializations = useSpecializationsQuery({
-    fetchPolicy: 'cache-and-network',
-  });
+  const semesters = useSemestersQuery();
+  const specializations = useSpecializationsQuery();
 
   const handleSpecializationChange = (
     specialization: Nullable<Specialization>,
   ) => {
-    const search = new URLSearchParams();
-
-    if (specialization) {
-      search.set('sid', specialization.id);
-    }
-
-    history.push({
-      pathname: location.pathname,
-      search: search.toString(),
-    });
+    setSpecializationId(specialization?.id || null);
   };
 
   const specialization = specializations.data?.specializations?.find(
@@ -50,6 +41,7 @@ const CoursesContainer: React.FC = () => {
       </Helmet>
       <Courses
         courses={courses.data?.courses}
+        semesters={semesters.data?.semesters}
         specialization={specialization}
         onSpecializationChange={handleSpecializationChange}
         specializations={specializations.data?.specializations}

@@ -39,6 +39,8 @@ Various metrics aggragated across data associated with a course.
 type CourseMetric {
   "Metrics around the reviews posted for a course."
   reviews: CourseReviewsMetrics!
+  "IDs of semesters for which course has a review published."
+  semesters: [String!]!
 }
 
 """

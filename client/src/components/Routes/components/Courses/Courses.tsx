@@ -4,7 +4,7 @@ import { Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { Course, Specialization } from 'src/graphql';
+import { Course, Semester, Specialization } from 'src/graphql';
 import { FirebaseContext } from 'src/components/Firebase/Firebase';
 import { NotificationContext } from 'src/components/Notification';
 import { Nullable } from 'src/core';
@@ -19,16 +19,18 @@ import Table from './components/Table';
 import Toolbar from './components/Toolbar';
 
 interface Props {
-  courses?: Course[];
   loading?: boolean;
+  courses?: Course[];
+  semesters?: Semester[];
   onSpecializationChange: (changeTo: Nullable<Specialization>) => void;
   specialization?: Specialization;
   specializations?: Specialization[];
 }
 
 const Courses: React.FC<Props> = ({
-  courses,
   loading,
+  courses,
+  semesters,
   onSpecializationChange,
   specialization,
   specializations,
@@ -115,13 +117,19 @@ const Courses: React.FC<Props> = ({
               courses={filtered.filter((course) =>
                 requirement.courses.includes(course.id),
               )}
+              semesters={semesters || []}
               key={i}
               onClick={handleCourseClick}
               size={size}
             />
           ))
         ) : (
-          <Table courses={filtered} onClick={handleCourseClick} size={size} />
+          <Table
+            courses={filtered}
+            semesters={semesters || []}
+            onClick={handleCourseClick}
+            size={size}
+          />
         )}
       </Paper>
     </Container>

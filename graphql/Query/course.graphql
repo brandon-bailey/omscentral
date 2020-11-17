@@ -32,6 +32,7 @@ query course($id: String!) {
           max
         }
       }
+      semesters
     }
   }
 }
