@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { Theme } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -17,6 +18,7 @@ import useSpecializationCourses from 'src/core/hooks/useSpecializationCourses';
 import Requirement from './components/Requirement';
 import Table from './components/Table';
 import Toolbar from './components/Toolbar';
+import { useStyles } from './Courses.styles';
 
 interface Props {
   loading?: boolean;
@@ -35,15 +37,13 @@ const Courses: React.FC<Props> = ({
   specialization,
   specializations,
 }) => {
+  const classes = useStyles();
   const sm = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'));
   const history = useHistory();
   const notification = useContext(NotificationContext)!;
   const firebase = useContext(FirebaseContext);
   const [filter, setFilter] = useSession('/c:f', '');
   const [size, setSize] = useLocal<'small' | 'medium'>('/c:s', 'medium');
-  const [foundational, setFoundational] = useLocal('/c:fo', false);
-  const [deprecated, setDeprecated] = useLocal('/c:d', false);
-  const [hideUnreviewed, setHideUnreviewed] = useLocal('/c:hun', false);
 
   useEffect(() => {
     sm && setSize('small');
@@ -54,15 +54,12 @@ const Courses: React.FC<Props> = ({
   const filterBy: (course: Course) => boolean = useMemo(
     () => (course) =>
       (!specialization || bySpec.get(specialization.id)!.has(course.id)) &&
-      (deprecated || !course.deprecated) &&
-      (!hideUnreviewed || !!course.metric?.reviews.count) &&
-      (!foundational || course.foundational) &&
       (!filter ||
         [course.id, course.department, course.name, ...course.aliases]
           .join(' ')
           .toLocaleLowerCase()
           .includes(filter.toLocaleLowerCase())),
-    [hideUnreviewed, deprecated, foundational, filter, specialization, bySpec],
+    [filter, specialization, bySpec],
   );
 
   const filtered = useMemo(() => (courses || []).filter(filterBy), [
@@ -94,20 +91,18 @@ const Courses: React.FC<Props> = ({
     <Container component="main" maxWidth="xl" data-cy="courses">
       <Paper>
         <Toolbar
-          size={size}
-          onSizeChange={setSize}
           specializations={specializations}
           specialization={specialization}
           onSpecializationChange={onSpecializationChange}
-          foundational={foundational}
-          onFoundationalChange={setFoundational}
-          deprecated={deprecated}
-          onDeprecatedChange={setDeprecated}
-          hideUnreviewed={hideUnreviewed}
-          onHideUnreviewedChange={setHideUnreviewed}
           filter={filter}
           onFilterChange={setFilter}
         />
+        {specialization != null && (
+          <Alert severity="warning" className={classes.alert}>
+            Refer to degreeaudit.gatech.edu for the definitive list of courses
+            required for this specialization.
+          </Alert>
+        )}
         {specialization ? (
           specialization.requirements.map((requirement, i) => (
             <Table
@@ -120,7 +115,7 @@ const Courses: React.FC<Props> = ({
               semesters={semesters || []}
               key={i}
               onClick={handleCourseClick}
-              size={size}
+              size="small"
             />
           ))
         ) : (
@@ -128,7 +123,7 @@ const Courses: React.FC<Props> = ({
             courses={filtered}
             semesters={semesters || []}
             onClick={handleCourseClick}
-            size={size}
+            size="small"
           />
         )}
       </Paper>
