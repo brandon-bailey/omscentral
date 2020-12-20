@@ -35,7 +35,7 @@ const error = onError(({ networkError, graphQLErrors, operation }) => {
   browserHistory.push(paths.error(code));
 });
 
-const before = new ApolloLink((operation, forward) => {
+const auth = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
       Authorization: storage('session').getItem('token') || null,
@@ -50,7 +50,7 @@ const http = new HttpLink({
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([error, before, http]),
+  link: ApolloLink.from([error, auth, http]),
   cache: new InMemoryCache(),
 });
 

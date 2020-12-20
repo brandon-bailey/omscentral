@@ -19,7 +19,11 @@ export const middleware = (): RequestHandler =>
   cors(async (req, cb) => {
     const { headers } = req;
 
-    if (isWhitelisted(headers) || (await isGooglebot(headers))) {
+    if (
+      req.method === 'OPTIONS' ||
+      isWhitelisted(headers) ||
+      (await isGooglebot(headers))
+    ) {
       return cb(null, { origin: true });
     }
 
