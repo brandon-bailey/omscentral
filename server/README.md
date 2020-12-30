@@ -45,26 +45,26 @@ cp .env.example .env
 
 Then, complete `.env` based on the following expectations:
 
-| variable                         | description                                                                         |
-| -------------------------------- | ----------------------------------------------------------------------------------- |
-| NODE_ENV                         | `"local"                                                                            | "test" | "staging" | "production"`(recommend`"local"`) |
-| PORT                             | port expected by `../client` (recommend `8080` ... must not be `3000`)              |
-| OMSCENTRAL_CORS_WHITELIST        | comma-delimited list of whitelisted CORS origins (leave empty for no CORS)          |
-| OMSCENTRAL_DISABLE_RATE_LIMIT    | if `true`, disables api rate limiting                                               |
-| OMSCENTRAL_GRAPHQL_PLAYGROUND    | whether graphql playground is enabled (`true`-enabled)                              |
-| OMSCENTRAL_GRAPHQL_REPORT_SCHEMA | if `true`, reports schema to apollo studio                                          |
-| OMSCENTRAL_LOG_LEVEL             | winston log level                                                                   |
-| OMSCENTRAL_MORGAN_FORMAT         | predefined [morgan format](https://www.npmjs.com/package/morgan#predefined-formats) |
-| OMSCENTRAL_NAME                  | human-readable instance name for logging                                            |
-| OMSCENTRAL_FIREBASE_PRIVATE_KEY  | from firebase private key json                                                      |
-| OMSCENTRAL_FIREBASE_CLIENT_EMAIL | from firebase private key json                                                      |
-| OMSCENTRAL_FIREBASE_PROJECT_ID   | from firebase private key json                                                      |
-| OMSCENTRAL_FIREBASE_DATABASE_URL | from firebase private key json                                                      |
-| OMSCENTRAL_POSTGRES_CONNECTION   | postgres connection string                                                          |
-| OMSCENTRAL_SENTRY_DSN            | sentry uri for issue logging                                                        |
-| APOLLO_KEY                       | api key for apollo studio metrics logging                                           |
-| SEARCHBOX_URL                    | elastic search web api host URI                                                     |
-| SEARCHBOX_SSL_URL                | elastic search web api host URI (overrides `SEARCHBOX_URL`)                         |
+| variable                         | description                                                                                   |
+| -------------------------------- | --------------------------------------------------------------------------------------------- |
+| NODE_ENV                         | `"local"`, `"test"`, `"staging"`, OR `"production"` (recommend `"local"`)                     |
+| PORT                             | port expected by `../client` (recommend `8080` ... must not be `3000`)                        |
+| OMSCENTRAL_CORS_WHITELIST        | OPTIONAL: comma-delimited list of whitelisted CORS origins (leave empty for no CORS)          |
+| OMSCENTRAL_DISABLE_RATE_LIMIT    | OPTIONAL: if `true`, disables api rate limiting                                               |
+| OMSCENTRAL_GRAPHQL_PLAYGROUND    | OPTIONAL: if `true`, graphql playground is enabled at `<host>/graphql`                        |
+| OMSCENTRAL_GRAPHQL_REPORT_SCHEMA | OPTIONAL: if `true`, reports schema to apollo studio                                          |
+| OMSCENTRAL_LOG_LEVEL             | OPTIONAL: winston log level                                                                   |
+| OMSCENTRAL_MORGAN_FORMAT         | OPTIONAL: predefined [morgan format](https://www.npmjs.com/package/morgan#predefined-formats) |
+| OMSCENTRAL_NAME                  | OPTIONAL: human-readable instance name for logging                                            |
+| OMSCENTRAL_FIREBASE_PRIVATE_KEY  | from firebase private key json                                                                |
+| OMSCENTRAL_FIREBASE_CLIENT_EMAIL | from firebase private key json                                                                |
+| OMSCENTRAL_FIREBASE_PROJECT_ID   | from firebase private key json                                                                |
+| OMSCENTRAL_FIREBASE_DATABASE_URL | from firebase private key json                                                                |
+| OMSCENTRAL_POSTGRES_CONNECTION   | postgres connection string                                                                    |
+| OMSCENTRAL_SENTRY_DSN            | OPTIONAL: sentry uri for issue logging                                                        |
+| APOLLO_KEY                       | OPTIONAL: api key for apollo studio metrics logging                                           |
+| SEARCHBOX_URL                    | OPTIONAL: elastic search web api host URI                                                     |
+| SEARCHBOX_SSL_URL                | OPTIONAL: elastic search web api host URI (overrides `SEARCHBOX_URL`)                         |
 
 ## Migrations
 
@@ -84,7 +84,7 @@ To start server in development mode w/hot-reloading:
 npm run dev
 ```
 
-To start server after transpiling TypeScript to JavaScript:
+To start server in production mode after transpiling TypeScript to JavaScript:
 
 ```sh
 npm run build
@@ -93,7 +93,7 @@ npm start
 
 ## GraphQL
 
-To engage with the graphql inspector, visit `/graphql` route of the api server in your browser.
+To engage with the graphql inspector, visit `/graphql` route of the api server in your browser. Note that this requires the playground environment variable to be enabled.
 
 The [staging graphql inspector](https://omscentral-api-staging.herokuapp.com/graphql) is useful for interacting with production-like data.
 

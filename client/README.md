@@ -93,7 +93,7 @@ npm run build:local
 npm run firebase deploy -- --only hosting --project <your_project_name>
 ```
 
-Note: `npm run build:local` load environment variables from `.env.development.local`.
+Note that `npm run build:local` loads environment variables from `.env.development.local`.
 
 ### CI
 
