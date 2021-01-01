@@ -33,7 +33,7 @@ For the above example, postgres connection string would be `postgres://omscentra
 
 ## Firebase
 
-If you have not already, create a new project in the [Firebase Console](console.firebase.google.com). Once the project is created, click "Add app" from the "Project Overview" page to add a new "Web" app to the project. This Firebase app will handle authentication for your local OMSCentral instance. Finally, go to "Settings" > "Service accounts" tab, click "Generate new private key", and open the generated JSON.
+If you have not already, create a new project in the [Firebase Console](https://console.firebase.google.com). Once the project is created, click "Add app" from the "Project Overview" page to add a new "Web" app to the project. This Firebase app will handle authentication for your local OMSCentral instance. Finally, go to "Settings" > "Service accounts" tab, click "Generate new private key", and open the generated JSON.
 
 ## Environment Variables
 
