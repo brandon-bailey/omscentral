@@ -2,7 +2,7 @@ import { flatMap } from 'lodash';
 
 import { Review } from '../models';
 import { reviewsIndex } from '../constants';
-import { search } from '../components';
+import { logger, search } from '../components';
 
 export const indexReviews = async (): Promise<void> => {
   if (await search.indexExists(reviewsIndex)) {
@@ -34,9 +34,10 @@ export const indexReviews = async (): Promise<void> => {
     },
   });
 
-  await search.client.bulk({
-    refresh: true,
-    body: flatMap(await Review.eagerQuery(), (review) => [
+  logger.debug('functions(indexReviews): bulkIndex BEGIN');
+  const reviews = await Review.eagerQuery();
+  await search.bulkIndex({
+    body: flatMap(reviews, (review) => [
       {
         index: {
           _index: reviewsIndex,
@@ -45,6 +46,7 @@ export const indexReviews = async (): Promise<void> => {
       review.toJSON(),
     ]),
   });
+  logger.debug('functions(indexReviews): bulkIndex END');
 };
 
 export const indexReview = async (
