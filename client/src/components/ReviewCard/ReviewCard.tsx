@@ -60,20 +60,23 @@ const ReviewCard: React.FC<Props> = ({
   const rating = r && reviewMeta.translateRating(r);
   const workload = w && `${w} hrs/wk`;
 
-  const chips: Array<ChipProps & { tooltip: string }> = [
+  const chips: Array<ChipProps & { tooltip: string; dataCy: string }> = [
     {
       className: (classes as any)[`difficulty${d}`],
       label: difficulty,
       tooltip: 'Difficulty',
+      dataCy: 'review_card_difficulty',
     },
     {
       className: (classes as any)[`rating${r}`],
       label: rating,
       tooltip: 'Rating',
+      dataCy: 'review_card_rating',
     },
     {
       label: workload,
       tooltip: 'Workload',
+      dataCy: 'review_card_workload',
     },
   ].filter((chip) => Boolean(chip?.label));
   xs && chips.pop() && chips.pop();
@@ -82,7 +85,11 @@ const ReviewCard: React.FC<Props> = ({
   const handleDeepLinkCopy = () => setTimeout(onDeepLinkCopy, 0);
 
   const action = xs ? null : auth.user?.uid === author.id ? (
-    <IconButton onClick={handleEditClick} color="inherit">
+    <IconButton
+      onClick={handleEditClick}
+      color="inherit"
+      data-cy="review_card_edit_button"
+    >
       <EditIcon />
     </IconButton>
   ) : (
@@ -121,9 +128,9 @@ const ReviewCard: React.FC<Props> = ({
           variant="outlined"
         />
         <Grow />
-        {chips.map(({ tooltip, label, ...rest }) => (
+        {chips.map(({ tooltip, label, dataCy, ...rest }) => (
           <Tooltip title={tooltip} key={label!.toString()}>
-            <Chip label={label} variant="outlined" {...rest} />
+            <Chip label={label} variant="outlined" {...rest} data-cy={dataCy} />
           </Tooltip>
         ))}
       </CardActions>
