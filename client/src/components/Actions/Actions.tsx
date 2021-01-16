@@ -12,9 +12,9 @@ import { AuthContext } from '../Auth';
 import { useStyles } from './Actions.styles';
 
 enum ActionKey {
-  CreateReview = 'create-review',
-  OpenTableau = 'open-tableau',
-  ReportIssue = 'report-issue',
+  CreateReview = 'create_review',
+  OpenTableau = 'open_tableau',
+  ReportIssue = 'report_issue',
 }
 
 interface Action {
@@ -88,7 +88,7 @@ const Actions: React.FC = () => {
       >
         {available.map(({ key, icon, name }) => (
           <SpeedDialAction
-            data-cy={`action_${key}`}
+            data-cy={`action:${key}`}
             key={key}
             icon={icon}
             tooltipTitle={name}

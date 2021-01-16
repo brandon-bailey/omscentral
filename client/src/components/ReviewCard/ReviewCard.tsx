@@ -65,18 +65,18 @@ const ReviewCard: React.FC<Props> = ({
       className: (classes as any)[`difficulty${d}`],
       label: difficulty,
       tooltip: 'Difficulty',
-      dataCy: 'review_card_difficulty',
+      dataCy: 'review_card:difficulty',
     },
     {
       className: (classes as any)[`rating${r}`],
       label: rating,
       tooltip: 'Rating',
-      dataCy: 'review_card_rating',
+      dataCy: 'review_card:rating',
     },
     {
       label: workload,
       tooltip: 'Workload',
-      dataCy: 'review_card_workload',
+      dataCy: 'review_card:workload',
     },
   ].filter((chip) => Boolean(chip?.label));
   xs && chips.pop() && chips.pop();
@@ -88,7 +88,7 @@ const ReviewCard: React.FC<Props> = ({
     <IconButton
       onClick={handleEditClick}
       color="inherit"
-      data-cy="review_card_edit_button"
+      data-cy="review_card:edit_button"
     >
       <EditIcon />
     </IconButton>
@@ -111,7 +111,7 @@ const ReviewCard: React.FC<Props> = ({
         subheader={subheader}
         action={action}
       />
-      <CardContent className={classes.content} data-cy="review_card_content">
+      <CardContent className={classes.content} data-cy="review_card:content">
         {body ? (
           <Markdown source={applyHighlighting(body, highlight)} />
         ) : (
@@ -123,7 +123,7 @@ const ReviewCard: React.FC<Props> = ({
       <CardActions className={classes.actions}>
         <Chip
           color="primary"
-          data-cy="review_card_semester"
+          data-cy="review_card:semester"
           label={semester.name}
           variant="outlined"
         />

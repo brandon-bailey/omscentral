@@ -55,7 +55,7 @@ describe('given user is at Register page', () => {
 
   describe('when login is clicked', () => {
     it('then navigates to Login page', () => {
-      cy.dataCy('register_login').click();
+      cy.dataCy('register:login').click();
       cy.url().should('match', /\/login$/);
     });
   });

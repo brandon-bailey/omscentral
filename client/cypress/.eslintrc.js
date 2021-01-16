@@ -7,6 +7,5 @@ module.exports = {
   ignorePatterns: ['*.d.ts'],
   rules: {
     '@typescript-eslint/triple-slash-reference': 'off',
-    'security/detect-non-literal-regexp': 'off',
   },
 };

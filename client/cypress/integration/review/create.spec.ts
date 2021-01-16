@@ -9,11 +9,10 @@ describe('given user is at Create Review page', () => {
   });
 
   beforeEach(() => {
-    cy.omsGoTo('/login').omsLogin(user.email, user.password);
-  });
-
-  beforeEach(() => {
-    cy.omsPrimeLS();
+    cy.omsPrimeLS()
+      .omsGoTo('/login')
+      .omsLogin(user.email, user.password)
+      .omsGoToCreateReview();
   });
 
   afterEach(() => {
@@ -21,16 +20,12 @@ describe('given user is at Create Review page', () => {
   });
 
   describe('when page is rendered', () => {
-    beforeEach(() => {
-      cy.omsGoToCreateReview();
-    });
-
     it('then has a title of Create Review', () => {
       cy.dataCy('title').should('have.text', 'Create Review');
     });
 
     it('then does not display the id field', () => {
-      cy.dataCy('review_id').should('not.exist');
+      cy.dataCy('review:id').should('not.exist');
     });
   });
 
@@ -39,9 +34,9 @@ describe('given user is at Create Review page', () => {
 
     beforeEach(() => {
       review = {
-        id: null,
-        author_id: null,
-        course_id: 'CS-6400',
+        id: '',
+        author_id: '',
+        course_id: '6400',
         semester_id: 'Fall 2019',
         difficulty: 3,
         workload: 10,
@@ -49,11 +44,11 @@ describe('given user is at Create Review page', () => {
         body: `foo bar: ${+new Date()}`,
       };
 
-      cy.omsCreateReview(review, { authenticate: false, user: null });
+      cy.omsCreateReview(review);
     });
 
     it(`then navigates to the Reviews page for the review's course`, () => {
-      cy.url().should('match', new RegExp(`/course/${review.course_id}$`));
+      cy.url().should('match', /\/course\/CS-6400$/);
     });
 
     it('then displays a success message', () => {
@@ -61,7 +56,7 @@ describe('given user is at Create Review page', () => {
     });
 
     it('then displays the created review', () => {
-      cy.omsCheckReviewCard(review);
+      cy.omsCheckMostRecentReviewCard(review);
     });
   });
 });

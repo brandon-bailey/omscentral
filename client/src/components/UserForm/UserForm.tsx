@@ -61,7 +61,7 @@ const UserForm: React.FC<Props> = ({
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                data-cy="user_id"
+                data-cy="user:id"
                 id="id"
                 name="id"
                 label="ID"
@@ -74,7 +74,7 @@ const UserForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
-                data-cy="user_auth_provider"
+                data-cy="user:auth_provider"
                 id="auth_provider"
                 name="auth_provider"
                 label="Auth Provider"
@@ -88,7 +88,7 @@ const UserForm: React.FC<Props> = ({
             {user?.email && (
               <Grid item xs={12}>
                 <TextField
-                  data-cy="user_email"
+                  data-cy="user:email"
                   id="email"
                   name="email"
                   label="Email"
@@ -102,7 +102,7 @@ const UserForm: React.FC<Props> = ({
             )}
             <Grid item xs={12}>
               <TextField
-                data-cy="user_name"
+                data-cy="user:name"
                 id="name"
                 name="name"
                 label="Name"
@@ -120,7 +120,7 @@ const UserForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
-                data-cy="user_program_id"
+                data-cy="user:program_id"
                 id="program_id"
                 name="program_id"
                 label="Program"
@@ -144,7 +144,7 @@ const UserForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
-                data-cy="user_specialization_id"
+                data-cy="user:specialization_id"
                 id="specialization_id"
                 name="specialization_id"
                 label="Specialization"
@@ -169,7 +169,7 @@ const UserForm: React.FC<Props> = ({
             </Grid>
           </Grid>
           <Button
-            data-cy="user_submit"
+            data-cy="user:submit"
             type="submit"
             size="large"
             fullWidth

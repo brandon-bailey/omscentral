@@ -50,14 +50,14 @@ describe('given user is at Login page', () => {
 
   describe('when forgot password is clicked', () => {
     it('then navigates to Reset Password page', () => {
-      cy.dataCy('login_forgot_pw').click();
+      cy.dataCy('login:forgot_pw').click();
       cy.url().should('match', /\/reset-password$/);
     });
   });
 
   describe('when register is clicked', () => {
     it('then navigates to Register page', () => {
-      cy.dataCy('login_register').click();
+      cy.dataCy('login:register').click();
       cy.url().should('match', /\/register$/);
     });
   });

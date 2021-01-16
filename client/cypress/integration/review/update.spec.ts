@@ -12,9 +12,9 @@ describe('given user is at Update Review page', () => {
 
   beforeEach(() => {
     reviewInitial = {
-      id: null,
-      author_id: null,
-      course_id: 'CS-6400',
+      id: '',
+      author_id: '',
+      course_id: '6400',
       semester_id: 'Fall 2019',
       difficulty: 3,
       workload: 10,
@@ -22,50 +22,53 @@ describe('given user is at Update Review page', () => {
       body: `foo bar: ${+new Date()}`,
     };
 
-    cy.omsCreateReview(reviewInitial, { authenticate: true, user: user });
-    cy.omsGoToUpdateReview();
-  });
-
-  beforeEach(() => {
-    cy.omsPrimeLS();
+    cy.omsPrimeLS()
+      .omsCreateReview(reviewInitial, { user })
+      .omsGoToUpdateReview();
   });
 
   afterEach(() => {
     cy.omsCacheLS();
   });
 
-  describe('when user updates the review', () => {
+  describe('when page is rendered', () => {
+    it('then has a title of Update Review', () => {
+      cy.dataCy('title').should('have.text', 'Update Review');
+    });
+
+    it('then does displays the id field', () => {
+      cy.dataCy('review:id').should('exist');
+    });
+  });
+
+  describe('when user updates the review and presses submit', () => {
     let reviewUpdated: ReviewInputType;
 
     beforeEach(() => {
       reviewUpdated = {
-        id: null,
-        author_id: null,
-        course_id: 'CS-6440',
+        id: '',
+        author_id: '',
+        course_id: '6440',
         semester_id: 'Spring 2020',
         difficulty: 4,
         workload: 20,
         rating: 5,
-        body: `foo bar: ${+new Date()}`,
+        body: `bar foo: ${+new Date()}`,
       };
 
-      cy.omsPopulateReview(reviewUpdated);
-      cy.omsSubmitReview();
+      cy.omsPopulateReview(reviewUpdated).omsSubmitReview();
     });
 
-    it(`then navigates to Course page`, () => {
-      cy.url().should(
-        'match',
-        new RegExp(`/course/${reviewUpdated.course_id}$`),
-      );
+    it(`then navigates to Course page for the review's course`, () => {
+      cy.url().should('match', /\/course\/CS-6440$/);
     });
 
     it('then displays a success message', () => {
       cy.dataCy('toast').should('contain.text', 'Review updated.');
     });
 
-    it('then displays updated review', () => {
-      cy.omsCheckReviewCard(reviewUpdated);
+    it('then displays the updated review', () => {
+      cy.omsCheckMostRecentReviewCard(reviewUpdated);
     });
   });
 });

@@ -42,7 +42,7 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                data-cy="register_email"
+                data-cy="register:email"
                 id="email"
                 name="email"
                 label="Email"
@@ -64,7 +64,7 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                data-cy="register_password"
+                data-cy="register:password"
                 id="password"
                 name="password"
                 type="password"
@@ -90,13 +90,13 @@ const Register: React.FC<Props> = ({ disabled, onSubmit }) => {
             type="submit"
             fullWidth
             disabled={disabled}
-            data-cy="register_submit"
+            data-cy="register:submit"
           >
             Register
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to={paths.login} data-cy="register_login">
+              <Link to={paths.login} data-cy="register:login">
                 Already have an account? Login
               </Link>
             </Grid>

@@ -82,7 +82,7 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                data-cy="login_email"
+                data-cy="login:email"
                 id="email"
                 name="email"
                 label="Email"
@@ -105,7 +105,7 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                data-cy="login_password"
+                data-cy="login:password"
                 id="password"
                 name="password"
                 type="password"
@@ -131,18 +131,18 @@ const Login: React.FC<Props> = ({ disabled, onSubmit, onSocialLogin }) => {
             type="submit"
             fullWidth
             disabled={disabled}
-            data-cy="login_submit"
+            data-cy="login:submit"
           >
             Login
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to={paths.resetPassword} data-cy="login_forgot_pw">
+              <Link to={paths.resetPassword} data-cy="login:forgot_pw">
                 {sm ? 'Forgot?' : 'Forgot password?'}
               </Link>
             </Grid>
             <Grid item>
-              <Link to={paths.register} data-cy="login_register">
+              <Link to={paths.register} data-cy="login:register">
                 {sm ? 'Register' : 'Need an account? Register'}
               </Link>
             </Grid>

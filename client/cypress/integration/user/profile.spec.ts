@@ -8,11 +8,10 @@ describe('given user is at Profile page', () => {
   });
 
   beforeEach(() => {
-    cy.omsGoTo('/login').omsLogin(user.email, user.password).omsGoToProfile();
-  });
-
-  beforeEach(() => {
-    cy.omsPrimeLS();
+    cy.omsPrimeLS()
+      .omsGoTo('/login')
+      .omsLogin(user.email, user.password)
+      .omsGoToProfile();
   });
 
   afterEach(() => {
@@ -25,18 +24,18 @@ describe('given user is at Profile page', () => {
     });
 
     it('then displays id, auth provider, email, name fields', () => {
-      cy.dataCy('user_id').should('exist');
-      cy.dataCy('user_auth_provider').should('exist');
-      cy.dataCy('user_email').should('exist');
-      cy.dataCy('user_name').should('exist');
+      cy.dataCy('user:id').should('exist');
+      cy.dataCy('user:auth_provider').should('exist');
+      cy.dataCy('user:email').should('exist');
+      cy.dataCy('user:name').should('exist');
     });
   });
 
   describe('when valid information is submitted', () => {
     beforeEach(() => {
-      cy.dataCy('user_program_id').find('select').select('cybersec');
-      cy.dataCy('user_specialization_id').find('select').select('cybersec:IS');
-      cy.dataCy('user_submit').click();
+      cy.dataCy('user:program_id').find('select').select('cybersec');
+      cy.dataCy('user:specialization_id').find('select').select('cybersec:IS');
+      cy.dataCy('user:submit').click();
     });
 
     it('then displays a success message', () => {

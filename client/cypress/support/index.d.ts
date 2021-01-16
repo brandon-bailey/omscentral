@@ -1,36 +1,43 @@
 /// <reference types="cypress" />
 
 import { ReviewInputType } from '../../src/graphql';
-import { CreateReviewOptions } from '../fixtures/review';
+import { TestUser } from '../fixtures/user';
 
-declare namespace Cypress {
-  interface Chainable {
-    /**
-     * Custom command to select DOM element by data-cy attribute.
-     *
-     * @example cy.dataCy('greeting')
-     */
-    dataCy(value: string): Chainable<Element>;
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      /**
+       * Custom command to select DOM element by data-cy attribute.
+       *
+       * @example cy.dataCy('greeting')
+       */
+      dataCy(value: string): Chainable<Element>;
 
-    omsGoTo(path: string): Cypress.cy;
-    omsGoToCreateReview(): Cypress.cy;
-    omsCreateReview(
-      review: ReviewInputType,
-      options: CreateReviewOptions,
-    ): Cypress.cy;
-    omsGoToUpdateReview(review: ReviewInputType): Cypress.cy;
-    omsPopulateReview(review: ReviewInputType): Cypress.cy;
-    omsSubmitReview(): Cypress.cy;
-    omsCheckReviewCard(review: ReviewInputType): Cypress.cy;
+      omsCacheLS(): Cypress.cy;
+      omsPrimeLS(): Cypress.cy;
+      omsClearLS(): Cypress.cy;
 
-    omsGoToProfile(): Cypress.cy;
+      omsGoTo(path: string): Cypress.cy;
+      omsGoToProfile(): Cypress.cy;
+      omsGoToCreateReview(): Cypress.cy;
+      omsGoToUpdateReview(): Cypress.cy;
 
-    omsLogin(email: string, password: string): Cypress.cy;
-    omsRegister(email: string, password: string): Cypress.cy;
-    omsLogout(): Cypress.cy;
+      omsPopulateReview(review: ReviewInputType): Cypress.cy;
+      omsSubmitReview(): Cypress.cy;
 
-    omsCacheLS(): Cypress.cy;
-    omsPrimeLS(): Cypress.cy;
-    omsClearLS(): Cypress.cy;
+      omsCreateReview(
+        review: ReviewInputType,
+        options?: {
+          user?: TestUser;
+        },
+      ): Cypress.cy;
+
+      omsSortReviewsBy(key: string): Cypress.cy;
+      omsCheckMostRecentReviewCard(review: ReviewInputType): Cypress.cy;
+
+      omsLogin(email: string, password: string): Cypress.cy;
+      omsRegister(email: string, password: string): Cypress.cy;
+      omsLogout(): Cypress.cy;
+    }
   }
 }

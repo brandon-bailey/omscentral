@@ -3,7 +3,7 @@
 import { user } from '../../fixtures/user';
 import { ReviewInputType } from '../../../src/graphql';
 
-describe('given user submits a review', () => {
+describe('given user is at Reviews page after publishing a review', () => {
   before(() => {
     cy.omsClearLS();
   });
@@ -12,9 +12,9 @@ describe('given user submits a review', () => {
 
   beforeEach(() => {
     review = {
-      id: null,
-      author_id: null,
-      course_id: 'CS-6400',
+      id: '',
+      author_id: '',
+      course_id: '6400',
       semester_id: 'Fall 2019',
       difficulty: 3,
       workload: 10,
@@ -22,22 +22,19 @@ describe('given user submits a review', () => {
       body: `foo bar: ${+new Date()}`,
     };
 
-    cy.omsCreateReview(review, { authenticate: true, user: user });
-  });
-
-  beforeEach(() => {
-    cy.omsPrimeLS();
+    cy.omsPrimeLS().omsCreateReview(review, { user });
   });
 
   afterEach(() => {
     cy.omsCacheLS();
   });
 
-  describe('when submitted review is displayed', () => {
-    it(`then has edit button`, () => {
-      cy.dataCy('review_card')
+  describe('when page is rendered', () => {
+    it('then displays a card for published review w/an edit button', () => {
+      cy.omsSortReviewsBy('created')
+        .dataCy('review_card')
         .first()
-        .within(() => cy.dataCy('review_card_edit_button').should('exist'));
+        .within(() => cy.dataCy('review_card:edit_button').should('exist'));
     });
   });
 
@@ -46,16 +43,14 @@ describe('given user submits a review', () => {
       cy.omsGoToUpdateReview();
     });
 
-    it(`then navigates to Review page`, () => {
+    it(`then navigates to Update Review page`, () => {
       cy.url().should('match', /\/review\/-\w+$/);
     });
 
     it(`then displays the Review in update mode`, () => {
       cy.dataCy('title').should('have.text', 'Update Review');
-      cy.dataCy('review_submit').should('exist');
-      cy.dataCy('review_submit').should('have.text', 'Update');
-      cy.dataCy('review_delete').should('exist');
-      cy.dataCy('review_delete').should('have.text', 'Delete');
+      cy.dataCy('review:submit').should('have.text', 'Update');
+      cy.dataCy('review:delete').should('have.text', 'Delete');
     });
   });
 });

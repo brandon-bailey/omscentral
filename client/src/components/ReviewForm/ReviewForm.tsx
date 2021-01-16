@@ -90,7 +90,7 @@ const ReviewForm: React.FC<Props> = ({
             {mode !== 'make' && (
               <Grid item xs={12}>
                 <TextField
-                  data-cy="review_id"
+                  data-cy="review:id"
                   id="id"
                   name="id"
                   label="ID"
@@ -104,7 +104,7 @@ const ReviewForm: React.FC<Props> = ({
             )}
             <Grid item xs={12}>
               <Typeahead
-                data-cy="review_course_id"
+                data-cy="review:course_id"
                 id="course_id"
                 name="course_id"
                 label="Course"
@@ -129,7 +129,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
-                data-cy="review_semester_id"
+                data-cy="review:semester_id"
                 id="semester_id"
                 name="semester_id"
                 label="Semester"
@@ -153,7 +153,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
-                data-cy="review_difficulty"
+                data-cy="review:difficulty"
                 id="difficulty"
                 name="difficulty"
                 label="Difficulty"
@@ -176,7 +176,7 @@ const ReviewForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
-                data-cy="review_workload"
+                data-cy="review:workload"
                 id="workload"
                 name="workload"
                 label="Workload (hours/week)"
@@ -205,7 +205,7 @@ const ReviewForm: React.FC<Props> = ({
             <Grid item xs={12}>
               <TextField
                 select
-                data-cy="review_rating"
+                data-cy="review:rating"
                 id="rating"
                 name="rating"
                 label="Rating"
@@ -228,7 +228,7 @@ const ReviewForm: React.FC<Props> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
-                data-cy="review_body"
+                data-cy="review:body"
                 id="body"
                 name="body"
                 label="Body (markdown)"
@@ -250,14 +250,14 @@ const ReviewForm: React.FC<Props> = ({
               size="large"
               fullWidth
               disabled={disabled}
-              data-cy="review_submit"
+              data-cy="review:submit"
             >
               {action}
             </Button>
           )}
           {mode === 'edit' && (
             <Button
-              data-cy="review_delete"
+              data-cy="review:delete"
               type="button"
               size="large"
               color="secondary"
