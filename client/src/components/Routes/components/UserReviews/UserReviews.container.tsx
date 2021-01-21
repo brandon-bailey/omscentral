@@ -13,7 +13,7 @@ const UserReviewsContainer: React.FC = () => {
         <meta name="description" content="User's published reviews." />
       </Helmet>
       <ReviewCardListConnected
-        variables={{ author_id: user!.uid }}
+        variables={{ author_ids: [user!.uid] }}
         pagination={false}
       />
     </>

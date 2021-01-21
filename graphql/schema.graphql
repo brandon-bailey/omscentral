@@ -222,11 +222,11 @@ type Query {
 
   "Fetches some reviews."
   reviews(
-    order_by_desc: [String!] = ["created"]
+    order_by_desc: [String!]! = ["created"]
     offset: Int = 0
     limit: Int = 100
-    course_id: String
-    author_id: String
+    course_ids: [String!]! = []
+    author_ids: [String!]! = []
     semester_ids: [String!]! = []
     query: String = ""
   ): [Review!]!

@@ -10,7 +10,7 @@ interface Props {
 
 const Course: React.FC<Props> = ({ course }) => (
   <ReviewCardListConnected
-    variables={{ course_id: course.id }}
+    variables={{ course_ids: [course.id] }}
     before={<Metrics course={course} />}
   />
 );
