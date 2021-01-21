@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
 
   const handleSearchSubmit = (query: string) => {
     if (query) {
-      history.push(paths.reviews(query));
+      history.push(paths.reviews({ query }));
       firebase.analytics.logEvent('search', { search_term: query });
     }
   };

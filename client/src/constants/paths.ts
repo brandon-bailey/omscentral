@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const paths = {
   course: (id?: string): string => (id ? `/course/${id}` : '/course/:id'),
   courses: '/courses',
@@ -12,8 +14,8 @@ export const paths = {
     create: '/review',
     update: (id?: string): string => (id ? `/review/${id}` : '/review/:id'),
   },
-  reviews: (query?: string): string =>
-    query ? `/reviews?query=${encodeURIComponent(query)}` : '/reviews',
+  reviews: (params?: { [key: string]: string }): string =>
+    params ? `/reviews?${qs.stringify(params)}` : '/reviews',
   setPassword: '/set-password',
   terms: '/terms',
   userProfile: '/user/profile',
