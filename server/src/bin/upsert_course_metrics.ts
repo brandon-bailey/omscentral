@@ -1,3 +1,5 @@
+/* eslint-disable simple-import-sort/imports */
+
 import { init } from './utils';
 import { logger } from '../components';
 import { upsertCourseMetrics } from '../functions';

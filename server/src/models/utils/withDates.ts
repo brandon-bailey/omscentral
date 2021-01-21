@@ -1,4 +1,4 @@
-import { Model, ModelOptions, QueryContext, Pojo } from 'objection';
+import { Model, ModelOptions, Pojo, QueryContext } from 'objection';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const withDates = (ModelToDecorate: typeof Model) =>

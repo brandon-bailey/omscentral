@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import { Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import LogoutIcon from '@material-ui/icons/ExitToApp';
+import { Theme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import LogoutIcon from '@material-ui/icons/ExitToApp';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { paths } from 'src/constants';
 import useQueryParams from 'src/core/hooks/useQueryParams';
+
 import { AuthContext } from '../Auth';
 import { FirebaseContext } from '../Firebase';
 import Grow from '../Grow';

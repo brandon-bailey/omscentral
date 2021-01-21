@@ -1,4 +1,4 @@
-import { Model, compose } from 'objection';
+import { compose, Model } from 'objection';
 import { DbErrors } from 'objection-db-errors';
 import Visibility from 'objection-visibility';
 

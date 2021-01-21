@@ -1,6 +1,6 @@
+import { unknownSemester } from '../../constants';
 import { QueryResolvers } from '../../graphql';
 import { Semester } from '../../models';
-import { unknownSemester } from '../../constants';
 
 type Resolver = QueryResolvers['semesters'];
 

@@ -1,10 +1,10 @@
-import { IncomingHttpHeaders } from 'http';
-import { RequestHandler } from 'express';
 import cors from 'cors';
+import { RequestHandler } from 'express';
+import { IncomingHttpHeaders } from 'http';
 
+import { logger } from '../components';
 import { corsConfig } from '../config';
 import { isGooglebot } from '../utils';
-import { logger } from '../components';
 
 const isWhitelisted = ({ origin }: IncomingHttpHeaders): boolean => {
   const { whitelist } = corsConfig;

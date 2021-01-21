@@ -1,6 +1,6 @@
 /// <reference path="../../support/index.d.ts" />
 
-import { TestUser, generateTestUser } from '../../fixtures/user';
+import { generateTestUser, TestUser } from '../../fixtures/user';
 
 describe('given user is at Register page', () => {
   beforeEach(() => {

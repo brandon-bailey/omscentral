@@ -1,4 +1,3 @@
-import React, { useMemo, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import MaterialPaper from '@material-ui/core/Paper';
 import UITable, { Size } from '@material-ui/core/Table';
@@ -7,11 +6,12 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-import { Course, Semester } from 'src/graphql';
+import React, { useMemo, useState } from 'react';
 import compare from 'src/core/utils/compare';
 import stableSort from 'src/core/utils/stableSort';
-import HeadCell, { cells, CellKey, SortDirection } from '../HeadCell';
+import { Course, Semester } from 'src/graphql';
+
+import HeadCell, { CellKey, cells, SortDirection } from '../HeadCell';
 import SemesterHistory from '../SemesterHistory';
 import Stats from '../Stats';
 import { useStyles } from './Table.styles';

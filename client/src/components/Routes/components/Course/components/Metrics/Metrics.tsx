@@ -1,12 +1,12 @@
-import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-
-import { Course } from 'src/graphql';
+import React from 'react';
 import round from 'src/core/utils/round';
+import { Course } from 'src/graphql';
+
 import { useStyles } from './Metrics.styles';
 
 interface Props {

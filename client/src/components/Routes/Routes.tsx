@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
-import { Switch, Redirect } from 'react-router';
-
+import { Redirect, Switch } from 'react-router';
 import { paths } from 'src/constants';
+
 import Courses from './components/Courses';
 import Landing from './components/Landing';
 import Reviews from './components/Reviews';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router';
-
 import { useReviewQuery } from 'src/graphql';
+
 import ReviewUpdate from './ReviewUpdate';
 
 const ReviewUpdateContainer: React.FC = () => {

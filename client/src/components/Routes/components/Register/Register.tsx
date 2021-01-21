@@ -1,17 +1,17 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-
-import { paths } from 'src/constants';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import Button from 'src/components/Button';
 import Link from 'src/components/Link';
 import Paper from 'src/components/Paper';
 import White from 'src/components/White';
+import { paths } from 'src/constants';
+
 import { useStyles } from './Register.styles';
 
 export type FormData = {

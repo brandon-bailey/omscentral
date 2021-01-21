@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
-
 import { Nullable } from 'src/core';
+
 import Toast, { Props as ToastProps, Variant } from './components/Toast';
 
 type NotifyFn = (message: string) => void;

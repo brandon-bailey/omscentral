@@ -1,7 +1,7 @@
 import Knex from 'knex';
 
-import { semesters } from '../data';
 import { Semester } from '../../src/models';
+import { semesters } from '../data';
 
 exports.up = async (knex: Knex) => {
   await Semester.query(knex).upsertGraph(semesters, { insertMissing: true });

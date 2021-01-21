@@ -1,7 +1,7 @@
-import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
+import React from 'react';
 
 import Paper from '../Paper';
 import { useStyles } from './Static.styles';

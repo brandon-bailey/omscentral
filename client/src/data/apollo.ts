@@ -6,7 +6,6 @@ import {
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 import * as sentry from '@sentry/browser';
-
 import { apolloConfig } from 'src/config';
 import { browserHistory, paths } from 'src/constants';
 import storage from 'src/core/utils/storage';

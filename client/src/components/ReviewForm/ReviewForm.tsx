@@ -1,15 +1,15 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { reviewMeta } from 'src/constants';
-import { ReviewQuery, ReviewInputType, Course, Semester } from 'src/graphql';
 import Typeahead from 'src/core/components/Typeahead';
+import { Course, ReviewInputType, ReviewQuery, Semester } from 'src/graphql';
+
 import Button from '../Button';
 import Paper from '../Paper';
 import White from '../White';

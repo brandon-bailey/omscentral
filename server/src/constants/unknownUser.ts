@@ -1,5 +1,5 @@
+import { AuthProvider, Role } from '../enums';
 import { User } from '../models';
-import { Role, AuthProvider } from '../enums';
 
 const unknownUser: User = new User();
 

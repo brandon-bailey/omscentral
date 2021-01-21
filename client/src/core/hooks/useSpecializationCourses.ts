@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { Specialization } from 'src/graphql';
 
 const useSpecializationCourses = (

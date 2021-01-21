@@ -1,6 +1,6 @@
-import morgan from 'morgan';
-import { memoize } from 'lodash';
 import { RequestHandler } from 'express';
+import { memoize } from 'lodash';
+import morgan from 'morgan';
 
 import { appConfig, morganConfig } from '../config';
 

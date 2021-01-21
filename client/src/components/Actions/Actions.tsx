@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import EditIcon from '@material-ui/icons/Edit';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router';
 import { paths } from 'src/constants';
+
 import { AuthContext } from '../Auth';
 import { useStyles } from './Actions.styles';
 

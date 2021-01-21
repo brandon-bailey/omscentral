@@ -1,7 +1,7 @@
+import MaterialLink from '@material-ui/core/Link';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
-import MaterialLink from '@material-ui/core/Link';
 
 import { FirebaseContext } from '../Firebase';
 

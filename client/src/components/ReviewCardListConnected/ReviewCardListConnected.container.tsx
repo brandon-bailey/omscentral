@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import * as sentry from '@sentry/browser';
-
-import { useReviewsQuery, ReviewsQueryVariables } from 'src/graphql';
+import React, { useState } from 'react';
 import useSession from 'src/core/utils/useSessionStorage';
+import { ReviewsQueryVariables, useReviewsQuery } from 'src/graphql';
+
 import ReviewCardListConnected, { SortKey } from './ReviewCardListConnected';
 
 interface Props {

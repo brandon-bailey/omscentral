@@ -1,5 +1,5 @@
-import { chunk } from 'lodash';
 import { mapSeries } from 'bluebird';
+import { chunk } from 'lodash';
 
 export const serialize: <T>(
   values: T[],

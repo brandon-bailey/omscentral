@@ -1,6 +1,6 @@
+import CssBaseline from '@material-ui/core/CssBaseline';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Apollo from '../Apollo';
 import App from '../App';

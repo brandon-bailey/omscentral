@@ -1,9 +1,9 @@
-import React, { useContext, Suspense } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Router } from 'react-router-dom';
-
 import { browserHistory } from 'src/constants';
-import { AuthContext } from '../Auth';
+
 import Actions from '../Actions';
+import { AuthContext } from '../Auth';
 import ErrorBoundary from '../ErrorBoundary';
 import Loading from '../Loading';
 import Navbar from '../Navbar';

@@ -1,7 +1,6 @@
+import * as sentry from '@sentry/browser';
 import React from 'react';
 import { render } from 'react-dom';
-import * as sentry from '@sentry/browser';
-
 import { sentryConfig } from 'src/config';
 
 import Root from './components/Root';

@@ -1,12 +1,12 @@
-import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
-
+import React from 'react';
 import { Nullable } from 'src/core';
 import { Specialization } from 'src/graphql';
-import { useStyles } from './Toolbar.styles';
+
 import SpecializationSelect from './components/SpecializationSelect';
+import { useStyles } from './Toolbar.styles';
 
 interface Props {
   specializations?: Specialization[];

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-
+import assignDefined from 'src/core/utils/assignDefined';
 import {
   useProgramsQuery,
+  UserInputType,
+  UserQuery,
   useSpecializationsQuery,
   useUpdateUserMutation,
-  UserQuery,
-  UserInputType,
 } from 'src/graphql';
-import assignDefined from 'src/core/utils/assignDefined';
+
 import { AuthContext } from '../Auth';
 import { NotificationContext } from '../Notification';
 import UserForm from './UserForm';

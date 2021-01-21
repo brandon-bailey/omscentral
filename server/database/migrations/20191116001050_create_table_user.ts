@@ -1,8 +1,8 @@
 import Knex from 'knex';
 
-import { createTable, dropTable } from '../utils';
-import { User, Program, Specialization } from '../../src/models';
 import { AuthProvider, Role } from '../../src/enums';
+import { Program, Specialization, User } from '../../src/models';
+import { createTable, dropTable } from '../utils';
 
 exports.up = async (knex: Knex) => {
   await createTable(knex, User.tableName, (tb) => {

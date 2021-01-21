@@ -1,8 +1,8 @@
-import { raw, PartialModelObject as PMO } from 'objection';
 import { without } from 'lodash';
+import { PartialModelObject as PMO, raw } from 'objection';
 
-import { Domain, Review, CourseMetric as CM } from '../models';
 import { unknownSemester } from '../constants';
+import { CourseMetric as CM, Domain, Review } from '../models';
 
 class Metric extends Domain {
   static tableName = '_virtual';

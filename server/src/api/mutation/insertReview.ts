@@ -1,7 +1,7 @@
-import { forbidden, badRequest } from '@hapi/boom';
+import { badRequest, forbidden } from '@hapi/boom';
 
-import { MutationResolvers } from '../../graphql';
 import { insertReview } from '../../functions';
+import { MutationResolvers } from '../../graphql';
 import { reviewSchema } from '../schema';
 
 type Resolver = MutationResolvers['insertReview'];

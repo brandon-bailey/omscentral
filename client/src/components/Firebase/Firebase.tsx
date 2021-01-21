@@ -1,9 +1,9 @@
-import React, { createContext } from 'react';
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/performance';
 import 'firebase/analytics';
 
+import firebase from 'firebase/app';
+import React, { createContext } from 'react';
 import { firebaseConfig } from 'src/config';
 
 const app = firebase.initializeApp(firebaseConfig);

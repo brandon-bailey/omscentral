@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
-
+import { paths } from 'src/constants';
 import {
-  useCoursesQuery,
-  useSemestersQuery,
-  useInsertReviewMutation,
-  useUpdateReviewMutation,
-  useDeleteReviewMutation,
   ReviewInputType,
   ReviewQuery,
+  useCoursesQuery,
+  useDeleteReviewMutation,
+  useInsertReviewMutation,
+  useSemestersQuery,
+  useUpdateReviewMutation,
 } from 'src/graphql';
-import { paths } from 'src/constants';
+
+import { AuthContext } from '../Auth';
 import { FirebaseContext } from '../Firebase';
 import { NotificationContext } from '../Notification';
-import { AuthContext } from '../Auth';
 import ReviewForm from './ReviewForm';
 
 interface Props {

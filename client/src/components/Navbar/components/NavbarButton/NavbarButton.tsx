@@ -1,6 +1,6 @@
+import Button from '@material-ui/core/Button';
 import React from 'react';
 import { useHistory } from 'react-router';
-import Button from '@material-ui/core/Button';
 
 interface Props {
   path: string;

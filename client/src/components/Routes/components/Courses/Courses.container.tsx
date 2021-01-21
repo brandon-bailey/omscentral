@@ -1,14 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
 import { Nullable } from 'src/core';
+import useLocal from 'src/core/utils/useLocalStorage';
 import {
   Specialization,
   useCoursesQuery,
   useSemestersQuery,
   useSpecializationsQuery,
 } from 'src/graphql';
-import useLocal from 'src/core/utils/useLocalStorage';
+
 import Courses from './Courses';
 
 const CoursesContainer: React.FC = () => {

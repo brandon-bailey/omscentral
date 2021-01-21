@@ -1,10 +1,10 @@
 import { QueryBuilder } from 'objection';
 
+import { AuthProvider, Role } from '../enums';
 import { Domain } from './Domain';
-import { withDates } from './utils';
 import { Program } from './Program';
 import { Specialization } from './Specialization';
-import { AuthProvider, Role } from '../enums';
+import { withDates } from './utils';
 
 export class User extends withDates(Domain) {
   id!: string;

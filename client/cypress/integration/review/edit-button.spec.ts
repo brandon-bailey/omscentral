@@ -1,7 +1,7 @@
 /// <reference path="../../support/index.d.ts" />
 
-import { user } from '../../fixtures/user';
 import { ReviewInputType } from '../../../src/graphql';
+import { user } from '../../fixtures/user';
 
 describe('given user is at Reviews page after publishing a review', () => {
   before(() => {

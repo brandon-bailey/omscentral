@@ -1,6 +1,6 @@
-import React from 'react';
-import CheckIcon from '@material-ui/icons/Check';
 import Typography from '@material-ui/core/Typography';
+import CheckIcon from '@material-ui/icons/Check';
+import React from 'react';
 
 interface Props {
   value?: boolean;

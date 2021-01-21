@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import IconButton from '@material-ui/core/IconButton';
 import MaterialMenu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { Nullable } from 'src/core';
 
 interface Props {

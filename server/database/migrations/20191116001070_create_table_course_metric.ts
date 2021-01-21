@@ -1,7 +1,7 @@
 import Knex from 'knex';
 
+import { Course, CourseMetric } from '../../src/models';
 import { createTable, dropTable } from '../utils';
-import { CourseMetric, Course } from '../../src/models';
 
 exports.up = async (knex: Knex) => {
   await createTable(knex, CourseMetric.tableName, (tb) => {

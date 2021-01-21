@@ -1,8 +1,10 @@
+/* eslint-disable simple-import-sort/imports */
+
 import { each } from 'bluebird';
 
 import { init } from './utils';
-import { deleteUser } from '../functions';
 import { firebase, logger } from '../components';
+import { deleteUser } from '../functions';
 
 async function main(): Promise<void> {
   let token: string | undefined;

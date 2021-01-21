@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
 import MaterialButton, { ButtonProps } from '@material-ui/core/Button';
+import clsx from 'clsx';
+import React from 'react';
 
 import { useStyles } from './Button.styles';
 

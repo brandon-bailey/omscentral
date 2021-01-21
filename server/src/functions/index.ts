@@ -1,17 +1,14 @@
-export * from './deleteUser';
-export * from './getUser';
-export * from './updateUser';
-export * from './upsertUser';
-
-export * from './getReview';
 export * from './deleteReview';
-export * from './insertReview';
-export * from './updateReview';
-
+export * from './deleteUser';
+export * from './getReview';
+export * from './getUser';
 export * from './indexReviews';
+export * from './insertReview';
 export * from './searchReviews';
-
+export * from './updateReview';
+export * from './updateUser';
 export * from './upsertCourseMetrics';
 export * from './upsertCourses';
 export * from './upsertSemesters';
 export * from './upsertSpecializations';
+export * from './upsertUser';

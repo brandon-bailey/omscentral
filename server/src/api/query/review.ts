@@ -1,7 +1,7 @@
 import { notFound } from '@hapi/boom';
 
-import { QueryResolvers } from '../../graphql';
 import { getReview } from '../../functions';
+import { QueryResolvers } from '../../graphql';
 
 type Resolver = QueryResolvers['review'];
 

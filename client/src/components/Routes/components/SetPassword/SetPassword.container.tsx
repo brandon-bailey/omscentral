@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-
-import { Nullable } from 'src/core';
-import useQueryParams from 'src/core/hooks/useQueryParams';
 import { FirebaseContext } from 'src/components/Firebase';
 import { NotificationContext } from 'src/components/Notification';
+import { Nullable } from 'src/core';
+import useQueryParams from 'src/core/hooks/useQueryParams';
+
 import SetPassword, { FormData } from './SetPassword';
 
 const SetPasswordContainer: React.FC = () => {

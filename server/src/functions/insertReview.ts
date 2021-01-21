@@ -1,7 +1,7 @@
 import { PartialModelObject as PMO } from 'objection';
 
-import { id } from '../utils';
 import { Review } from '../models';
+import { id } from '../utils';
 import { indexReview } from './indexReviews';
 import { upsertReviewCourseMetrics } from './utils';
 

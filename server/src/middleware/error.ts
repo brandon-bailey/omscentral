@@ -1,8 +1,8 @@
 import { Boom, boomify, forbidden } from '@hapi/boom';
 import { ErrorRequestHandler } from 'express';
 
-import { appConfig } from '../config';
 import { logger } from '../components';
+import { appConfig } from '../config';
 
 const parseError = (error: Error | Boom | any): Boom =>
   error instanceof Boom

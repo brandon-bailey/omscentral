@@ -1,5 +1,5 @@
-import { Domain } from './Domain';
 import { Season } from '../enums';
+import { Domain } from './Domain';
 
 export class Semester extends Domain {
   id!: string;

@@ -1,5 +1,4 @@
 import { QueryResolvers } from '../../graphql';
-
 import { resolver as config } from './config';
 import { resolver as course } from './course';
 import { resolver as courses } from './courses';

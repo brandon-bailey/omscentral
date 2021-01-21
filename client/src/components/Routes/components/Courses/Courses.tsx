@@ -1,20 +1,20 @@
+import Container from '@material-ui/core/Container';
+import { Theme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Alert from '@material-ui/lab/Alert';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
-import { Theme } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
-import Container from '@material-ui/core/Container';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-import { Course, Semester, Specialization } from 'src/graphql';
 import { FirebaseContext } from 'src/components/Firebase/Firebase';
-import { NotificationContext } from 'src/components/Notification';
-import { Nullable } from 'src/core';
-import { paths } from 'src/constants';
 import Loading from 'src/components/Loading';
+import { NotificationContext } from 'src/components/Notification';
 import Paper from 'src/components/Paper';
+import { paths } from 'src/constants';
+import { Nullable } from 'src/core';
+import useSpecializationCourses from 'src/core/hooks/useSpecializationCourses';
 import useLocal from 'src/core/utils/useLocalStorage';
 import useSession from 'src/core/utils/useSessionStorage';
-import useSpecializationCourses from 'src/core/hooks/useSpecializationCourses';
+import { Course, Semester, Specialization } from 'src/graphql';
+
 import Requirement from './components/Requirement';
 import Table from './components/Table';
 import Toolbar from './components/Toolbar';

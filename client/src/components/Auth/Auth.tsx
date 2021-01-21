@@ -1,10 +1,10 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
 import firebase from 'firebase/app';
-
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Nullable } from 'src/core';
-import { useUpsertUserMutation } from 'src/graphql';
-import apollo from 'src/data/apollo';
 import storage from 'src/core/utils/storage';
+import apollo from 'src/data/apollo';
+import { useUpsertUserMutation } from 'src/graphql';
+
 import { FirebaseContext } from '../Firebase';
 import { toInput } from './Auth.utils';
 

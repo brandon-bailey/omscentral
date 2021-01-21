@@ -1,7 +1,6 @@
 import React from 'react';
-
-import { ReviewQuery } from 'src/graphql';
 import ReviewForm from 'src/components/ReviewForm';
+import { ReviewQuery } from 'src/graphql';
 
 interface Props {
   review: ReviewQuery['review'];

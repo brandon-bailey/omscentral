@@ -1,8 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
-import { useConfigQuery } from 'src/graphql';
 import Static from 'src/components/Static';
+import { useConfigQuery } from 'src/graphql';
 
 const Privacy: React.FC = () => {
   const { data } = useConfigQuery({ variables: { id: 'privacy' } });

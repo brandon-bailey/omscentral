@@ -1,7 +1,7 @@
-import { notFound, forbidden } from '@hapi/boom';
+import { forbidden, notFound } from '@hapi/boom';
 
+import { deleteReview, getReview } from '../../functions';
 import { MutationResolvers } from '../../graphql';
-import { getReview, deleteReview } from '../../functions';
 
 type Resolver = MutationResolvers['deleteReview'];
 

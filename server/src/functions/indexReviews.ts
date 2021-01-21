@@ -1,8 +1,8 @@
 import { flatMap } from 'lodash';
 
-import { Review } from '../models';
-import { reviewsIndex } from '../constants';
 import { logger, search } from '../components';
+import { reviewsIndex } from '../constants';
+import { Review } from '../models';
 
 export const indexReviews = async (): Promise<void> => {
   if (await search.indexExists(reviewsIndex)) {

@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { Route as RouterRoute, Redirect, RouteProps } from 'react-router';
-
-import { paths } from 'src/constants';
+import { Redirect, Route as RouterRoute, RouteProps } from 'react-router';
 import { AuthContext } from 'src/components/Auth';
+import { paths } from 'src/constants';
 
 interface Props extends RouteProps {
   /**

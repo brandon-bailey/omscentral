@@ -1,9 +1,9 @@
+import { chain, memoize, range } from 'lodash';
 import { PartialModelObject as PMO } from 'objection';
-import { chain, range, memoize } from 'lodash';
 
-import { Semester } from '../../src/models';
-import { Season } from '../../src/enums';
 import { unknownSemester } from '../../src/constants';
+import { Season } from '../../src/enums';
+import { Semester } from '../../src/models';
 
 const getSeasonDisplayName = memoize((season: Season): string => {
   switch (season) {

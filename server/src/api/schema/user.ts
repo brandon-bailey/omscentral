@@ -1,4 +1,4 @@
-import { object, string, number } from '@hapi/joi';
+import { number, object, string } from '@hapi/joi';
 
 import { AuthProvider } from '../../enums';
 

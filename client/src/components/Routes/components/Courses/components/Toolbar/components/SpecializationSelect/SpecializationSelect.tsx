@@ -1,11 +1,10 @@
-import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import React, { useContext } from 'react';
 import Select from '@material-ui/core/Select';
+import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
 import Typography from '@material-ui/core/Typography';
-
+import React, { useContext } from 'react';
 import { FirebaseContext } from 'src/components/Firebase/Firebase';
 import { Nullable } from 'src/core';
 import { Specialization } from 'src/graphql';

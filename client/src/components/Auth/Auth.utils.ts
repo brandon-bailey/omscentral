@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-
 import { UserInputType } from 'src/graphql';
 
 export const toInput = (user: firebase.User): UserInputType => {

@@ -1,6 +1,6 @@
+import { searchReviews as search } from '../../functions';
 import { QueryResolvers } from '../../graphql';
 import { Review } from '../../models';
-import { searchReviews as search } from '../../functions';
 
 type Resolver = QueryResolvers['reviews'];
 

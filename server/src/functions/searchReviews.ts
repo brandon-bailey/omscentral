@@ -1,8 +1,8 @@
 import { ModelObject } from 'objection';
 
-import { Review } from '../models';
-import { reviewsIndex } from '../constants';
 import { search } from '../components';
+import { reviewsIndex } from '../constants';
+import { Review } from '../models';
 
 export const searchReviews = async ({
   query,

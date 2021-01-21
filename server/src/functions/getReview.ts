@@ -1,4 +1,4 @@
-import { SingleQueryBuilder, QueryBuilder } from 'objection';
+import { QueryBuilder, SingleQueryBuilder } from 'objection';
 
 import { Review } from '../models';
 

@@ -1,9 +1,9 @@
-import React from 'react';
 import { Size } from '@material-ui/core/Table';
 import Typography from '@material-ui/core/Typography';
-
-import { SpecializationRequirement } from 'src/graphql';
+import React from 'react';
 import { specializationMeta } from 'src/constants/specializationMeta';
+import { SpecializationRequirement } from 'src/graphql';
+
 import { useStyles } from './Requirement.styles';
 
 interface Props {

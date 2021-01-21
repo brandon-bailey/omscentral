@@ -1,7 +1,7 @@
 import { QueryBuilder } from 'objection';
 
-import { Domain } from './Domain';
 import { CourseMetric } from './CourseMetric';
+import { Domain } from './Domain';
 
 export class Course extends Domain {
   id!: string;

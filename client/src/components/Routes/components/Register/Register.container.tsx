@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet';
-
 import { FirebaseContext } from 'src/components/Firebase';
 import { NotificationContext } from 'src/components/Notification';
+
 import Register, { FormData } from './Register';
 
 const RegisterContainer: React.FC = () => {

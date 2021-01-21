@@ -1,4 +1,7 @@
+/* eslint-disable simple-import-sort/imports */
+
 import { writeFileSync } from 'fs';
+
 import { init } from './utils';
 import { root } from '../constants';
 

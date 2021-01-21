@@ -1,14 +1,14 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
-import lusca from 'lusca';
 import rateLimit from 'express-rate-limit';
+import lusca from 'lusca';
 
-import { appConfig } from './config';
 import { bootable } from './components';
 import { logger } from './components';
-import * as phases from './phases';
+import { appConfig } from './config';
 import * as middleware from './middleware';
+import * as phases from './phases';
 
 export const app = bootable(express(), logger);
 

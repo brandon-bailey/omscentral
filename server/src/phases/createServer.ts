@@ -1,18 +1,18 @@
 import { ApolloServer } from 'apollo-server-express';
-import { applyMiddleware } from 'graphql-middleware';
-import { makeExecutableSchema } from 'graphql-tools';
 import { Response } from 'express';
 import fs from 'fs';
+import { applyMiddleware } from 'graphql-middleware';
+import { makeExecutableSchema } from 'graphql-tools';
 import path from 'path';
 
-import { appConfig } from '../config';
-import { Context, Request } from '../types';
-import { getUser } from '../functions';
-import { graphqlConfig } from '../config';
+import { Mutation, permissions, Query } from '../api';
 import { logger } from '../components';
-import { Mutation, Query, permissions } from '../api';
 import { PhaseFunction } from '../components';
+import { appConfig } from '../config';
+import { graphqlConfig } from '../config';
 import { root } from '../constants';
+import { getUser } from '../functions';
+import { Context, Request } from '../types';
 
 export const phase: PhaseFunction = (app, next) => {
   const schemaFile = path.join(root, 'src', 'graphql', 'schema.graphql');

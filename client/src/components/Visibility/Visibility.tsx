@@ -1,6 +1,6 @@
+import LinearProgress from '@material-ui/core/LinearProgress';
 import React, { useState } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
-import LinearProgress from '@material-ui/core/LinearProgress';
 
 interface Props {
   onVisible?: () => void;

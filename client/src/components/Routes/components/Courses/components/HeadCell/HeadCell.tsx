@@ -1,7 +1,7 @@
-import React from 'react';
 import TableCell, { TableCellProps } from '@material-ui/core/TableCell';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Tooltip from '@material-ui/core/Tooltip';
+import React from 'react';
 
 import { useStyles } from './HeadCell.styles';
 

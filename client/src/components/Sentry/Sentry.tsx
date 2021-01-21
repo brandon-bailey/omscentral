@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react';
 import * as sentry from '@sentry/browser';
-
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from 'src/components/Auth';
 
 const Sentry: React.FC = () => {

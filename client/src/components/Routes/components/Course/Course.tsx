@@ -1,7 +1,7 @@
 import React from 'react';
-
-import { Course as CourseType } from 'src/graphql';
 import ReviewCardListConnected from 'src/components/ReviewCardListConnected';
+import { Course as CourseType } from 'src/graphql';
+
 import Metrics from './components/Metrics';
 
 interface Props {

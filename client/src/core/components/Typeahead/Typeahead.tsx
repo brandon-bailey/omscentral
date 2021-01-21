@@ -1,6 +1,6 @@
-import React from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField, { BaseTextFieldProps } from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import React from 'react';
 
 interface Props {
   autoFocus?: boolean;

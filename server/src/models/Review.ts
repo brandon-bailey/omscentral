@@ -1,11 +1,11 @@
 import { QueryBuilder } from 'objection';
 
-import { Domain } from './Domain';
-import { withDates } from './utils';
-import { User } from './User';
-import { Course } from './Course';
-import { Semester } from './Semester';
 import { Difficulty, Rating } from '../enums';
+import { Course } from './Course';
+import { Domain } from './Domain';
+import { Semester } from './Semester';
+import { User } from './User';
+import { withDates } from './utils';
 
 export class Review extends withDates(Domain) {
   id!: string;

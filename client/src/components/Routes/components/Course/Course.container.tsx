@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router';
-
 import { useCourseQuery } from 'src/graphql';
+
 import Course from './Course';
 
 const CourseContainer: React.FC = () => {

@@ -1,7 +1,6 @@
 import React from 'react';
-
-import { UserQuery } from 'src/graphql';
 import UserForm from 'src/components/UserForm';
+import { UserQuery } from 'src/graphql';
 
 interface Props {
   user?: UserQuery['user'];

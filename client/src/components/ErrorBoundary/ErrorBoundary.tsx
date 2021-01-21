@@ -1,7 +1,6 @@
+import * as sentry from '@sentry/browser';
 import React from 'react';
 import { Redirect } from 'react-router';
-import * as sentry from '@sentry/browser';
-
 import { paths } from 'src/constants';
 
 interface State {

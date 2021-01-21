@@ -1,12 +1,12 @@
-import React from 'react';
-import { OverridableComponent as OC } from '@material-ui/core/OverridableComponent';
 import { SvgIconTypeMap as SITM } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
+import { OverridableComponent as OC } from '@material-ui/core/OverridableComponent';
+import SummerIcon from '@material-ui/icons/Brightness5';
 import FallIcon from '@material-ui/icons/Eco';
 import SpringIcon from '@material-ui/icons/EmojiNature';
-import SummerIcon from '@material-ui/icons/Brightness5';
 import UnknownIcon from '@material-ui/icons/Help';
 import clsx from 'clsx';
+import React from 'react';
 
 import { useStyles } from './Season.styles';
 

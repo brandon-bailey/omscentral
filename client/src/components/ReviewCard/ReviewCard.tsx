@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router';
-import CopyToClipboard from 'react-copy-to-clipboard';
-import Markdown from 'react-markdown';
-import { Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Chip, { ChipProps } from '@material-ui/core/Chip';
-import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
-import LinkIcon from '@material-ui/icons/Link';
+import { Theme } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-import { reviewMeta, paths } from 'src/constants';
-import { ReviewsQuery } from 'src/graphql';
+import EditIcon from '@material-ui/icons/Edit';
+import LinkIcon from '@material-ui/icons/Link';
+import React, { useContext } from 'react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import Markdown from 'react-markdown';
+import { useHistory } from 'react-router';
+import { paths, reviewMeta } from 'src/constants';
 import Season from 'src/core/components/Season';
+import { ReviewsQuery } from 'src/graphql';
+
 import { AuthContext } from '../Auth';
 import Grow from '../Grow';
 import Link from '../Link';
-import applyHighlighting from './utils/applyHighlighting';
 import { useStyles } from './ReviewCard.styles';
+import applyHighlighting from './utils/applyHighlighting';
 
 interface Props {
   review: ReviewsQuery['reviews'][0];

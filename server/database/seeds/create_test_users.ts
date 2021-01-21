@@ -1,12 +1,12 @@
-import Knex from 'knex';
 import { each } from 'bluebird';
+import Knex from 'knex';
 import { Model, ModelObject } from 'objection';
 
+import { firebase, logger } from '../../src/components';
 import { appConfig } from '../../src/config';
 import { AuthProvider, Role } from '../../src/enums';
-import { firebase, logger } from '../../src/components';
-import { Program, Specialization, User } from '../../src/models';
 import { upsertUser } from '../../src/functions';
+import { Program, Specialization, User } from '../../src/models';
 
 export const seed = async (knex: Knex): Promise<void> => {
   Model.knex(knex);

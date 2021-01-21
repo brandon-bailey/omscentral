@@ -26,6 +26,7 @@ module.exports = {
     'react',
     'react-hooks',
     'security',
+    'simple-import-sort',
   ],
   root: true,
   settings: {
@@ -66,5 +67,9 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'error',
     'security/detect-object-injection': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'sort-imports': 'off',
+    'import/order': 'off',
   },
 };

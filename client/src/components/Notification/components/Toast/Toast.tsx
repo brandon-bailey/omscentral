@@ -1,6 +1,6 @@
-import React from 'react';
 import Snackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
 import Alert, { Color } from '@material-ui/lab/Alert';
+import React from 'react';
 
 export type Variant = Color;
 

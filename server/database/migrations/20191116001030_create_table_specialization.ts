@@ -1,7 +1,7 @@
 import Knex from 'knex';
 
+import { Program, Specialization } from '../../src/models';
 import { createTable, dropTable } from '../utils';
-import { Specialization, Program } from '../../src/models';
 
 exports.up = async (knex: Knex) => {
   await createTable(knex, Specialization.tableName, (tb) => {

@@ -1,7 +1,7 @@
 import { Express } from 'express';
 
+import { BootFunction, Logger, PhaseFunction } from '../interfaces';
 import { Phase } from './Phase';
-import { Logger, BootFunction, PhaseFunction } from '../interfaces';
 
 export class Bootable {
   /**

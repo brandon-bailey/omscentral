@@ -1,5 +1,5 @@
-import { Logger } from 'winston';
 import { Request as BaseRequest, Response } from 'express';
+import { Logger } from 'winston';
 
 import { User } from './models';
 

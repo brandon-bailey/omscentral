@@ -1,13 +1,13 @@
-import { useForm } from 'react-hook-form';
-import AccountIcon from '@material-ui/icons/AccountCircleOutlined';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import React, { useMemo } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import AccountIcon from '@material-ui/icons/AccountCircleOutlined';
+import React, { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { Program, Specialization, UserInputType, UserQuery } from 'src/graphql';
 
-import { UserQuery, Specialization, Program, UserInputType } from 'src/graphql';
 import Button from '../Button';
 import Paper from '../Paper';
 import White from '../White';

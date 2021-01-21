@@ -1,4 +1,4 @@
-import { PhaseFunction, logger } from '../components';
+import { logger, PhaseFunction } from '../components';
 
 export const phase: PhaseFunction = (app, next) => {
   process.on('unhandledRejection', (reason: any) => {

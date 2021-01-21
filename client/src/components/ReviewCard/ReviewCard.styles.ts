@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
 import red from '@material-ui/core/colors/red';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   card: {

@@ -1,9 +1,9 @@
 import { forbidden } from '@hapi/boom';
-import { rule, shield, allow, deny } from 'graphql-shield';
+import { allow, deny, rule, shield } from 'graphql-shield';
 
+import { logger } from '../components';
 import { appConfig } from '../config';
 import { Context } from '../types';
-import { logger } from '../components';
 
 const isSignedIn = rule()((_, __, { req }: Context) => !!req.userId);
 

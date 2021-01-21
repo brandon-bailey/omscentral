@@ -1,27 +1,27 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import firebase from 'firebase/app';
-import { Theme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import GoogleIcon from '@material-ui/icons/GTranslate';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import GoogleIcon from '@material-ui/icons/GTranslate';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import TwitterIcon from '@material-ui/icons/Twitter';
-
+import firebase from 'firebase/app';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import Button from 'src/components/Button';
+import { FirebaseContext } from 'src/components/Firebase';
 import Link from 'src/components/Link';
 import Paper from 'src/components/Paper';
 import White from 'src/components/White';
-import { FirebaseContext } from 'src/components/Firebase';
 import { paths } from 'src/constants';
+
 import { useStyles } from './Login.styles';
 
 export type FormData = {

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { ReviewsQuery } from 'src/graphql';
+
 import ReviewCardList from '../ReviewCardList';
 import Visibility from '../Visibility';
 import Toolbar, { SortKey } from './components/Toolbar';

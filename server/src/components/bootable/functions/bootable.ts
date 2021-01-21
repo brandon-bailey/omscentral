@@ -1,8 +1,8 @@
 import { Express } from 'express';
 import { assign } from 'lodash';
 
+import { BootableExpress, Logger } from '../interfaces';
 import { Bootable } from '../models';
-import { Logger, BootableExpress } from '../interfaces';
 
 /**
  * Decorator that injects bootable capabilities to an express app by adding

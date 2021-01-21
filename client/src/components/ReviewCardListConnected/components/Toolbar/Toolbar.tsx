@@ -1,9 +1,9 @@
-import React from 'react';
-import ImportExportIcon from '@material-ui/icons/ImportExport';
 import Typography from '@material-ui/core/Typography';
-
+import ImportExportIcon from '@material-ui/icons/ImportExport';
+import React from 'react';
 import Grow from 'src/components/Grow';
 import Menu from 'src/components/Menu';
+
 import { useStyles } from './Toolbar.styles';
 
 export enum SortKey {
