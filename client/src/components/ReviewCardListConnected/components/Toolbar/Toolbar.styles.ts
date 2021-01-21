@@ -7,7 +7,14 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  sortBy: {
+  ml: {
+    marginLeft: theme.spacing(1),
+  },
+  mr: {
+    marginRight: theme.spacing(1),
+  },
+  mx: {
+    marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
   bold: {

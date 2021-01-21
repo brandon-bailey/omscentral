@@ -1,7 +1,11 @@
 import * as sentry from '@sentry/browser';
 import React, { useState } from 'react';
 import useSession from 'src/core/utils/useSessionStorage';
-import { ReviewsQueryVariables, useReviewsQuery } from 'src/graphql';
+import {
+  ReviewsQueryVariables,
+  useReviewsQuery,
+  useSemestersQuery,
+} from 'src/graphql';
 
 import ReviewCardListConnected, { SortKey } from './ReviewCardListConnected';
 
@@ -18,25 +22,31 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
 }) => {
   const [paginate, setPaginate] = useState(pagination);
   const [limit, setLimit] = useSession<number>('rcl:l', paginate ? 10 : 10e6);
+  const [semesterFilter, setSemesterFilter] = useState<string[]>([]);
   const [sortKey, setSortKey] = useSession<SortKey>('rcl:sk', SortKey.Semester);
-  const { data, loading, fetchMore } = useReviewsQuery({
-    variables: {
-      ...variables,
-      limit,
-      order_by_desc: [sortKey, SortKey.Created],
-    },
-    fetchPolicy: 'cache-and-network',
-  });
+
+  const [reviews, semesters] = [
+    useReviewsQuery({
+      variables: {
+        ...variables,
+        limit,
+        order_by_desc: [sortKey, SortKey.Created],
+        semester_ids: semesterFilter,
+      },
+      fetchPolicy: 'cache-and-network',
+    }),
+    useSemestersQuery(),
+  ];
 
   const handleLoadMore = async () => {
-    if (loading) {
+    if (reviews.loading) {
       return;
     }
 
     try {
-      await fetchMore({
+      await reviews.fetchMore({
         variables: {
-          offset: data!.reviews!.length,
+          offset: reviews.data!.reviews!.length,
         },
         updateQuery: (prev, { fetchMoreResult }) => {
           if (fetchMoreResult?.reviews?.length) {
@@ -56,9 +66,16 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
         level: sentry.Severity.Error,
         extra: {
           ...variables,
-          last_offset: data?.reviews?.length,
+          last_offset: reviews.data?.reviews?.length,
         },
       });
+    }
+  };
+
+  const handleSemesterFilterChange = (filter: string[]) => {
+    if (filter.sort().join(',') !== semesterFilter.sort().join(',')) {
+      setLimit(10);
+      setSemesterFilter(filter);
     }
   };
 
@@ -71,12 +88,17 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
 
   return (
     <ReviewCardListConnected
-      loading={loading}
-      reviews={data?.reviews}
+      loading={reviews.loading || semesters.loading}
+      reviews={reviews.data?.reviews}
+      semesterFilter={semesterFilter}
+      onSemesterFilterChange={handleSemesterFilterChange}
+      semesters={semesters.data?.semesters}
       sortKey={sortKey}
       onSortKeyChange={handleSortKeyChange}
       onLoadMore={
-        paginate && data?.reviews?.length && data.reviews.length >= limit
+        paginate &&
+        reviews.data?.reviews?.length &&
+        reviews.data.reviews.length >= limit
           ? handleLoadMore
           : undefined
       }
