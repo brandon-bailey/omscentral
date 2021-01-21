@@ -26,6 +26,8 @@
 
 import { reviewMeta } from '../../src/constants/reviewMeta';
 
+const WAIT_MS = 500;
+
 Cypress.Commands.add('dataCy', (value) => cy.get(`[data-cy="${value}"]`));
 
 const state = {
@@ -52,8 +54,6 @@ Cypress.Commands.add('omsClearLS', () => {
   state.localStorage.clear();
   return cy.wait(WAIT_MS);
 });
-
-const WAIT_MS = 250;
 
 Cypress.Commands.add('omsGoTo', (path) => {
   cy.visit(path);
