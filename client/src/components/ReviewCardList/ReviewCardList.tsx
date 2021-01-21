@@ -2,6 +2,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import React, { useContext } from 'react';
+import Link from 'src/components/Link';
 import { paths } from 'src/constants';
 import { ReviewsQuery } from 'src/graphql';
 
@@ -24,7 +25,11 @@ const ReviewCardList: React.FC<Props> = ({
   loading,
   reviews,
   highlight,
-  whenEmpty = <Typography>No reviews.</Typography>,
+  whenEmpty = (
+    <Typography>
+      No reviews. <Link to="">Go back.</Link>
+    </Typography>
+  ),
   before,
   after,
 }) => {

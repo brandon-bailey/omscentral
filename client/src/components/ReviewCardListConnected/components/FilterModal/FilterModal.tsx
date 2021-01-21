@@ -5,7 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import React from 'react';
+import React, { useState } from 'react';
 import { Option } from 'src/core/types';
 
 interface Props<T> {
@@ -27,7 +27,7 @@ function FilterModal<T = string>({
   onClose = onCancel,
   onOk,
 }: Props<T>): React.ReactElement {
-  const [value, setValue] = React.useState(
+  const [value, setValue] = useState(
     options.filter((option) => initialValue.includes(option.value)),
   );
 

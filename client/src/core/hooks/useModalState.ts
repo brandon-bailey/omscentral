@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 
 const useModalState = (
   initialState: boolean,
@@ -7,12 +7,12 @@ const useModalState = (
   onShow: () => void;
   onHide: () => void;
 } => {
-  const [isShown, setIsShown] = React.useState(initialState);
+  const [isShown, setIsShown] = useState(initialState);
 
   return {
     isShown,
-    onShow: React.useCallback(() => setIsShown(true), []),
-    onHide: React.useCallback(() => setIsShown(false), []),
+    onShow: useCallback(() => setIsShown(true), []),
+    onHide: useCallback(() => setIsShown(false), []),
   };
 };
 

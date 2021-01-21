@@ -5,14 +5,16 @@ import { Link as RouterLink, LinkProps } from 'react-router-dom';
 
 import { FirebaseContext } from '../Firebase';
 
-const Link: React.FC<LinkProps & { to: string }> = (props) => {
+const Link: React.FC<LinkProps & { to: string | null }> = (props) => {
   const history = useHistory();
   const firebase = useContext(FirebaseContext);
 
   const handleClick = (event: React.MouseEvent) => {
     event.preventDefault();
     const { to } = props;
-    if (/^http(s?):\/\//.test(to)) {
+    if (to === '') {
+      history.goBack();
+    } else if (/^http(s?):\/\//.test(to)) {
       firebase.analytics.logEvent('screen_view', {
         app_name: 'external_link',
         screen_name: to,

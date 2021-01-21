@@ -1,5 +1,10 @@
 import * as sentry from '@sentry/browser';
-import React, { useState } from 'react';
+import qs from 'query-string';
+import React, { useContext, useState } from 'react';
+import { useHistory, useLocation } from 'react-router';
+import { FirebaseContext } from 'src/components/Firebase/Firebase';
+import useQueryParams from 'src/core/hooks/useQueryParams';
+import asArray from 'src/core/utils/asArray';
 import useSession from 'src/core/utils/useSessionStorage';
 import {
   ReviewsQueryVariables,
@@ -20,10 +25,21 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
   pagination = true,
   before,
 }) => {
+  const firebase = useContext(FirebaseContext);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  const params = useQueryParams<{
+    semester: string[];
+    sort: SortKey;
+  }>();
+
+  const semesterFilter = asArray<string>(params.semester);
+  const sortKey = params.sort || SortKey.Created;
+
   const [paginate, setPaginate] = useState(pagination);
-  const [limit, setLimit] = useSession<number>('rcl:l', paginate ? 10 : 10e6);
-  const [semesterFilter, setSemesterFilter] = useState<string[]>([]);
-  const [sortKey, setSortKey] = useSession<SortKey>('rcl:sk', SortKey.Semester);
+  const [limit, setLimit] = useSession('rcl:l', paginate ? 10 : 10e6);
 
   const [reviews, semesters] = [
     useReviewsQuery({
@@ -75,14 +91,36 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
   const handleSemesterFilterChange = (filter: string[]) => {
     if (filter.sort().join(',') !== semesterFilter.sort().join(',')) {
       setLimit(10);
-      setSemesterFilter(filter);
+
+      history.push({
+        search: qs.stringify({
+          ...qs.parse(location.search),
+          semester: filter,
+        }),
+      });
+
+      firebase.analytics.logEvent('select_content', {
+        content_type: 'semester_filter',
+        content_ids: filter,
+      });
     }
   };
 
   const handleSortKeyChange = (key: SortKey) => {
     if (key !== sortKey) {
       setLimit(10);
-      setSortKey(key);
+
+      history.push({
+        search: qs.stringify({
+          ...qs.parse(location.search),
+          sort: key,
+        }),
+      });
+
+      firebase.analytics.logEvent('select_content', {
+        content_type: 'sort_key',
+        content_id: key,
+      });
     }
   };
 
