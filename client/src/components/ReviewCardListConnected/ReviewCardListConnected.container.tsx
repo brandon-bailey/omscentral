@@ -101,7 +101,7 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
 
       firebase.analytics.logEvent('select_content', {
         content_type: 'semester_filter',
-        content_ids: filter,
+        content_id: filter.sort().join(','),
       });
     }
   };
