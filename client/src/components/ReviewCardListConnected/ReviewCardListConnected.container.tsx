@@ -1,8 +1,7 @@
 import * as sentry from '@sentry/browser';
 import qs from 'query-string';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { FirebaseContext } from 'src/components/Firebase/Firebase';
 import useQueryParams from 'src/core/hooks/useQueryParams';
 import asArray from 'src/core/utils/asArray';
 import useSession from 'src/core/utils/useSessionStorage';
@@ -25,8 +24,6 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
   pagination = true,
   before,
 }) => {
-  const firebase = useContext(FirebaseContext);
-
   const history = useHistory();
   const location = useLocation();
 
@@ -98,11 +95,6 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
           semester: filter,
         }),
       });
-
-      firebase.analytics.logEvent('select_content', {
-        content_type: 'semester_filter',
-        content_id: filter.sort().join(','),
-      });
     }
   };
 
@@ -115,11 +107,6 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
           ...qs.parse(location.search),
           sort: key,
         }),
-      });
-
-      firebase.analytics.logEvent('select_content', {
-        content_type: 'sort_key',
-        content_id: key,
       });
     }
   };
