@@ -47,7 +47,7 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
         ...variables,
         limit,
         order_by_desc: [sortKey, SortKey.Created],
-        course_ids: courseFilter,
+        course_ids: courseFilter.concat(variables.course_ids ?? []),
         semester_ids: semesterFilter,
       },
       fetchPolicy: 'cache-and-network',
