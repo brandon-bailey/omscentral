@@ -7,14 +7,27 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import React, { useMemo, useState } from 'react';
+import { CourseColumnKey as ColumnKey, SortDirection } from 'src/core/types';
 import compare from 'src/core/utils/compare';
 import stableSort from 'src/core/utils/stableSort';
 import { Course, Semester } from 'src/graphql';
 
-import HeadCell, { CellKey, cells, SortDirection } from '../HeadCell';
+import HeadCell from '../HeadCell';
 import SemesterHistory from '../SemesterHistory';
 import Stats from '../Stats';
 import { useStyles } from './Table.styles';
+
+const columns = [
+  ColumnKey.Id,
+  ColumnKey.Name,
+  // ColumnKey.Foundational,
+  // ColumnKey.Deprecated,
+  ColumnKey.Reviews,
+  ColumnKey.Difficulty,
+  ColumnKey.Workload,
+  ColumnKey.Rating,
+  ColumnKey.Semesters,
+];
 
 export interface Props {
   before?: React.ReactElement<any>;
@@ -33,10 +46,10 @@ const Table: React.FC<Props> = ({
 }) => {
   const classes = useStyles();
 
-  const [orderBy, setOrderBy] = useState<CellKey>(CellKey.Id);
+  const [orderBy, setOrderBy] = useState<ColumnKey>(ColumnKey.Id);
   const [order, setOrder] = useState<SortDirection>('asc');
 
-  const handleHeadCellClick = (id: CellKey) => {
+  const handleHeadCellClick = (id: ColumnKey) => {
     const isDesc = orderBy === id && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(id);
@@ -57,7 +70,7 @@ const Table: React.FC<Props> = ({
         <UITable className={classes.table} size={size} aria-label="courses">
           <TableHead>
             <TableRow>
-              {cells.map((key) => (
+              {columns.map((key) => (
                 <HeadCell
                   key={key}
                   id={key}
@@ -71,7 +84,7 @@ const Table: React.FC<Props> = ({
           <TableBody>
             {courses.length === 0 && (
               <TableRow>
-                <TableCell colSpan={cells.length}>No matches...</TableCell>
+                <TableCell colSpan={columns.length}>No matches...</TableCell>
               </TableRow>
             )}
             {stableSort(courses, sortBy).map((course) => (
@@ -112,28 +125,28 @@ const Table: React.FC<Props> = ({
 
 export default Table;
 
-const comparator = (a: Course, b: Course, orderBy: CellKey): number => {
+const comparator = (a: Course, b: Course, orderBy: ColumnKey): number => {
   const aMetric = a.metric?.reviews;
   const bMetric = b.metric?.reviews;
 
   switch (orderBy) {
-    case CellKey.Id:
+    case ColumnKey.Id:
       return compare(a.id, b.id);
-    case CellKey.Name:
+    case ColumnKey.Name:
       return compare(a.name, b.name);
-    case CellKey.Foundational:
+    case ColumnKey.Foundational:
       return compare(a.foundational, b.foundational);
-    case CellKey.Deprecated:
+    case ColumnKey.Deprecated:
       return compare(a.deprecated, b.deprecated);
-    case CellKey.Reviews:
+    case ColumnKey.Reviews:
       return compare(aMetric?.count, bMetric?.count);
-    case CellKey.Difficulty:
+    case ColumnKey.Difficulty:
       return compare(aMetric?.difficulty.mean, bMetric?.difficulty.mean);
-    case CellKey.Workload:
+    case ColumnKey.Workload:
       return compare(aMetric?.workload.mean, bMetric?.workload.mean);
-    case CellKey.Rating:
+    case ColumnKey.Rating:
       return compare(aMetric?.rating.mean, bMetric?.rating.mean);
-    case CellKey.Semesters:
+    case ColumnKey.Semesters:
     default:
       return 0;
   }

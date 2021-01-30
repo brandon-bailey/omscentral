@@ -7,17 +7,9 @@ import SpringIcon from '@material-ui/icons/EmojiNature';
 import UnknownIcon from '@material-ui/icons/Help';
 import clsx from 'clsx';
 import React from 'react';
+import { Season as SeasonEnum, SeasonSize } from 'src/core/types';
 
 import { useStyles } from './Season.styles';
-
-export enum SeasonEnum {
-  Unknown = 0,
-  Spring = 1,
-  Summer = 2,
-  Fall = 3,
-}
-
-export type SeasonSize = 'small' | 'large' | 'default';
 
 const seasonIcons: { [key in SeasonEnum]: OC<SITM<unknown, 'svg'>> } = {
   [SeasonEnum.Spring]: SpringIcon,

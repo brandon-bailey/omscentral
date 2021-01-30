@@ -6,17 +6,12 @@ import React from 'react';
 import Grow from 'src/components/Grow';
 import Menu from 'src/components/Menu';
 import useModalState from 'src/core/hooks/useModalState';
-import { Option } from 'src/core/types';
+import { Option, ReviewSortKey as SortKey } from 'src/core/types';
 
 import FilterModal from '../FilterModal';
 import { useStyles } from './Toolbar.styles';
 
-export enum SortKey {
-  Created = 'created',
-  Semester = 'semester_id',
-}
-
-interface Props {
+export interface Props {
   courseFilter: string[];
   courseFilterOptions: Option[];
   onCourseFilterChange: (filter: string[]) => void;

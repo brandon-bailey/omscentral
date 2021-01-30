@@ -3,16 +3,12 @@ import qs from 'query-string';
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import useQueryParams from 'src/core/hooks/useQueryParams';
+import { ReviewSortKey as SortKey } from 'src/core/types';
 import asArray from 'src/core/utils/asArray';
 import useSession from 'src/core/utils/useSessionStorage';
-import {
-  ReviewsQueryVariables,
-  useCoursesQuery,
-  useReviewsQuery,
-  useSemestersQuery,
-} from 'src/graphql';
+import { ReviewsQueryVariables, useReviewsQuery } from 'src/graphql';
 
-import ReviewCardListConnected, { SortKey } from './ReviewCardListConnected';
+import ReviewCardListConnected from './ReviewCardListConnected';
 
 interface Props {
   variables?: ReviewsQueryVariables;
@@ -41,20 +37,16 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
   const [paginate, setPaginate] = useState(pagination);
   const [limit, setLimit] = useSession('rcl:l', paginate ? 10 : 10e6);
 
-  const [reviews, courses, semesters] = [
-    useReviewsQuery({
-      variables: {
-        ...variables,
-        limit,
-        order_by_desc: [sortKey, SortKey.Created],
-        course_ids: courseFilter.concat(variables.course_ids ?? []),
-        semester_ids: semesterFilter,
-      },
-      fetchPolicy: 'cache-and-network',
-    }),
-    useCoursesQuery(),
-    useSemestersQuery(),
-  ];
+  const reviews = useReviewsQuery({
+    variables: {
+      ...variables,
+      limit,
+      order_by_desc: [sortKey, SortKey.Created],
+      course_ids: courseFilter.concat(variables.course_ids ?? []),
+      semester_ids: semesterFilter,
+    },
+    fetchPolicy: 'cache-and-network',
+  });
 
   const handleLoadMore = async () => {
     if (reviews.loading) {
@@ -121,14 +113,12 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
 
   return (
     <ReviewCardListConnected
-      loading={reviews.loading || courses.loading || semesters.loading}
+      loading={reviews.loading}
       reviews={reviews.data?.reviews}
       courseFilter={courseFilter}
       onCourseFilterChange={handleCourseFilterChange}
-      courses={courses.data?.courses}
       semesterFilter={semesterFilter}
       onSemesterFilterChange={handleSemesterFilterChange}
-      semesters={semesters.data?.semesters}
       sortKey={sortKey}
       onSortKeyChange={handleSortKeyChange}
       onLoadMore={
