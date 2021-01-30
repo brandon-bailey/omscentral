@@ -17,6 +17,9 @@ export enum SortKey {
 }
 
 interface Props {
+  courseFilter: string[];
+  courseFilterOptions: Option[];
+  onCourseFilterChange: (filter: string[]) => void;
   semesterFilter: string[];
   semesterFilterOptions: Option[];
   onSemesterFilterChange: (filter: string[]) => void;
@@ -27,6 +30,9 @@ interface Props {
 }
 
 const Toolbar: React.FC<Props> = ({
+  courseFilter,
+  courseFilterOptions,
+  onCourseFilterChange,
   semesterFilter,
   semesterFilterOptions,
   onSemesterFilterChange,
@@ -38,10 +44,21 @@ const Toolbar: React.FC<Props> = ({
   const classes = useStyles();
 
   const {
+    isShown: isCourseFilterShown,
+    onShow: showCourseFilter,
+    onHide: hideCourseFilter,
+  } = useModalState(false);
+
+  const {
     isShown: isSemesterFilterShown,
     onShow: showSemesterFilter,
     onHide: hideSemesterFilter,
   } = useModalState(false);
+
+  const handleCourseFilterChange = (options: Option[]) => {
+    onCourseFilterChange(options.map((option) => option.value));
+    hideCourseFilter();
+  };
 
   const handleSemesterFilterChange = (options: Option[]) => {
     onSemesterFilterChange(options.map((option) => option.value));
@@ -52,6 +69,21 @@ const Toolbar: React.FC<Props> = ({
     <div className={classes.toolbar}>
       {message && <Typography variant="body2">{message}</Typography>}
       <Grow />
+      <Typography variant="body2">Courses:</Typography>
+      <IconButton onClick={showCourseFilter} className={classes.mx}>
+        <DateRangeIcon fontSize="small" />
+      </IconButton>
+
+      {isCourseFilterShown && (
+        <FilterModal
+          title="Course Filter"
+          options={courseFilterOptions}
+          initialValue={courseFilter}
+          onCancel={hideCourseFilter}
+          onOk={handleCourseFilterChange}
+        />
+      )}
+
       <Typography variant="body2">Semesters:</Typography>
       <IconButton onClick={showSemesterFilter} className={classes.mx}>
         <DateRangeIcon fontSize="small" />

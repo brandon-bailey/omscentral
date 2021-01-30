@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReviewsQuery, SemestersQuery } from 'src/graphql';
+import { CoursesQuery, ReviewsQuery, SemestersQuery } from 'src/graphql';
 
 import ReviewCardList from '../ReviewCardList';
 import Visibility from '../Visibility';
@@ -13,6 +13,9 @@ const sortKeyOptions = [
 ];
 interface Props {
   reviews?: ReviewsQuery['reviews'];
+  courseFilter?: string[];
+  onCourseFilterChange: (filter: string[]) => void;
+  courses?: CoursesQuery['courses'];
   semesterFilter?: string[];
   onSemesterFilterChange: (filter: string[]) => void;
   semesters?: SemestersQuery['semesters'];
@@ -26,6 +29,9 @@ interface Props {
 
 const ReviewCardListConnected: React.FC<Props> = ({
   reviews,
+  courseFilter = [],
+  onCourseFilterChange,
+  courses,
   semesterFilter = [],
   onSemesterFilterChange,
   semesters,
@@ -44,6 +50,14 @@ const ReviewCardListConnected: React.FC<Props> = ({
       <>
         {before}
         <Toolbar
+          courseFilter={courseFilter}
+          courseFilterOptions={
+            courses?.map((course) => ({
+              value: course.id,
+              label: `${course.id} ${course.name}`,
+            })) || []
+          }
+          onCourseFilterChange={onCourseFilterChange}
           semesterFilter={semesterFilter}
           semesterFilterOptions={
             semesters?.map((semester) => ({
