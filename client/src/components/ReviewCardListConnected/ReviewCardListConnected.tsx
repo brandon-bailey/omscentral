@@ -12,7 +12,7 @@ interface Props {
   onCourseFilterChange: (filter: string[]) => void;
   semesterFilter?: string[];
   onSemesterFilterChange: (filter: string[]) => void;
-  sortKey: SortKey;
+  sortKey?: SortKey;
   onSortKeyChange: (key: SortKey) => void;
   onLoadMore?: () => void;
   loading?: boolean;
@@ -22,9 +22,9 @@ interface Props {
 
 const ReviewCardListConnected: React.FC<Props> = ({
   reviews,
-  courseFilter = [],
+  courseFilter,
   onCourseFilterChange,
-  semesterFilter = [],
+  semesterFilter,
   onSemesterFilterChange,
   sortKey,
   onSortKeyChange,

@@ -10,6 +10,12 @@ import { ReviewsQueryVariables, useReviewsQuery } from 'src/graphql';
 
 import ReviewCardListConnected from './ReviewCardListConnected';
 
+enum QueryParam {
+  Course = 'course',
+  Semester = 'semester',
+  Sort = 'sort',
+}
+
 interface Props {
   variables?: ReviewsQueryVariables;
   pagination?: boolean;
@@ -25,12 +31,12 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
   const location = useLocation();
 
   const params = useQueryParams<{
-    course: string[];
-    semester: string[];
-    sort: SortKey;
+    [QueryParam.Course]: string[];
+    [QueryParam.Semester]: string[];
+    [QueryParam.Sort]: SortKey;
   }>();
 
-  const courseFilter = asArray<string>(params.course);
+  const courseFilter = asArray<string>(variables.course_ids || params.course);
   const semesterFilter = asArray<string>(params.semester);
   const sortKey = params.sort || SortKey.Created;
 
@@ -42,7 +48,7 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
       ...variables,
       limit,
       order_by_desc: [sortKey, SortKey.Created],
-      course_ids: courseFilter.concat(variables.course_ids ?? []),
+      course_ids: courseFilter,
       semester_ids: semesterFilter,
     },
     fetchPolicy: 'cache-and-network',
@@ -82,21 +88,21 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
     }
   };
 
-  const handleFilterChange = (key: string) => (filter: string[]) => {
+  const handleFilterChange = (param: QueryParam) => (filter: string[]) => {
     if (filter.sort().join(',') !== courseFilter.sort().join(',')) {
       setLimit(10);
 
       history.push({
         search: qs.stringify({
           ...qs.parse(location.search),
-          [key]: filter,
+          [param]: filter,
         }),
       });
     }
   };
 
-  const handleCourseFilterChange = handleFilterChange('course');
-  const handleSemesterFilterChange = handleFilterChange('semester');
+  const handleCourseFilterChange = handleFilterChange(QueryParam.Course);
+  const handleSemesterFilterChange = handleFilterChange(QueryParam.Semester);
 
   const handleSortKeyChange = (key: SortKey) => {
     if (key !== sortKey) {
@@ -115,7 +121,7 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
     <ReviewCardListConnected
       loading={reviews.loading}
       reviews={reviews.data?.reviews}
-      courseFilter={courseFilter}
+      courseFilter={variables.course_ids == null ? courseFilter : undefined}
       onCourseFilterChange={handleCourseFilterChange}
       semesterFilter={semesterFilter}
       onSemesterFilterChange={handleSemesterFilterChange}
