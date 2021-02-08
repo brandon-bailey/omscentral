@@ -478,7 +478,7 @@ export const courses: PMO<Course>[] = [
     deprecated: false,
   },
   {
-    id: 'CS-8803x',
+    id: 'CS-8803-OC1',
     department: 'CS',
     number: '8803',
     name: 'Security Operations & Incidence Response',
