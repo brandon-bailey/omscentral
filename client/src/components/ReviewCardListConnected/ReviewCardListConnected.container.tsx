@@ -88,21 +88,30 @@ const ReviewCardListConnectedContainer: React.FC<Props> = ({
     }
   };
 
-  const handleFilterChange = (param: QueryParam) => (filter: string[]) => {
-    if (filter.sort().join(',') !== courseFilter.sort().join(',')) {
+  const handleFilterChange = (param: QueryParam, oldFilter: string[]) => (
+    newFilter: string[],
+  ) => {
+    if (newFilter.sort().join(',') !== oldFilter.sort().join(',')) {
       setLimit(10);
 
       history.push({
         search: qs.stringify({
           ...qs.parse(location.search),
-          [param]: filter,
+          [param]: newFilter,
         }),
       });
     }
   };
 
-  const handleCourseFilterChange = handleFilterChange(QueryParam.Course);
-  const handleSemesterFilterChange = handleFilterChange(QueryParam.Semester);
+  const handleCourseFilterChange = handleFilterChange(
+    QueryParam.Course,
+    courseFilter,
+  );
+
+  const handleSemesterFilterChange = handleFilterChange(
+    QueryParam.Semester,
+    semesterFilter,
+  );
 
   const handleSortKeyChange = (key: SortKey) => {
     if (key !== sortKey) {
