@@ -12,3 +12,10 @@ export const config: PostgresConfig = {
 if (!config.connection) {
   throw new Error('process.env.OMSCENTRAL_POSTGRES_CONNECTION required');
 }
+
+if (
+  config.connection.includes('amazonaws.com') &&
+  !config.connection.endsWith('?sslmode=require')
+) {
+  config.connection += '?sslmode=require';
+}
