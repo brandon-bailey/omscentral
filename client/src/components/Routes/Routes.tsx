@@ -94,7 +94,7 @@ const routes: Route[] = [
   },
 ];
 
-const isUnderMaintenance = true;
+const isUnderMaintenance = false;
 
 const Routes: React.FC = () => (
   <Switch>
