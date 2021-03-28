@@ -18,11 +18,12 @@
     "format:package": "prettier-package-json --write ./package.json",
     "start": "serve -s build -p 3000",
     "test": "run-s test:formatting test:lint test:compile test:react",
-    "test:compile": "tsc -p tsconfig.json",
+    "test:compile": "npm run tsc -- --noEmit",
     "test:formatting": "prettier --check '(src|cypress)/{**/*,*}.{js,jsx,ts,tsx,json,css,scss}'",
     "test:integration": "cypress run",
     "test:lint": "eslint src/ cypress/ --ext .ts,.tsx,.js,.jsx",
-    "test:react": "react-scripts test"
+    "test:react": "react-scripts test",
+    "tsc": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "@apollo/client": "3.3.7",
@@ -50,7 +51,7 @@
   "devDependencies": {
     "@apollo/react-testing": "4.0.0",
     "@types/firebase": "3.2.1",
-    "@types/jest": "26.0.20",
+    "@types/jest": "26.0.22",
     "@types/query-string": "6.3.0",
     "@types/react": "17.0.0",
     "@types/react-copy-to-clipboard": "5.0.0",
