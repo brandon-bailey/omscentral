@@ -37,12 +37,12 @@
     "wait:server": "wait-on file:server/src/graphql/index.ts"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.14.1",
-    "@typescript-eslint/parser": "4.14.1",
-    "eslint": "7.18.0",
-    "eslint-plugin-flowtype": "5.2.0",
+    "@typescript-eslint/eslint-plugin": "4.19.0",
+    "@typescript-eslint/parser": "4.19.0",
+    "eslint": "7.23.0",
+    "eslint-plugin-flowtype": "5.4.0",
     "eslint-plugin-graphql": "4.0.0",
-    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-security": "1.4.0",
     "graphql": "15.5.0",
